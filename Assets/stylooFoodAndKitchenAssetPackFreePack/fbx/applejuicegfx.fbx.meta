@@ -3,7 +3,17 @@ guid: 9a24ed8996a60bf4bbc59dbcfd93d4a9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: applejuicegfx_color
+    second: {fileID: 2800000, guid: 311e04b3b1aa02242a8c1bc3ec0ddae3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: applejuicegfx_normal
+    second: {fileID: 2800000, guid: 0c00b0c9413d4394da68fd95228f02cc, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
