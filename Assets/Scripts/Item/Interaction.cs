@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
-/*public class Interaction : MonoBehaviour
+public class Interaction : MonoBehaviour
 {
     private IInteractable curInteractable;
     public GameObject curInteractGameObject;
@@ -63,4 +62,4 @@ using TMPro;
             promptText.gameObject.SetActive(false);
         }
     }
-}*/
+}
