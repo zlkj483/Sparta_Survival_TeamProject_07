@@ -2624,12 +2624,6 @@ MonoBehaviour:
   rb: {fileID: 35170515}
   moveSpeed: 5
   jumpForce: 5
-  IsGround: 0
-  groundCheckTr: {fileID: 0}
-  groundDistance: 0.5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
   cameraBox: {fileID: 432105259}
   mouseSensitivity: 1
   camTr: {fileID: 963194228}
