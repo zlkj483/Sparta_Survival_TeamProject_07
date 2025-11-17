@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class StructureData : ScriptableObject
 {
-        [Header("Info")]
-        public string displayName;
-        public GameObject dropPrefab;
-    
+    [Header("Info")]
+    public string displayName;
+    public int maxHp;
+    public int hp;
+    public int df;
+    public Item dropItem;
+    public int dropAmount;
+    public int dropCount;
+    public int damagePer;
 }
