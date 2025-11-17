@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb682494320d8f4b82c7fe15e50e014, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: 
-  displayName: 
-  maxHp: 0
-  hp: 0
+  displayName: "\uB3CC"
+  maxHp: 200
+  hp: 50
   df: 0
-  dropItem: {fileID: 0}
-  dropAmount: 0
-  dropCount: 0
-  damagePer: 0
+  dropItem: {fileID: -2578939967450073569, guid: e259359469264334fb0596195497e6ae, type: 3}
+  dropAmount: 3
+  dropCount: 4
+  damagePer: 50
