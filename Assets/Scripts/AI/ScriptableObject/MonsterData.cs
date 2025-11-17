@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 [CreateAssetMenu(menuName = "Game/Monster Data", fileName = "MonsterData_")]
 public class MonsterData : ScriptableObject
@@ -22,10 +19,18 @@ public class MonsterData : ScriptableObject
     public float aggroRange = 10f;   // 플레이어 감지 범위
     public float attackRange = 2f;   // 공격 거리
     public float giveUpRange = 20f;  // 추격 포기 거리
+    public float sightRange = 12f;
+    public float sightAngle = 120f;
+    public LayerMask targetLayer;
+    public LayerMask obstacleMask;
 
     [Header("패트롤 설정")]
     public float patrolWaitTime = 2f;
 
     [Header("공격 패턴")]
     public float attackCooldown = 2f;
+
+    [Header("드랍/죽음")]
+    public DropTable dropTable;
+    public float destroyAfterDeath = 3f;
 }
