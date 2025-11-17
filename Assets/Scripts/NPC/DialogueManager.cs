@@ -7,16 +7,16 @@ public class DialogueManager : MonoBehaviour
 {
 public static DialogueManager Instance { get; private set; }
     [Header("Dialogue Components")]
-    [SerializeField] private GameObject _dialoguePanel;
-    [SerializeField] private TextMeshProUGUI _speakerNameText;
-    [SerializeField] private TextMeshProUGUI _dialogueContentText;
+    [SerializeField] private GameObject dialoguePanel; // 대화 UI 패널
+    [SerializeField] private TextMeshProUGUI speakerNameText;
+    [SerializeField] private TextMeshProUGUI dialogueContentText;
 
     [Header("Settings")]
-    [SerializeField] private float _typingSpeed = 0.05f;
+    [SerializeField] private float typingSpeed = 0.05f;
 
-    private Queue<DialogueLine> _dialogueQueue;
-    private Coroutine _dialogueRoutine;
-    private bool _isTyping = false;
+    private Queue<DialogueLine> dialogueQueue;
+    private Coroutine dialogueRoutine;
+    private bool isTyping = false;
 
     private void Awake()
     {
@@ -27,65 +27,65 @@ public static DialogueManager Instance { get; private set; }
         else
         {
             Instance = this;
-            _dialogueQueue = new Queue<DialogueLine>();
-            _dialoguePanel.SetActive(false);
+            dialogueQueue = new Queue<DialogueLine>();
+            dialoguePanel.SetActive(false);
         }
     }
 
     public void StartDialogue(DialogueData data) //NPC가 대화를 시작할 때 호출하는 진입점
     {
-        if (_dialoguePanel.activeSelf) return; // 이미 대화중이면 무시
+        if (dialoguePanel.activeSelf) return; // 이미 대화중이면 무시
 
-        _dialogueQueue.Clear();
+        dialogueQueue.Clear();
         foreach(DialogueLine line in data.Line) // 큐 초기화 및 데이터 로드
         {
-            _dialogueQueue.Enqueue(line);
+            dialogueQueue.Enqueue(line);
         }
-        _dialoguePanel.SetActive(true);
+        dialoguePanel.SetActive(true);
         DisplayNextLine();
     }
 
     private void DisplayNextLine()
     {
-        if(_dialogueQueue.Count == 0)
+        if(dialogueQueue.Count == 0)
         {
         EndDialogue();
             return;
         }
-        DialogueLine line = _dialogueQueue.Dequeue();
-        _speakerNameText.text = line.SpeakerName;
+        DialogueLine line = dialogueQueue.Dequeue();
+        speakerNameText.text = line.SpeakerName;
 
-        if(_dialogueRoutine != null) StopCoroutine(_dialogueRoutine);
-        _dialogueRoutine = StartCoroutine(TypeSentence(line.Text));
+        if(dialogueRoutine != null) StopCoroutine(dialogueRoutine);
+        dialogueRoutine = StartCoroutine(TypeSentence(line.Text));
 
     }
 
     private IEnumerator TypeSentence(string sentance)  // 타이핑 루틴
     {
-        _isTyping = true;
-        _dialogueContentText.text = "";
+        isTyping = true;
+        dialogueContentText.text = "";
         foreach(char letter  in sentance.ToCharArray())
         {
-            _dialogueContentText.text += letter;
-            yield return new WaitForSeconds(_typingSpeed);
+            dialogueContentText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
         }
-        _isTyping = false;
+        isTyping = false;
     }
 
     private void EndDialogue()
     {
-        _dialoguePanel.SetActive(false);
+        dialoguePanel.SetActive(false);
         Debug.Log("End Dialogue");
     }
 
     public void OnContinueClicked()  // 플레이어가 클릭하면 다음 대화 호출
     {
-        if (_isTyping)
+        if (isTyping)
         {
-            StopCoroutine(_dialogueRoutine);
-            DialogueLine currentLine = _dialogueQueue.Dequeue();
-            _dialogueContentText.text = _dialogueQueue.Peek().Text;
-            _isTyping =false;
+            StopCoroutine(dialogueRoutine);
+            DialogueLine currentLine = dialogueQueue.Dequeue();
+            dialogueContentText.text = dialogueQueue.Peek().Text;
+            isTyping =false;
         }
         else
         {
