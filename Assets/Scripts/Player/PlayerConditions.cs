@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerCondition : MonoBehaviour
+public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public UICondition uiCondition;
 
@@ -47,5 +47,10 @@ public class PlayerCondition : MonoBehaviour
     public void Die()
     {
         Debug.Log("플레이어가 죽었다.");
+    }
+    public void TakePhysicalDamage(float damage)
+    {
+        health.Subtract(damage);
+        onTakeDamage?.Invoke(); // UI 깜빡임 등 이벤트
     }
 }
