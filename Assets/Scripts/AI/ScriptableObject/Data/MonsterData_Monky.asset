@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0690d5a05dca5948809c1bae3ab2f00, type: 3}
+  m_Script: {fileID: 11500000, guid: 581ec66146a63ef40bd4f0aa931a3c02, type: 3}
   m_Name: MonsterData_Monky
   m_EditorClassIdentifier: 
-  monsterId: 1
-  displayName: "\uD070\uCF54\uC6D0\uC22D\uC774"
+  monsterId: 2
+  displayName: "\uAE34\uCF54\uC6D0\uC22D\uC774"
   skinPrefab: {fileID: 73827145412065725, guid: 019b90d486c0d664fbdae0916c481a2f, type: 3}
   maxHp: 100
   moveSpeed: 3.5
