@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackState : IAIState
@@ -7,8 +5,13 @@ public class AttackState : IAIState
     private readonly AIContext _ctx;
     private readonly AIStateMachine _fsm;
 
-    private float _attackCooldown = 2f; // 예시
-    private float _attackTimer;
+    private float _attackCooldownTimer;
+    private bool _hasHitThisSwing;
+    private float _prevNormalizedTime;
+
+    // 애니 한 바퀴 기준(0~1)에서 언제 히트 낼지
+    private const float HitStartTime = 0.3f;
+    private const float HitEndTime = 0.5f;
 
     public AttackState(AIContext ctx, AIStateMachine fsm)
     {
@@ -18,31 +21,27 @@ public class AttackState : IAIState
 
     public void OnEnter()
     {
-        _attackTimer = 0f;
-
-        if (_ctx.Agent != null)
-        {
-            _ctx.Agent.isStopped = true;
-        }
+        _attackCooldownTimer = 0f;
+        _hasHitThisSwing = false;
+        _prevNormalizedTime = 0f;
 
         if (_ctx.Animator != null)
         {
-            _ctx.Animator.SetBool("IsMove", false);
+            _ctx.Animator.ResetTrigger("Attack");
             _ctx.Animator.SetTrigger("Attack");
         }
-
-        // 여기서 실제 데미지 적용은 AnimationEvent나 Timer로
-        // 나중에 전투 시스템 붙일 때 구현
     }
 
     public void OnExit()
     {
-        if (_ctx.Agent != null)
-            _ctx.Agent.isStopped = false;
+        _hasHitThisSwing = false;
     }
 
     public void Tick()
     {
+        if (_ctx.IsDead)
+            return;
+
         if (_ctx.CurrentTarget == null)
         {
             _fsm.ChangeState(new IdleState(_ctx, _fsm));
@@ -51,34 +50,80 @@ public class AttackState : IAIState
 
         float dist = _ctx.DistanceToTarget;
 
-        // 공격 거리 벗어나면 Chase로
-        if (dist > _ctx.AttackRange * 1.2f) // 약간 여유
+        // 사거리 밖 → Chase로 복귀
+        if (dist > _ctx.AttackRange)
         {
             _fsm.ChangeState(new ChaseState(_ctx, _fsm));
             return;
         }
 
-        // 타겟 바라보기
-        Vector3 dir = _ctx.CurrentTarget.position - _ctx.SelfTransform.position;
-        dir.y = 0;
-        if (dir != Vector3.zero)
+        var anim = _ctx.Animator;
+        if (anim == null)
+            return;
+
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+        // Attack 태그 상태가 아니면(전이 중 등) 쿨타임 기다리면서 다음 공격 준비
+        if (!stateInfo.IsTag("Attack"))
         {
-            _ctx.SelfTransform.rotation = Quaternion.Slerp(
-                _ctx.SelfTransform.rotation,
-                Quaternion.LookRotation(dir),
-                Time.deltaTime * 10f
-            );
+            _attackCooldownTimer += Time.deltaTime;
+            if (_attackCooldownTimer >= _ctx.AttackCooldown)
+            {
+                _attackCooldownTimer = 0f;
+                _hasHitThisSwing = false;
+                anim.SetTrigger("Attack");
+            }
+            return;
         }
 
-        _attackTimer += Time.deltaTime;
+        // 0~1 구간으로 정규화
+        float normalizedTime = stateInfo.normalizedTime % 1f;
 
-        if (_attackTimer >= _attackCooldown)
+        // 새 싸이클로 넘어갔으면 이번 스윙 히트 리셋
+        if (normalizedTime < _prevNormalizedTime)
         {
-            _attackTimer = 0f;
-            if (_ctx.Animator != null)
-                _ctx.Animator.SetTrigger("Attack");
+            _hasHitThisSwing = false;
+        }
+        _prevNormalizedTime = normalizedTime;
 
-            // 여기에서 IAttackAction 사용해서 데미지 적용 가능 (나중에 확장)
+        // 히트 타이밍 구간 진입 & 아직 안 때렸으면 → 데미지 적용
+        if (!_hasHitThisSwing &&
+            normalizedTime >= HitStartTime &&
+            normalizedTime <= HitEndTime)
+        {
+            _hasHitThisSwing = true;
+            ApplyDamageInFront();
+        }
+
+        // 쿨타임 타면서 다음 공격 준비
+        _attackCooldownTimer += Time.deltaTime;
+        if (_attackCooldownTimer >= _ctx.AttackCooldown && normalizedTime >= 0.9f)
+        {
+            _attackCooldownTimer = 0f;
+            _hasHitThisSwing = false;
+            anim.SetTrigger("Attack");
+        }
+    }
+
+    private void ApplyDamageInFront()
+    {
+        if (_ctx.Data == null) return;
+
+        float radius = _ctx.Data.attackRange * 0.8f;
+        Vector3 origin = _ctx.SelfTransform.position + _ctx.SelfTransform.forward * (_ctx.Data.attackRange * 0.5f);
+
+        Collider[] hits = Physics.OverlapSphere(
+            origin,
+            radius,
+            _ctx.Data.targetLayer
+        );
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent(out IDamagable damageable))
+            {
+                damageable.TakePhysicalDamage(_ctx.Data.baseDamage);
+            }
         }
     }
 }
