@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abb682494320d8f4b82c7fe15e50e014, type: 3}
-  m_Name: Tree
+  m_Name: Rock
   m_EditorClassIdentifier: 
-  displayName: "\uB098\uBB34"
-  maxHp: 100
-  hp: 100
+  displayName: 
+  maxHp: 0
+  hp: 0
   df: 0
-  dropItem: {fileID: -705808723137817622, guid: b002cfbe0ab9bd349bd0aff9c0b0d210, type: 3}
-  dropAmount: 2
-  dropCount: 4
-  damagePer: 25
+  dropItem: {fileID: 0}
+  dropAmount: 0
+  dropCount: 0
+  damagePer: 0
