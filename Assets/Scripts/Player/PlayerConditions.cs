@@ -53,4 +53,14 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         health.Subtract(damage);
         onTakeDamage?.Invoke(); // UI 깜빡임 등 이벤트
     }
+
+    public bool UseStamina(float amount)
+    {
+        if (stamina.curValue - amount < 0f)
+        {
+            return false;
+        }
+        stamina.Subtract(amount);
+        return true;
+    }
 }

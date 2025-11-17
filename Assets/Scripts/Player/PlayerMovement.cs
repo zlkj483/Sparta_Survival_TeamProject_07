@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5.0f;
     //점프할 파워
     public float jumpForce = 5.0f;
+    private PlayerAttack attack;
+    void Awake()
+    {
+        attack = GetComponent<PlayerAttack>();
+    }
     void Start()
     {
 
@@ -109,5 +114,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 handleVelocity = new Vector3(move.x * moveSpeed, rb.velocity.y, move.z * moveSpeed);
 
         rb.velocity = handleVelocity;
+    }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (attack != null)
+                attack.TryAttack(); // PlayerAttack 스크립트의 함수 호출
+            else
+                Debug.LogWarning("PlayerAttack 컴포넌트가 없습니다!");
+        }
     }
 }
