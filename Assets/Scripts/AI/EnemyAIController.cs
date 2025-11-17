@@ -81,8 +81,6 @@ public class EnemyAIController : MonoBehaviour
             Agent = agent,
             Animator = baseAnimator,
             Data = monsterData,
-
-            // 패트롤 포인트 세팅
             PatrolPoints = patrolPoints != null
                 ? System.Array.ConvertAll(patrolPoints, p => p.position)
                 : null,
@@ -99,10 +97,33 @@ public class EnemyAIController : MonoBehaviour
 
     private void Update()
     {
-        if (_ctx != null && _ctx.IsDead)
-            return;          // 죽었으면 FSM 멈춤
+        if (_ctx.IsDead)
+            return;
 
         _fsm.Tick();
+    }
+
+    public void DoAttackHit()
+    {
+        if (_ctx == null || _ctx.IsDead)
+            return;
+
+        float radius = _ctx.Data.attackRange * 0.8f;
+        Vector3 center = _ctx.SelfTransform.position + _ctx.SelfTransform.forward * 1.0f;
+
+        Collider[] hits = Physics.OverlapSphere(
+            center,
+            radius,
+            _ctx.Data.targetLayer
+        );
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent(out IDamagable damageable))
+            {
+                damageable.TakePhysicalDamage(_ctx.Data.baseDamage);
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
