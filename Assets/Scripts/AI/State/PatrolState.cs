@@ -37,8 +37,9 @@ public class PatrolState : IAIState
     public void Tick()
     {
         // 1) Å¸°Ù Å½»ö ¿ì¼±
-        if (TryFindTarget())
+        if (_ctx.TryDetectTarget(out Transform target))
         {
+            _ctx.CurrentTarget = target;
             _fsm.ChangeState(new ChaseState(_ctx, _fsm));
             return;
         }
@@ -88,20 +89,6 @@ public class PatrolState : IAIState
 
         if (_ctx.Animator != null)
             _ctx.Animator.SetBool("IsMove", true);
-    }
-
-    private bool TryFindTarget()
-    {
-        Collider[] hits = Physics.OverlapSphere(_ctx.SelfTransform.position, _ctx.AggroRange);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player"))
-            {
-                _ctx.CurrentTarget = hit.transform;
-                return true;
-            }
-        }
-        return false;
     }
 }
 

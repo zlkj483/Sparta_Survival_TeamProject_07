@@ -13,6 +13,8 @@ public class EnemyAIController : MonoBehaviour
     public Transform skinParent;
 
     private AIContext _ctx;
+    public AIContext Context => _ctx;
+
     private AIStateMachine _fsm;
 
     [Header("패트롤 포인트 (옵션)")]
@@ -97,6 +99,9 @@ public class EnemyAIController : MonoBehaviour
 
     private void Update()
     {
+        if (_ctx != null && _ctx.IsDead)
+            return;          // 죽었으면 FSM 멈춤
+
         _fsm.Tick();
     }
 
@@ -116,4 +121,5 @@ public class EnemyAIController : MonoBehaviour
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere(transform.position, monsterData.giveUpRange);
     }
+
 }
