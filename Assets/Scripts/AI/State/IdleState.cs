@@ -33,9 +33,9 @@ public class IdleState : IAIState
     {
         _idleTime += Time.deltaTime;
 
-        // 1) 타겟 탐색
-        if (TryFindTarget())
+        if (_ctx.TryDetectTarget(out Transform target))
         {
+            _ctx.CurrentTarget = target;
             _fsm.ChangeState(new ChaseState(_ctx, _fsm));
             return;
         }
@@ -48,20 +48,4 @@ public class IdleState : IAIState
         }
     }
 
-    private bool TryFindTarget()
-    {
-        // 여기서는 간단히 "주변에 Player 태그 찾기"로 구현
-        // 나중에 센서/Perception 시스템으로 교체 가능
-
-        Collider[] hits = Physics.OverlapSphere(_ctx.SelfTransform.position, _ctx.AggroRange);
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player"))
-            {
-                _ctx.CurrentTarget = hit.transform;
-                return true;
-            }
-        }
-        return false;
-    }
 }
