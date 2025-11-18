@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb682494320d8f4b82c7fe15e50e014, type: 3}
-  m_Name: Tree
+  m_Script: {fileID: 11500000, guid: c3891a7779740334d936a10a4d150291, type: 3}
+  m_Name: NPC_A
   m_EditorClassIdentifier: 
-  displayName: "\uB098\uBB34"
-  maxHp: 100
-  hp: 100
-  df: 0
-  dropItem: {fileID: -705808723137817622, guid: b002cfbe0ab9bd349bd0aff9c0b0d210, type: 3}
-  dropAmount: 2
-  dropCount: 4
-  damagePer: 25
+  line:
+  - speakerName: NPC_A
+    text: Hello

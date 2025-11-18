@@ -8,10 +8,10 @@ using UnityEngine;
 [Serializable]
 public struct DialogueLine
 {
-    [SerializeField] private string _speakerName;
+    [SerializeField] private string speakerName;
     [TextArea(3, 5)]
-    [SerializeField] private string _text;
+    [SerializeField] private string text;
 
-    public string SpeakerName => _speakerName; // 외부 참조용(읽기전용)
-    public string Text => _text; // 외부 참조용(읽기전용)
+    public string SpeakerName => speakerName; // 외부 참조용(읽기전용)
+    public string Text => text; // 외부 참조용(읽기전용)
 }
