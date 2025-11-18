@@ -60875,6 +60875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999051703}
   - component: {fileID: 999051704}
+  - component: {fileID: 999051705}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -60920,6 +60921,30 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &999051705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999051701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3ff4d452c7f8a499eff0939a453340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 999051703}
+  innerRadius: 15
+  outerRadius: 40
+  despawnRadiusMultiplier: 1.3
+  maxAlive: 15
+  spawnInterval: 3
+  enemyPrefab: {fileID: 0}
+  monsterCandidates: []
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastHeight: 50
 --- !u!1001 &999461795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104868,6 +104893,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4335656462709128070, guid: 5e004107eb2a9e443bb4bcb18e78214a, type: 3}
   m_PrefabInstance: {fileID: 1740565406}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1740755770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1740755771}
+  m_Layer: 0
+  m_Name: MonsterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1740755771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740755770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 90.64288, y: 59.96077, z: 96.78141}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1741360074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128934,3 +128990,4 @@ SceneRoots:
   - {fileID: 2074459953}
   - {fileID: 8064878856738663570}
   - {fileID: 999051703}
+  - {fileID: 1740755771}
