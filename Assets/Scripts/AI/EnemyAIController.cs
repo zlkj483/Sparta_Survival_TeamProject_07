@@ -128,19 +128,49 @@ public class EnemyAIController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        // _ctx가 아직 생성되지 않았으면 그리지 않음
-        if (_ctx == null || monsterData == null)
+        // 데이터가 없으면 아무것도 그리지 않음
+        if (monsterData == null)
             return;
 
-        // 데이터를 MonsterData에서 바로 읽어도 됨
-        Gizmos.color = new Color(1f, 1f, 0f, 0.4f); // 반투명 Yellow
-        Gizmos.DrawWireSphere(transform.position, monsterData.aggroRange);
+        Vector3 pos = transform.position;
 
-        Gizmos.color = new Color(1f, 0f, 0f, 0.4f);
-        Gizmos.DrawWireSphere(transform.position, monsterData.attackRange);
+        // 1) 시야 범위(시야각 + 거리) 디버그 ------------------------
+
+        // 시야 거리 전체
+        Gizmos.color = new Color(0f, 1f, 0f, 0.3f); // 연두색
+        Gizmos.DrawWireSphere(pos, monsterData.sightRange);
+
+        // 시야각 양쪽 경계선
+        float halfAngle = monsterData.sightAngle * 0.5f;
+
+        Vector3 leftDir = Quaternion.Euler(0f, -halfAngle, 0f) * transform.forward;
+        Vector3 rightDir = Quaternion.Euler(0f, halfAngle, 0f) * transform.forward;
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(pos, pos + leftDir * monsterData.sightRange);
+        Gizmos.DrawLine(pos, pos + rightDir * monsterData.sightRange);
+
+        // 2) Aggro / Attack / GiveUp 범위 (원하면 같이 표시) --------
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(pos, monsterData.aggroRange);     // 감지 시작 범위
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(pos, monsterData.attackRange);    // 공격 범위
 
         Gizmos.color = Color.gray;
-        Gizmos.DrawWireSphere(transform.position, monsterData.giveUpRange);
+        Gizmos.DrawWireSphere(pos, monsterData.giveUpRange);    // 포기 범위
+
+        // 3) 현재 타겟까지 라인 (실제 감지 확인용) -------------------
+
+        if (_ctx != null && _ctx.CurrentTarget != null)
+        {
+            Gizmos.color = Color.magenta;
+            Vector3 from = pos + Vector3.up * 1.0f;
+            Vector3 to = _ctx.CurrentTarget.position + Vector3.up * 1.0f;
+            Gizmos.DrawLine(from, to);
+        }
     }
+
 
 }
