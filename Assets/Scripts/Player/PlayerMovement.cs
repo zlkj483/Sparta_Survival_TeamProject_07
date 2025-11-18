@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    private Animator animator;
     //캐릭터가 움직이기 위한 물리 컴포넌트 = 리지드바디
     [SerializeField]
     private Rigidbody rb;
@@ -45,16 +47,7 @@ public class PlayerMovement : MonoBehaviour
     //input system에서 호출하는 함수
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            //입력값을 moveInput에 저장
-            moveInput = context.ReadValue<Vector2>();
-        }
-        else
-        {
-            //입력이 멈추면 0으로 초기화
-            moveInput = Vector2.zero;
-        }
+        moveInput = context.ReadValue<Vector2>();
     }
 
 
@@ -63,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+            animator.SetTrigger("Jump");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
         else
@@ -111,14 +105,17 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = camRight * moveInput.x + camForward * moveInput.y;
 
-        Vector3 handleVelocity = new Vector3(move.x * moveSpeed, rb.velocity.y, move.z * moveSpeed);
+        animator.SetFloat("MoveSpeed", move.magnitude);
 
-        rb.velocity = handleVelocity;
+        // 물리 이동은 MovePosition으로 변경
+        Vector3 targetPos = rb.position + move * moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(targetPos);
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            animator.SetTrigger("Attack");
             if (attack != null)
                 attack.TryAttack(); // PlayerAttack 스크립트의 함수 호출
             else
