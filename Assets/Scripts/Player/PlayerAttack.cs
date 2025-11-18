@@ -8,10 +8,17 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange = 3f;
     public LayerMask targetLayer; // 몬스터 레이어 넣기
 
+    private Animator animator;
+
     private void Awake()
     {
         if (playerCondition == null)
             playerCondition = GetComponent<PlayerCondition>();
+
+        animator = GetComponent<Animator>();
+        if (animator == null)
+            Debug.LogWarning("Animator가 없습니다!");
+
     }
     public void TryAttack()
     {
@@ -25,18 +32,21 @@ public class PlayerAttack : MonoBehaviour
         if (!playerCondition.UseStamina(staminaCost))
         {
             Debug.Log("스태미나 부족으로 공격 불가");
+            animator.ResetTrigger("Attack");
             return;
         }
+        animator.SetTrigger("Attack");
+
         // 플레이어 앞 방향으로 Ray 발사
         Ray ray = new Ray(transform.position + Vector3.up, transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, attackRange, targetLayer))
         {
-            MonsterHealth monster = hit.collider.GetComponent<MonsterHealth>();
+            IDamagable monster = hit.collider.GetComponent<IDamagable>();
             if (monster != null)
             {
-                monster.TakeDamage(attackDamage);
+                monster.TakePhysicalDamage(attackDamage);
                 Debug.Log("몬스터 타격!");
             }
         }
