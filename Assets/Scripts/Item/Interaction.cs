@@ -59,8 +59,6 @@ public class Interaction : MonoBehaviour
         // BoxCast 수행
         if (Physics.BoxCast(origin, boxExtent, direction, out rayHit, orientation, interDistance, itemLayer))
         {
-            Debug.Log("Hit: " + rayHit.collider.name); // <- 이거로 BoxCast가 잡히는지 확인
-
             if (rayHit.collider.gameObject != curInteractGameObject)
             {
                 curInteractGameObject = rayHit.collider.gameObject;
@@ -70,7 +68,6 @@ public class Interaction : MonoBehaviour
         }
         else
         {
-            Debug.Log("No Hit");
             curInteractGameObject = null;
             curInteractable = null;
             promptText.gameObject.SetActive(false);
