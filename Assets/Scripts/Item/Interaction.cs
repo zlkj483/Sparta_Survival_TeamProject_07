@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class Interaction : MonoBehaviour
 {
@@ -13,7 +14,30 @@ public class Interaction : MonoBehaviour
     public LayerMask itemLayer;
     //public GameObject potionInfoUI;
     public TextMeshProUGUI promptText;
+    public InputReader playerActions;
 
+
+    void OnEnable()
+    {
+        if (playerActions == null)
+            playerActions = new InputReader();
+
+        playerActions.Player.Enable();
+        playerActions.Player.Interact.performed += OnInteract;
+    }
+
+    void OnDisable()
+    {
+        playerActions.Player.Interact.performed -= OnInteract;
+        playerActions.Player.Disable();
+    }
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        if (curInteractable != null)
+        {
+            curInteractable.Interact();
+        }
+    }
     void Update()
     {
         CheckForItem();
@@ -22,31 +46,37 @@ public class Interaction : MonoBehaviour
     void CheckForItem()
     {
         Camera mainCam = Camera.main;
-        if(promptText == null || mainCam == null) return;
+        if (promptText == null || mainCam == null) return;
 
         RaycastHit rayHit;
         Vector3 origin = mainCam.transform.position;
         Vector3 direction = mainCam.transform.forward;
-        Vector3 boxExtent = new Vector3(0.7f, 0.7f, 0.7f);
+
+        // BoxCast ë²”ìœ„ ì¢€ ë” í¬ê²Œ
+        Vector3 boxExtent = new Vector3(1f, 1f, 1f);
         Quaternion orientation = mainCam.transform.rotation;
-        if (Physics.BoxCast(origin, boxExtent, direction, out rayHit, orientation, interDistance, itemLayer)) // BoxCast ½ÇÇà: »óÀÚ(boxExtents)¸¦ ¹æÇâ(direction)À¸·Î ½î±â
+
+        // BoxCast ìˆ˜í–‰
+        if (Physics.BoxCast(origin, boxExtent, direction, out rayHit, orientation, interDistance, itemLayer))
         {
+            Debug.Log("Hit: " + rayHit.collider.name); // <- ì´ê±°ë¡œ BoxCastê°€ ì¡íˆëŠ”ì§€ í™•ì¸
+
             if (rayHit.collider.gameObject != curInteractGameObject)
             {
-                // °¨ÁöµÊ
                 curInteractGameObject = rayHit.collider.gameObject;
                 curInteractable = rayHit.collider.GetComponent<IInteractable>();
-
                 SetPromptText();
             }
         }
         else
         {
-            //°¨Áö X
+            Debug.Log("No Hit");
             curInteractGameObject = null;
             curInteractable = null;
             promptText.gameObject.SetActive(false);
         }
+
+        // BoxCast ë°©í–¥ ì‹œê°í™”
         Debug.DrawRay(origin, direction * interDistance, Color.yellow);
     }
     private void SetPromptText()
@@ -58,7 +88,7 @@ public class Interaction : MonoBehaviour
         }
         else
         {
-            // BoxCast´Â ¼º°øÇßÀ¸³ª IInteractableÀÌ ¾ø´Â °æ¿ì
+            // BoxCastï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IInteractableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             promptText.gameObject.SetActive(false);
         }
     }
