@@ -41,38 +41,38 @@ public class EnemyAIController : MonoBehaviour
             agent.speed = monsterData.moveSpeed;
         }
 
-        // 3) 애니메이션 Override 자동 세팅
         if (skinAnimator != null)
         {
-            // 스킨 컨트롤러에서 애니메이션 클립들 가져오기
-            var sourceController = skinAnimator.runtimeAnimatorController;
-            AnimationClip[] sourceClips = sourceController != null
-                ? sourceController.animationClips
-                : null;
+            var skinController = skinAnimator.runtimeAnimatorController;
 
-            // Base 컨트롤러 가져오기 (AC_MonsterBase)
-            var baseController = baseAnimator.runtimeAnimatorController;
-
-            // Override 생성
-            var overrideController =
-                AnimationOverrideUtility.CreateOverride(baseController, sourceClips);
-
-            if (overrideController != null)
+            if (monsterData != null && monsterData.isBoss)
             {
-                baseAnimator.runtimeAnimatorController = overrideController;
+                // 보스는 그냥 스킨 컨트롤러 그대로 사용
+                if (skinController != null)
+                    baseAnimator.runtimeAnimatorController = skinController;
+            }
+            else
+            {
+                // 일반 몹은 Override 사용
+                var baseController = baseAnimator.runtimeAnimatorController;
+                var sourceClips = skinController != null
+                    ? skinController.animationClips
+                    : null;
+
+                var overrideController =
+                    AnimationOverrideUtility.CreateOverride(baseController, sourceClips);
+
+                if (overrideController != null)
+                    baseAnimator.runtimeAnimatorController = overrideController;
             }
 
-            // Avatar도 스킨쪽 것을 사용
+            // 아바타는 공통
             if (skinAnimator.avatar != null)
-            {
                 baseAnimator.avatar = skinAnimator.avatar;
-            }
 
-            // 스킨쪽 Animator는 비활성화 (선택)
             skinAnimator.enabled = false;
-
-
         }
+
 
         // 4) AIContext 구성
         _ctx = new AIContext
