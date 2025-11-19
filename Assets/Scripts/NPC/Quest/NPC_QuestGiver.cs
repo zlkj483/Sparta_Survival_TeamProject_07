@@ -7,12 +7,11 @@ public class NPC_QuestGiver : MonoBehaviour
     [Header("NPC 고유 정보")]
     public int npcID = 1;
     [Header("이 NPC가 부여할 퀘스트")]
-    //[SerializeField] private int questIDToGive;
+    [SerializeField] private int questIDToGive;
     [SerializeField] private DialogueData dialogue_startQuest; // 퀘스트 시작 대화
     [SerializeField] private DialogueData dialogue_ongoing; // 퀘스트 진행중 대화
     [SerializeField] private DialogueData dialogue_readyToComplete; // 퀘스트 완료 대화
 
-    public int questIDToGive;
 
     public void StartQuestInteract()
     {
@@ -60,5 +59,10 @@ public class NPC_QuestGiver : MonoBehaviour
                 break;
 
         }
+    }
+
+    private void GiveQuest(QuestManager qm, QuestInfo qi)
+    {
+        qm.StartQuest(questID);
     }
 }
