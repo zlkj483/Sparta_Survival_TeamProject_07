@@ -1,66 +1,68 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public UICondition uiCondition;
+    public TextMeshProUGUI tempText; // UI TextMeshPro
+    public float environmentTemperature; // DayNightCycle¿¡¼­ ¹ŞÀ½
+    public float noHungerHealthDecay = 1f;
+    public event Action onTakeDamage;
 
     Condition health { get { return uiCondition.health; } }
     Condition hunger { get { return uiCondition.hunger; } }
     Condition thirst { get { return uiCondition.thirst; } }
     Condition stamina { get { return uiCondition.stamina; } }
 
-    public float noHungerHealthDecay;
-    public event Action onTakeDamage;
-
     private void Update()
     {
-        hunger.Subtract(hunger.passiveValue * Time.deltaTime);
-        thirst.Subtract(thirst.passiveValue * Time.deltaTime);
-        stamina.Add(stamina.passiveValue * Time.deltaTime);
+        // È¯°æ ¿Âµµ ÆĞ³ÎÆ¼
+        float coldMul = GetColdMultiplier();
 
+        // ¹è°íÇÄ/°¥ÁõÀº Ãß¿ï¼ö·Ï ´õ »¡¸® °¨¼Ò
+        hunger.Subtract(hunger.passiveValue * coldMul * Time.deltaTime);
+        thirst.Subtract(thirst.passiveValue * coldMul * Time.deltaTime);
+
+        // ½ºÅÂ¹Ì³ª Àç»ıÀº Ãß¿ï¼ö·Ï ´À·ÁÁü
+        float staminaRegen = stamina.passiveValue * (2f - coldMul);
+        stamina.Add(staminaRegen * Time.deltaTime);
+
+        // ¹è°íÇÄ/°¥Áõ 0ÀÌ¸é Ã¼·Â °¨¼Ò
         if (hunger.curValue <= 0f || thirst.curValue <= 0f)
-        {
             health.Subtract(noHungerHealthDecay * Time.deltaTime);
-        }
 
+        // Ã¼·Â 0ÀÌ¸é »ç¸Á
         if (health.curValue <= 0f)
-        {
             Die();
-        }
+
+        // UI Ç¥½Ã
+        if (tempText != null)
+            tempText.text = environmentTemperature.ToString("F1") + "C";
     }
 
-    public void Heal(float amount)
-    {
-        health.Add(amount);
-    }
+    public void Heal(float amount) => health.Add(amount);
+    public void Eat(float amount) => hunger.Add(amount);
+    public void Drink(float amount) => thirst.Add(amount);
 
-    public void Eat(float amount)
-    {
-        hunger.Add(amount);
-    }
-    public void Drink(float amount)
-    {
-        thirst.Add(amount);
-    }
-
-    public void Die()
-    {
-        Debug.Log("í”Œë ˆì´ì–´ê°€ ì£½ì—ˆë‹¤.");
-    }
+    public void Die() => Debug.Log("ÇÃ·¹ÀÌ¾î°¡ Á×¾ú´Ù.");
     public void TakePhysicalDamage(float damage)
     {
         health.Subtract(damage);
-        onTakeDamage?.Invoke(); // UI ê¹œë¹¡ì„ ë“± ì´ë²¤íŠ¸
+        onTakeDamage?.Invoke();
     }
-
     public bool UseStamina(float amount)
     {
-        if (stamina.curValue - amount < 0f)
-        {
-            return false;
-        }
+        if (stamina.curValue - amount < 0f) return false;
         stamina.Subtract(amount);
         return true;
+    }
+
+    // ¿Âµµ ÆĞ³ÎÆ¼ °è»ê
+    float GetColdMultiplier()
+    {
+        if (environmentTemperature >= 5f) return 1f;
+        float t = Mathf.InverseLerp(-20f, 5f, environmentTemperature);
+        return Mathf.Lerp(3f, 1f, t); // Ãß¿ï¼ö·Ï 3¹è
     }
 }
