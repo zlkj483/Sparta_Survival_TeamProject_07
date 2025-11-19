@@ -53,9 +53,9 @@ public static DialogueManager Instance { get; private set; }
         EndDialogue();
             return;
         }
-        DialogueLine line = dialogueQueue.Dequeue();
-        currentLine = dialogueQueue.Dequeue();
-        speakerNameText.text = line.SpeakerName;
+        DialogueLine nextLine = dialogueQueue.Dequeue();
+        currentLine = nextLine;
+        speakerNameText.text = nextLine.SpeakerName;
 
         if(dialogueRoutine != null) StopCoroutine(dialogueRoutine);
         dialogueRoutine = StartCoroutine(TypeSentence(currentLine.Text));
