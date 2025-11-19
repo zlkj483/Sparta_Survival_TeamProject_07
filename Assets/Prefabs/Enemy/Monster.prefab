@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe57990e9306d184c96a914ad6395066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterData: {fileID: 11400000, guid: 56b0c7a40cec6ef4688be71f21a010af, type: 2}
+  monsterData: {fileID: 0}
   skinParent: {fileID: 1756759513300177806}
   patrolPoints:
   - {fileID: 4926272790344632569}

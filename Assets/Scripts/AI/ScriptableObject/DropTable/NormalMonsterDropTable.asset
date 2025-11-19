@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 952b468a424984e48a34fe5dc32e477f, type: 3}
-  m_Name: MonkeyDropTable
+  m_Name: NormalMonsterDropTable
   m_EditorClassIdentifier: 
   items:
   - item: {fileID: 11400000, guid: 855f43496c6d1714e9773af49a58371f, type: 2}
-    weight: 1
+    weight: 0.5
+  - item: {fileID: 11400000, guid: 8ae528cd0f570fa4a84912c277b3a387, type: 2}
+    weight: 0.5
