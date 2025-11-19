@@ -34,6 +34,10 @@ public class BuildingDetailUI : MonoBehaviour
         currentData = data;
         gameObject.SetActive(true);
 
+        previewImage.sprite = data.icon;
+        nameText.text = data.buildingName;
+        descriptionText.text = data.description;
+
         var levelInfo = data.levels[0];
 
         woodText.text = $"x {levelInfo.requiredWood}";
@@ -46,7 +50,7 @@ public class BuildingDetailUI : MonoBehaviour
 
         if (!canBuild)
         {
-            buildTimeText.text = "❌ 재료 부족";
+            buildTimeText.text = "재료 부족";
         }
 
         buildButton.onClick.RemoveAllListeners();
