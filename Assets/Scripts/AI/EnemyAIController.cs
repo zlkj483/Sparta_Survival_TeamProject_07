@@ -20,11 +20,50 @@ public class EnemyAIController : MonoBehaviour
     [Header("패트롤 포인트 (옵션)")]
     public Transform[] patrolPoints;   // ⭐ 인스펙터에서 직접 지정
 
+    private NavMeshAgent agent;
+    private Animator baseAnimator;
+
+    private bool _initialized = false;
+
 
     private void Awake()
     {
-        var agent = GetComponent<NavMeshAgent>();
-        var baseAnimator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        baseAnimator = GetComponent<Animator>();
+
+        if (monsterData != null)
+        {
+            InternalInit(monsterData);
+            _initialized = true;
+        }
+    }
+
+    /// <summary>
+    /// 스포너가 호출해줄 초기화 함수
+    /// </summary>
+    public void Initialize(MonsterData data)
+    {
+        if (data == null)
+        {
+            Debug.LogError("[EnemyAI] Initialize 에 null MonsterData 전달됨", this);
+            return;
+        }
+
+        monsterData = data;
+
+        // 이미 Awake에서 초기화 됐다면 다시 안 함
+        if (_initialized)
+            return;
+
+        InternalInit(monsterData);
+        _initialized = true;
+    }
+
+    /// <summary>
+    /// 실제 초기화 로직
+    /// </summary>
+    private void InternalInit(MonsterData data)
+    {
 
         // 1) 스킨 생성
         Animator skinAnimator = null;
@@ -92,6 +131,13 @@ public class EnemyAIController : MonoBehaviour
 
     private void Start()
     {
+        if (!_initialized)
+        {
+            // 스포너가 Initialize() 안 불렀으면 경고
+            Debug.LogWarning($"[EnemyAI] {name} 이 Initialize() 되지 않았습니다. MonsterData가 없습니다.", this);
+            return;
+        }
+
         _fsm.ChangeState(new IdleState(_ctx, _fsm));
     }
 

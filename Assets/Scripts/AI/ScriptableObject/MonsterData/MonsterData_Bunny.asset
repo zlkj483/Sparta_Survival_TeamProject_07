@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 581ec66146a63ef40bd4f0aa931a3c02, type: 3}
-  m_Name: MonsterData_Monky
+  m_Name: MonsterData_Bunny
   m_EditorClassIdentifier: 
-  monsterId: 2
-  displayName: "\uAE34\uCF54\uC6D0\uC22D\uC774"
-  skinPrefab: {fileID: 73827145412065725, guid: 019b90d486c0d664fbdae0916c481a2f, type: 3}
+  monsterId: 3
+  displayName: "\uD1A0"
+  skinPrefab: {fileID: 236847678598176670, guid: aa7bc87fd55423d40ac28f54353ae20d, type: 3}
   maxHp: 100
-  moveSpeed: 3.5
+  moveSpeed: 5
   baseDamage: 10
   aggroRange: 10
   attackRange: 2
