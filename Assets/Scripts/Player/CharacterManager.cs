@@ -1,9 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
+using System;
+
 
 public class CharacterManager : MonoBehaviour
 {
-    public static CharacterManager Instance;
-    // public Inventory inventory;
+    public static CharacterManager Instance { get; private set; }
+    public UIInventory inventory;
 
     private void Awake()
     {

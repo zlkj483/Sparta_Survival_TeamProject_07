@@ -1,47 +1,60 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
-public class Structure : MonoBehaviour
+public class Structure : MonoBehaviour, IGatherable
 {
     public StructureData data;
-    private int accumulatedDamage = 0;
-    public GameObject prefab;       // Àç»ý¼ºÇÒ ÇÁ¸®ÆÕ
-    private Vector3 pos;    // ¿ø·¡ À§Ä¡
-    private Quaternion rot; // ¿ø·¡ È¸Àü
-
+    private float accumulatedDamage;
+    private float hp;
+    private int dropItem;
+    private MeshCollider meshCollider;
+    private MeshRenderer meshRenderer;
     private void Start()
     {
-        pos = transform.position;
-        rot = transform.rotation;
+        meshCollider = GetComponent<MeshCollider>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        init();
     }
-
-                                //¸ÂÀºÀ§Ä¡ , ¸ÂÀº¹ý¼± , µ¥¹ÌÁö·®
-    public void Gather(Vector3 hitPoint, Vector3 hitNormal, int damageAmount)
+    private void init()
     {
-        data.hp -= damageAmount; //hp¿¡¼­ µ¥¹ÌÁö Â÷°¨
-        accumulatedDamage += damageAmount; //µ¥¹ÌÁö ´©Àû
+        hp = data.maxHp;
+        dropItem = data.dropCount;
+        meshCollider.enabled = true; //ì½œë¼ì´ë” í™œì„±í™”
+        meshRenderer.enabled = true; //ë Œë”ëŸ¬ í™œì„±í™”
+        accumulatedDamage = 0;
+    }
+    //ë§žì€ìœ„ì¹˜ , ë§žì€ë²•ì„  , ë°ë¯¸ì§€ëŸ‰
+    public void Gather(Vector3 hitPoint, Vector3 hitNormal, float damageAmount)
+    {
+        hp -= damageAmount; //hpì—ì„œ ë°ë¯¸ì§€ ì°¨ê°
+        accumulatedDamage += damageAmount; //ë°ë¯¸ì§€ ëˆ„ì 
         while (accumulatedDamage >= data.damagePer)
         {
-            for (int i = 0; i < data.dropAmount; i++) //µå¶ø ¾ÆÀÌÅÛ ¼ö·®¸¸Å­ ¹Ýº¹
-            { //¾ÆÀÌÅÛ »ý¼º
+            for (int i = 0; i < data.dropAmount; i++) //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½Ýºï¿½
+            { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Instantiate(data.dropItem, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
             }
-            accumulatedDamage -= data.damagePer; //´©Àû µ¥¹ÌÁö¿¡¼­ µå¶ø´ç µ¥¹ÌÁö Â÷°¨
-            data.dropCount--; //µå¶ø °¡´É È½¼ö Â÷°¨
-            if (data.dropCount <= 0) //µå¶ø °¡´É È½¼ö°¡ 0ÀÌÇÏÀÌ¸é
+            accumulatedDamage -= data.damagePer; //ëˆ„ì  ë°ë¯¸ì§€ì—ì„œ ë“œëžë‹¹ ë°ë¯¸ì§€ ì°¨ê°
+            dropItem--; //ë“œëž ê°€ëŠ¥ íšŸìˆ˜ ì°¨ê°
+            if (dropItem <= 0) //ë“œëž ê°€ëŠ¥ íšŸìˆ˜ê°€ 0ì´í•˜ì´ë©´
             {
-                Destroy(gameObject); //±¸Á¶¹° ÆÄ±«
-                StartCoroutine(Regen()); //Àç»ý¼º ÄÚ·çÆ¾ ½ÃÀÛ
+                meshCollider.enabled = false; //ì½œë¼ì´ë” ë¹„í™œì„±í™”
+                meshRenderer.enabled = false; //ë Œë”ëŸ¬ ë¹„í™œì„±í™”
+                StartCoroutine(Regen()); //ìž¬ìƒì„± ì½”ë£¨í‹´ ì‹œìž‘
+
             }
         }
     }
-
-    private IEnumerator Regen()
+    public IEnumerator Regen()
     {
-        yield return new WaitForSeconds(30f); //30ÃÊ ´ë±â
-        Instantiate(prefab,pos,rot); //¿ø·¡ À§Ä¡¿Í È¸ÀüÀ¸·Î ÇÁ¸®ÆÕ Àç»ý¼º
+        yield return new WaitForSeconds(30f); //30ì´ˆ ëŒ€ê¸°
+        init();
     }
+
+
+
 }
 

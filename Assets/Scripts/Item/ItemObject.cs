@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,15 +19,15 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        //Inventory inventory = CharacterManager.Instance.inventory;
-        //if (inventory != null)
-        //{
-        //    inventory.AddItem(data);
-        //}
-        //else
-        //{
-        //  Debug.LogWarning("Inventory가 없습니다!");
-        //}
+        UIInventory inventory = CharacterManager.Instance.inventory;
+        if (inventory != null)
+        {
+            inventory.AddItem(data);
+        }
+        else
+        {
+            Debug.LogWarning("Inventory가 없습니다!");
+        }
         Destroy(gameObject);
     }
 }

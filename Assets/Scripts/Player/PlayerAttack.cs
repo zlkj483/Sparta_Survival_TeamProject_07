@@ -6,9 +6,12 @@ public class PlayerAttack : MonoBehaviour
     public float staminaCost = 10f;
     public float attackDamage = 10f;
     public float attackRange = 3f;
-    public LayerMask targetLayer; // ëª¬ìŠ¤í„° ë ˆì´ì–´ ë„£ê¸°
+    public LayerMask targetLayer;
 
     private Animator animator;
+
+    private bool isAttacking = false;
+    public float attackCooldown = 0.7f;
 
     private void Awake()
     {
@@ -16,28 +19,33 @@ public class PlayerAttack : MonoBehaviour
             playerCondition = GetComponent<PlayerCondition>();
 
         animator = GetComponent<Animator>();
-        if (animator == null)
-            Debug.LogWarning("Animatorê°€ ì—†ìŠµë‹ˆë‹¤!");
-
     }
+
     public void TryAttack()
     {
-        if (playerCondition == null)
-        {
-            Debug.LogWarning("PlayerConditionì´ ì—°ê²°ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤!");
-            return;
-        }
+        if (isAttacking) return; // °ø°İ ÁßÀÌ¸é ¹«½Ã!
 
-        // ìŠ¤íƒœë¯¸ë‚˜ ì²´í¬
         if (!playerCondition.UseStamina(staminaCost))
         {
-            Debug.Log("ìŠ¤íƒœë¯¸ë‚˜ ë¶€ì¡±ìœ¼ë¡œ ê³µê²© ë¶ˆê°€");
-            animator.ResetTrigger("Attack");
+            Debug.Log("½ºÅÂ¹Ì³ª ºÎÁ·!");
             return;
         }
+
+        // °ø°İ ½ÃÀÛ
+        isAttacking = true;
+
         animator.SetTrigger("Attack");
 
-        // í”Œë ˆì´ì–´ ì• ë°©í–¥ìœ¼ë¡œ Ray ë°œì‚¬
+        // ÄğÅ¸ÀÓ ½ÃÀÛ
+        Invoke(nameof(ResetAttack), attackCooldown);
+    }
+
+    private void ResetAttack()
+    {
+        isAttacking = false;
+    }
+    public void DealDamage()
+    {
         Ray ray = new Ray(transform.position + Vector3.up, transform.forward);
         RaycastHit hit;
 
@@ -47,8 +55,9 @@ public class PlayerAttack : MonoBehaviour
             if (monster != null)
             {
                 monster.TakePhysicalDamage(attackDamage);
-                Debug.Log("ëª¬ìŠ¤í„° íƒ€ê²©!");
+                Debug.Log("¸ó½ºÅÍ Å¸°İ!");
             }
         }
     }
+
 }

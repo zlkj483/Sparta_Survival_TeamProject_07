@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 709209439736072330}
   - component: {fileID: 1138229773308498785}
   - component: {fileID: 2390324433323705195}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2037967216278154134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrollPoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756759513300177806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4926272790344632569}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrollPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7224779699645040066}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrollPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1534418022547191455}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrollPoint (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5201325642441797493}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrollPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8963302191912072257}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrollPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

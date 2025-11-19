@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Structure", menuName = "New Structure")]
@@ -10,7 +10,7 @@ public class StructureData : ScriptableObject
     public int maxHp;
     public int hp;
     public int df;
-    public Item dropItem;
+    public ItemObject dropItem;
     public int dropAmount;
     public int dropCount;
     public int damagePer;
