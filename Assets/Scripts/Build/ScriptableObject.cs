@@ -12,6 +12,8 @@ public class BuildingData : ScriptableObject
     [System.Serializable]
     public class LevelInfo
     {
+        public ItemData woodItem;   // 나무 ItemData
+        public ItemData stoneItem;  // 돌 ItemData
         public int requiredWood;
         public int requiredStone;
         public float buildTime;

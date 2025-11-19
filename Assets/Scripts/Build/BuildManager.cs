@@ -36,27 +36,22 @@ public class BuildManager : MonoBehaviour
         previewObject = Instantiate(prefab);
         previewObject.name = "PreviewObject";
 
-        // Building 기능 비활성화 (프리뷰일 때 동작 방지)
         var building = previewObject.GetComponent<Building>();
         if (building != null) building.enabled = false;
 
-        // 모든 Rigidbody 제거 (자식 객체 포함)
         foreach (var rb in previewObject.GetComponentsInChildren<Rigidbody>())
             Destroy(rb);
 
-        // 모든 Collider를 Trigger로 변경 (자식 포함)
         foreach (var col in previewObject.GetComponentsInChildren<Collider>())
         {
             col.isTrigger = true;
 
-            // MeshCollider라면 Convex 강제
             if (col is MeshCollider mesh)
             {
                 mesh.convex = true;
             }
         }
 
-        // 반투명 프리뷰 재질 적용
         foreach (var r in previewObject.GetComponentsInChildren<Renderer>())
         {
             r.material = previewGreen;
@@ -65,7 +60,6 @@ public class BuildManager : MonoBehaviour
             r.material.color = c;
         }
 
-        // 충돌 체크용 스크립트 추가
         previewObject.AddComponent<PreviewCollisionChecker>();
     }
 
@@ -89,21 +83,24 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    // 미리보기 위치 갱신
+    // 프리뷰 위치 갱신
     private void UpdatePreviewPosition()
     {
-        Transform cam = Camera.main.transform;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        // 플레이어 앞 방향으로 Raycast 쏘기
-        if (Physics.Raycast(cam.position, cam.forward, out var hit, 5f))
+        if (Physics.Raycast(ray, out var hit, 200f))
         {
-            // 건축 위치 표시 (거리제한)
-            previewObject.transform.position = hit.point;
-        }
-        else
-        {
-            // 땅이 없으면 플레이어 앞 5m 지점에 강제 배치 (옵션)
-            previewObject.transform.position = cam.position + cam.forward * 5f;
+            Vector3 pos = hit.point;
+
+            Collider col = previewObject.GetComponent<Collider>();
+            if (col != null)
+            {
+                // 콜라이더의 높이 절반만큼 올려서 지면에 닿았으면 좋겠다
+                float offsetY = col.bounds.extents.y;
+                pos.y += offsetY;
+            }
+
+            previewObject.transform.position = pos;
         }
     }
 
@@ -129,7 +126,7 @@ public class BuildManager : MonoBehaviour
         GameObject obj = Instantiate(
             currentData.levels[0].prefab,
             previewObject.transform.position,
-            Quaternion.identity
+            previewObject.transform.rotation
         );
 
         obj.GetComponent<Building>().Initialize(currentData, 0);

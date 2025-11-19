@@ -5,83 +5,100 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
-    public static UIInventory Instance {  get; private set; } // 퀘스트에서 불러올 수 있게 싱글턴으로 바꿔줌
+    public static UIInventory Instance { get; private set; }  // 전체적으로 널 값의 방어코드를 넣었습니다.
 
+    [Header("Inventory Slots")]
     public ItemSlot[] slots;
-
-    public GameObject inventoryWindow;
     public Transform slotPanel;
 
-    [Header("Selected Item")]
+    [Header("UI")]
+    public GameObject inventoryWindow;
+
+    [Header("Selected Item Info")]
     private ItemSlot selectedItem;
     private int selectedItemIndex;
-    public TextMeshProUGUI selectedItemName; // Item Name
-    public TextMeshProUGUI selectedItemStatName; //StatValue
-    public TextMeshProUGUI selectedItemStatValue; //StatInfo
+    public TextMeshProUGUI selectedItemName;
+    public TextMeshProUGUI selectedItemStatName;
+    public TextMeshProUGUI selectedItemStatValue;
 
     private int curEquipIndex;
-
     private PlayerCondition condition;
-    void Awake()
+
+
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
-        condition = GetComponent<PlayerCondition>();
-        inventoryWindow.SetActive(false);
-        slots = new ItemSlot[slotPanel.childCount];
+        condition = FindObjectOfType<PlayerCondition>(); // 안전하게 찾기
 
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i] = slotPanel.GetChild(i).GetComponent<ItemSlot>();
-            slots[i].index = i;
-            slots[i].inventory = this;
-            slots[i].Clear();
-        }
+        if (inventoryWindow != null)
+            inventoryWindow.SetActive(false);
 
+        InitializeSlots();
         ClearSelectedItemWindow();
     }
 
-    void ClearSelectedItemWindow()
+    private void InitializeSlots()
     {
-        selectedItem = null;
+        if (slotPanel == null)
+        {
+            Debug.LogError("UIInventory: slotPanel이 Inspector에서 연결되지 않았습니다!"); // 방어코드
+            return;
+        }
 
-        selectedItemName.text = string.Empty;
-        selectedItemStatName.text = string.Empty;
-        selectedItemStatValue.text = string.Empty;
+        int count = slotPanel.childCount;
+        slots = new ItemSlot[count];
 
+        for (int i = 0; i < count; i++)
+        {
+            ItemSlot slot = slotPanel.GetChild(i).GetComponent<ItemSlot>();
+
+            if (slot == null)
+            {
+                Debug.LogError($"slotPanel의 {i}번째 오브젝트에 ItemSlot 컴포넌트가 없습니다."); // 방어코드
+                continue;
+            }
+
+            slots[i] = slot;
+            slot.index = i;
+            slot.inventory = this;
+            slot.Clear();
+        }
     }
 
     public void Toggle()
     {
-        if (IsOpen())
+        if (inventoryWindow == null)
         {
-            inventoryWindow.SetActive(false);
+            Debug.LogError("inventoryWindow가 Inspector에서 연결되지 않았습니다!"); // 방어코드
+            return;
         }
-        else
-        {
-            inventoryWindow.SetActive(true);
-        }
+
+        inventoryWindow.SetActive(!inventoryWindow.activeSelf);
     }
 
     public bool IsOpen()
     {
-        return inventoryWindow.activeInHierarchy;
+        return inventoryWindow != null && inventoryWindow.activeInHierarchy;
     }
-
-
 
     public void AddItem(ItemData data)
     {
+        if (data == null)
+        {
+            Debug.LogError("AddItem 실패: data가 null입니다."); // 방어코드
+            return;
+        }
+
+        // 스택 가능한 아이템 처리
         if (data.canStack)
         {
             ItemSlot slot = GetItemStack(data);
@@ -93,127 +110,170 @@ public class UIInventory : MonoBehaviour
             }
         }
 
-        ItemSlot emptySlot = GetEmptySlot();
+        // 빈 슬롯 찾기
+        ItemSlot empty = GetEmptySlot();
 
-        if (emptySlot != null)
+        if (empty != null)
         {
-            emptySlot.item = data;
-            emptySlot.quantity = 1;
+            empty.item = data;
+            empty.quantity = 1;
             UpdateUI();
             return;
         }
+
+        Debug.LogWarning("인벤토리가 가득 찼습니다. 아이템을 추가할 수 없습니다.");
     }
 
     public void UpdateUI()
     {
-        for (int i = 0; i < slots.Length; i++)
+        if (slots == null)
         {
-            if (slots[i].item != null)
-            {
-                slots[i].Set();
-            }
+            Debug.LogError("UpdateUI 실패: slots 배열이 null입니다!"); // 방어코드
+            return;
+        }
+
+        foreach (var slot in slots)
+        {
+            if (slot == null) continue;
+
+            if (slot.item != null)
+                slot.Set();
             else
-            {
-                slots[i].Clear();
-            }
+                slot.Clear();
         }
     }
 
-    ItemSlot GetItemStack(ItemData data)
+    private ItemSlot GetItemStack(ItemData data)
     {
-        for (int i = 0; i < slots.Length; i++)
+        foreach (var slot in slots)
         {
-            if (slots[i].item == data && slots[i].quantity < data.maxStackAmount)
-            {
-                return slots[i];
-            }
+            if (slot != null &&
+                slot.item == data &&
+                slot.quantity < data.maxStackAmount)
+                return slot;
         }
         return null;
     }
 
-    ItemSlot GetEmptySlot()
+    private ItemSlot GetEmptySlot()
     {
-        for (int i = 0; i < slots.Length; i++)
+        foreach (var slot in slots)
         {
-            if (slots[i].item == null)
-            {
-                return slots[i];
-            }
+            if (slot != null && slot.item == null)
+                return slot;
         }
         return null;
     }
+
     public void SelectItem(int index)
     {
-        if (slots[index].item == null) return;
+        if (slots == null || index < 0 || index >= slots.Length)
+            return;
+
+        if (slots[index].item == null)
+            return;
 
         selectedItem = slots[index];
         selectedItemIndex = index;
 
         selectedItemName.text = selectedItem.item.displayName;
 
-        selectedItemStatName.text = string.Empty;
-        selectedItemStatValue.text = string.Empty;
+        selectedItemStatName.text = "";
+        selectedItemStatValue.text = "";
 
-        for (int i = 0; i < selectedItem.item.consumables.Length; i++)
+        foreach (var c in selectedItem.item.consumables)
         {
-            selectedItemStatName.text += selectedItem.item.consumables[i].type.ToString() + "\n";
-            selectedItemStatValue.text += selectedItem.item.consumables[i].value.ToString() + "\n";
+            selectedItemStatName.text += c.type + "\n";
+            selectedItemStatValue.text += c.value + "\n";
         }
+    }
+
+    private void ClearSelectedItemWindow()
+    {
+        selectedItem = null;
+        selectedItemName.text = "";
+        selectedItemStatName.text = "";
+        selectedItemStatValue.text = "";
     }
 
     public void OnUseButton()
     {
-        if (selectedItem.item.type == ItemType.Consumable)
+        if (selectedItem == null || selectedItem.item == null)
+            return;
+
+        if (selectedItem.item.type != ItemType.Consumable)
+            return;
+
+        foreach (var c in selectedItem.item.consumables)
         {
-            for (int i = 0; i < selectedItem.item.consumables.Length; i++)
+            switch (c.type)
             {
-                switch (selectedItem.item.consumables[i].type)
-                {
-                    case ConsumableType.Health:
-                        condition.Heal(selectedItem.item.consumables[i].value); break;
-                    case ConsumableType.Hunger:
-                        condition.Eat(selectedItem.item.consumables[i].value); break;
-                    case ConsumableType.Thirst:
-                        condition.Eat(selectedItem.item.consumables[i].value); break;
-                }
+                case ConsumableType.Health: condition.Heal(c.value); break;
+                case ConsumableType.Hunger: condition.Eat(c.value); break;
+                case ConsumableType.Thirst: condition.Eat(c.value); break;
             }
         }
-    }
-
-    public bool HasItem(ItemData item, int quantity)
-    {
-        return false;
     }
 
     public int GetItemCount(ItemData targetItemData)
     {
-        if (targetItemData == null) return 0;
+        if (targetItemData == null)
+            return 0;
 
-        int totalCount = 0;
+        int total = 0;
 
-        // slots 배열에서 ItemData가 일치하는 슬롯의 quantity를 합산
-        for (int i = 0; i < slots.Length; i++)
+        foreach (var slot in slots)
         {
-            if (slots[i].item == targetItemData)
-            {
-                totalCount += slots[i].quantity;
-            }
+            if (slot != null &&
+                slot.item == targetItemData)
+                total += slot.quantity;
         }
-        return totalCount;
+
+        return total;
     }
 
-    public int QuestItemCount(string targetItemName) // 퀘스트 전용 아이템 체크
+    public int QuestItemCount(string targetItemName)
     {
-        if(string.IsNullOrEmpty(targetItemName)) return 0;
-        int totalCount = 0;
-        for (int i = 0; i < slots.Length; i++)
+        if (string.IsNullOrEmpty(targetItemName))
+            return 0;
+
+        int total = 0;
+
+        foreach (var slot in slots)
         {
-            // ItemData가 있고, ItemData의 displayName이 퀘스트 목표 이름과 일치하는지 확인
-            if(slots[i].item != null && slots[i].item.displayName == targetItemName)
+            if (slot != null &&
+                slot.item != null &&
+                slot.item.displayName == targetItemName)
+                total += slot.quantity;
+        }
+
+        return total;
+    }
+
+    public void RemoveItem(ItemData item, int amount)
+    {
+        if (item == null || amount <= 0)
+            return;
+
+        int remaining = amount;
+
+        foreach (var slot in slots)
+        {
+            if (slot != null && slot.item == item)
             {
-                totalCount += slots[i].quantity;
+                int remove = Mathf.Min(slot.quantity, remaining);
+
+                slot.quantity -= remove;
+                remaining -= remove;
+
+                if (slot.quantity <= 0)
+                    slot.Clear();
+
+                if (remaining <= 0)
+                    break;
             }
         }
-        return totalCount;
+
+        UpdateUI();
     }
 }
