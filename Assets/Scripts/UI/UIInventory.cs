@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,16 +25,13 @@ public class UIInventory : MonoBehaviour
 
     private int curEquipIndex;
 
-    //private PlayerController controller;
     private PlayerCondition condition;
 
     void Start()
     {
-        //controller = CharacterManager.Instance.Player.controller;
         condition = GetComponent<PlayerCondition>();
 
-        //controller.inventory += Toggle;
-        //CharacterManager.Instance.Player.addItem += AddItem;
+        CharacterManager.Instance.addItem += AddItem;
 
         inventoryWindow.SetActive(false);
         slots = new ItemSlot[slotPanel.childCount];
@@ -85,33 +82,33 @@ public class UIInventory : MonoBehaviour
 
     public void AddItem()
     {
-        //ItemData data = CharacterManager.Instance.Player.itemData;
+        ItemData data = ItemObject.instance.data;
 
-        //if (data.canStack)
-        //{
-        //    //ItemSlot slot = GetItemStack(data);
-        //    if (slot != null)
-        //    {
-        //        slot.quantity++;
-        //        UpdateUI();
-        //        //CharacterManager.Instance.Player.itemData = null;
-        //        return;
-        //    }
-        //}
+        if (data.canStack)
+        {
+            ItemSlot slot = GetItemStack(data);
+            if (slot != null)
+            {
+                slot.quantity++;
+                UpdateUI();
+                ItemObject.instance.data = null;
+                return;
+            }
+        }
 
         ItemSlot emptySlot = GetEmptySlot();
 
         if (emptySlot != null)
         {
-            //emptySlot.item = data;
+            emptySlot.item = data;
             emptySlot.quantity = 1;
             UpdateUI();
-            //CharacterManager.Instance.Player.itemData = null;
+            ItemObject.instance.data = null;
             return;
         }
 
-        //ThrowItem(data);
-        //CharacterManager.Instance.Player.itemData = null;
+        ThrowItem(data);
+        ItemObject.instance.data = null;
     }
 
     public void UpdateUI()
@@ -154,10 +151,10 @@ public class UIInventory : MonoBehaviour
     }
 
 
-    //public void ThrowItem(ItemData data)
-    //{
-    //    Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
-    //}
+    public void ThrowItem(ItemData data)
+    {
+        Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+    }
 
 
 
@@ -205,11 +202,11 @@ public class UIInventory : MonoBehaviour
         //}
     }
 
-    public void OnDropButton()
-    {
-        //ThrowItem(selectedItem.item);
-        //RemoveSelctedItem();
-    }
+    //public void OnDropButton()
+    //{
+    //    ThrowItem(selectedItem.item);
+    //    RemoveSelctedItem();
+    //}
 
     //void RemoveSelctedItem()
     //{

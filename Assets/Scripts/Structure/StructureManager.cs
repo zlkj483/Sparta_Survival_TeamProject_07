@@ -1,26 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
 public class StructureManager : MonoBehaviour
 {
-    protected Vector3 pos;    // ¿ø·¡ À§Ä¡
-    protected Quaternion rot; // ¿ø·¡ È¸Àü
-    public GameObject prefab;       // Àç»ı¼ºÇÒ ÇÁ¸®ÆÕ
-    private void Start()
+    public static StructureManager instance;
+
+    public IEnumerator Regen(GameObject prefab , Vector3 pos ,Quaternion rot)
     {
-        pos = transform.position;
-        rot = transform.rotation;
-        StartCoroutine(Regen()); //Àç»ı¼º ÄÚ·çÆ¾ ½ÃÀÛ
-    }
-
-    protected IEnumerator Regen()
-    {
-
-        yield return new WaitForSeconds(30f); //30ÃÊ ´ë±â
-        Instantiate(prefab, pos, rot); //¿ø·¡ À§Ä¡¿Í È¸ÀüÀ¸·Î ÇÁ¸®ÆÕ Àç»ı¼º
-
-
+        yield return new WaitForSeconds(30f); //30ì´ˆ ëŒ€ê¸°
+        Instantiate(prefab, pos, rot); //ì›ë˜ ìœ„ì¹˜ì™€ íšŒì „ìœ¼ë¡œ í”„ë¦¬íŒ¹ ì¬ìƒì„±
     }
 }

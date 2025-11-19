@@ -25688,6 +25688,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2074459953}
     m_Modifications:
+    - target: {fileID: 6083280369219593907, guid: c02eca928ed72574f9d1e5d13b72cc22, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732373124734237226, guid: c02eca928ed72574f9d1e5d13b72cc22, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8092427655156079615, guid: c02eca928ed72574f9d1e5d13b72cc22, type: 3}
       propertyPath: m_Name
       value: Tree_5 Variant (52)

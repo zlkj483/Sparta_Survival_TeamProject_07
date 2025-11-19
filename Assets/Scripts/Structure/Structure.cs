@@ -7,17 +7,24 @@ using static UnityEditor.PlayerSettings;
 public class Structure : MonoBehaviour, IGatherable
 {
     public StructureData data;
-    private float accumulatedDamage = 0;
+    private float accumulatedDamage;
     private float hp;
     private int dropItem;
-    protected Vector3 pos;    // 원래 위치
-    protected Quaternion rot; // 원래 회전
-    public GameObject prefab;       // 재생성할 프리팹
-
+    private MeshCollider meshCollider;
+    private MeshRenderer meshRenderer;
     private void Start()
+    {
+        meshCollider = GetComponent<MeshCollider>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        init();
+    }
+    private void init()
     {
         hp = data.maxHp;
         dropItem = data.dropCount;
+        meshCollider.enabled = true; //콜라이더 활성화
+        meshRenderer.enabled = true; //렌더러 활성화
+        accumulatedDamage = 0;
     }
     //맞은위치 , 맞은법선 , 데미지량
     public void Gather(Vector3 hitPoint, Vector3 hitNormal, float damageAmount)
@@ -34,12 +41,19 @@ public class Structure : MonoBehaviour, IGatherable
             dropItem--; //드랍 가능 횟수 차감
             if (dropItem <= 0) //드랍 가능 횟수가 0이하이면
             {
-                Instantiate(prefab, pos, rot); //원래 위치와 회전으로 프리팹 재생성
-                Destroy(gameObject); //구조물 파괴
+                meshCollider.enabled = false; //콜라이더 비활성화
+                meshRenderer.enabled = false; //렌더러 비활성화
+                StartCoroutine(Regen()); //재생성 코루틴 시작
+
             }
         }
     }
-   
+    public IEnumerator Regen()
+    {
+        yield return new WaitForSeconds(30f); //30초 대기
+        init();
+    }
+
 
 
 }

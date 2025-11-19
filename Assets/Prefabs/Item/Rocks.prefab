@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -2578939967450073569}
   - component: {fileID: 7570103151134018501}
   - component: {fileID: 707966114318821711}
+  - component: {fileID: -7668213398457274392}
   m_Layer: 0
   m_Name: Rocks
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae59b4a38c6c7d2418968cbafaefd608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 8ae528cd0f570fa4a84912c277b3a387, type: 2}
 --- !u!33 &7570103151134018501
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,3 +98,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-7668213398457274392
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086591927569610116}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3970239474782709092, guid: dbca77a59b4cfa6489e6bddb215260ad, type: 3}
