@@ -13,10 +13,9 @@ public class UIInventory : MonoBehaviour
     [Header("Selected Item")]
     private ItemSlot selectedItem;
     private int selectedItemIndex;
-    //public TextMeshProUGUI selectedItemName;
-    //public TextMeshProUGUI selectedItemDescription;
-    //public TextMeshProUGUI selectedItemStatName;
-    //public TextMeshProUGUI selectedItemStatValue;
+    public TextMeshProUGUI selectedItemName; // Item Name
+    public TextMeshProUGUI selectedItemStatName; //StatValue
+    public TextMeshProUGUI selectedItemStatValue; //StatInfo
 
     private int curEquipIndex;
 
@@ -25,9 +24,6 @@ public class UIInventory : MonoBehaviour
     void Start()
     {
         condition = GetComponent<PlayerCondition>();
-
-        CharacterManager.Instance.addItem += AddItem;
-
         inventoryWindow.SetActive(false);
         slots = new ItemSlot[slotPanel.childCount];
 
@@ -46,10 +42,9 @@ public class UIInventory : MonoBehaviour
     {
         selectedItem = null;
 
-        //selectedItemName.text = string.Empty;
-        //selectedItemDescription.text = string.Empty;
-        //selectedItemStatName.text = string.Empty;
-        //selectedItemStatValue.text = string.Empty;
+        selectedItemName.text = string.Empty;
+        selectedItemStatName.text = string.Empty;
+        selectedItemStatValue.text = string.Empty;
 
     }
 
@@ -72,10 +67,8 @@ public class UIInventory : MonoBehaviour
 
 
 
-    public void AddItem()
+    public void AddItem(ItemData data)
     {
-        ItemData data = ItemObject.instance.data;
-
         if (data.canStack)
         {
             ItemSlot slot = GetItemStack(data);
@@ -83,7 +76,6 @@ public class UIInventory : MonoBehaviour
             {
                 slot.quantity++;
                 UpdateUI();
-                ItemObject.instance.data = null;
                 return;
             }
         }
@@ -95,10 +87,8 @@ public class UIInventory : MonoBehaviour
             emptySlot.item = data;
             emptySlot.quantity = 1;
             UpdateUI();
-            ItemObject.instance.data = null;
             return;
         }
-        ItemObject.instance.data = null;
     }
 
     public void UpdateUI()
@@ -146,41 +136,35 @@ public class UIInventory : MonoBehaviour
         selectedItem = slots[index];
         selectedItemIndex = index;
 
-        //selectedItemName.text = selectedItem.item.displayName;
-        //selectedItemDescription.text = selectedItem.item.description;
+        selectedItemName.text = selectedItem.item.displayName;
 
-        //selectedItemStatName.text = string.Empty;
-        //selectedItemStatValue.text = string.Empty;
+        selectedItemStatName.text = string.Empty;
+        selectedItemStatValue.text = string.Empty;
 
-        //for (int i = 0; i < selectedItem.item.consumables.Length; i++)
-        //{
-        //    selectedItemStatName.text += selectedItem.item.consumables[i].type.ToString() + "\n";
-        //    selectedItemStatValue.text += selectedItem.item.consumables[i].value.ToString() + "\n";
-        //}
-
-        //useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
-        //equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !slots[index].equipped);
-        //unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && slots[index].equipped);
+        for (int i = 0; i < selectedItem.item.consumables.Length; i++)
+        {
+            selectedItemStatName.text += selectedItem.item.consumables[i].type.ToString() + "\n";
+            selectedItemStatValue.text += selectedItem.item.consumables[i].value.ToString() + "\n";
+        }
     }
 
     public void OnUseButton()
     {
-        //if (selectedItem.item.type == ItemType.Consumable)
-        //{
-        //    for (int i = 0; i < selectedItem.item.consumables.Length; i++)
-        //    {
-        //        switch (selectedItem.item.consumables[i].type)
-        //        {
-        //            case ConsumableType.Health:
-        //                condition.Heal(selectedItem.item.consumables[i].value); break;
-        //            case ConsumableType.Hunger:
-        //                condition.Eat(selectedItem.item.consumables[i].value); break;
-        //            case ConsumableType.Thirst:
-        //                condition.Eat(selectedItem.item.consumables[i].value); break;
-        //        }
-        //    }
-        //    //RemoveSelctedItem();
-        //}
+        if (selectedItem.item.type == ItemType.Consumable)
+        {
+            for (int i = 0; i < selectedItem.item.consumables.Length; i++)
+            {
+                switch (selectedItem.item.consumables[i].type)
+                {
+                    case ConsumableType.Health:
+                        condition.Heal(selectedItem.item.consumables[i].value); break;
+                    case ConsumableType.Hunger:
+                        condition.Eat(selectedItem.item.consumables[i].value); break;
+                    case ConsumableType.Thirst:
+                        condition.Eat(selectedItem.item.consumables[i].value); break;
+                }
+            }
+        }
     }
 
     public bool HasItem(ItemData item, int quantity)
