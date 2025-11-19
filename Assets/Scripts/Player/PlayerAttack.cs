@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (!playerCondition.UseStamina(staminaCost))
         {
-            Debug.Log("스태미나 부족!");
+            Debug.Log("stamina x");
             return;
         }
 

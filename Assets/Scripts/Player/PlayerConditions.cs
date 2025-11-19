@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public UICondition uiCondition;
+    public TextMeshProUGUI tempText;
+    public float environmentTemperature;
 
     Condition health { get { return uiCondition.health; } }
     Condition hunger { get { return uiCondition.hunger; } }
@@ -15,9 +18,12 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        hunger.Subtract(hunger.passiveValue * Time.deltaTime);
-        thirst.Subtract(thirst.passiveValue * Time.deltaTime);
-        stamina.Add(stamina.passiveValue * Time.deltaTime);
+        float coldMul = GetColdMultiplier();
+        hunger.Subtract(hunger.passiveValue * coldMul * Time.deltaTime);
+        thirst.Subtract(thirst.passiveValue * coldMul * Time.deltaTime);
+
+        float staminaRegen = stamina.passiveValue * (2f - coldMul);
+        stamina.Add(staminaRegen * Time.deltaTime);
 
         if (hunger.curValue <= 0f || thirst.curValue <= 0f)
         {
@@ -28,6 +34,13 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         {
             Die();
         }
+        if (tempText != null)
+            tempText.text = environmentTemperature.ToString("F1") + "C";
+    }
+    public void TakePhysicalDamage(float damage)
+    {
+        health.Subtract(damage);
+        onTakeDamage?.Invoke();
     }
 
     public void Heal(float amount)
@@ -46,12 +59,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Die()
     {
-        Debug.Log("í”Œë ˆì´ì–´ê°€ ì£½ì—ˆë‹¤.");
-    }
-    public void TakePhysicalDamage(float damage)
-    {
-        health.Subtract(damage);
-        onTakeDamage?.Invoke(); // UI ê¹œë¹¡ìž„ ë“± ì´ë²¤íŠ¸
+        Debug.Log("?”Œ? ˆ?´?–´ê°? ì£½ì—ˆ?‹¤.");
     }
 
     public bool UseStamina(float amount)
@@ -62,5 +70,12 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         }
         stamina.Subtract(amount);
         return true;
+    }
+    // ¿Âµµ ÆÐ³ÎÆ¼ °è»ê
+    float GetColdMultiplier()
+    {
+        if (environmentTemperature >= 5f) return 1f;
+        float t = Mathf.InverseLerp(-20f, 5f, environmentTemperature);
+        return Mathf.Lerp(1.5f, 1f, t); // Ãß¿ï¼ö·Ï 1.5¹è
     }
 }

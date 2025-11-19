@@ -22,6 +22,8 @@ public class DayNightCycle : MonoBehaviour
     [Header("Other Lighting")]
     public AnimationCurve lightingIntensityMultiplier;
     public AnimationCurve reflectionIntensityMultiplier;
+    [Header("Player")]
+    public PlayerCondition playerCondition;
 
     private void Start()
     {
@@ -39,6 +41,16 @@ public class DayNightCycle : MonoBehaviour
         RenderSettings.ambientIntensity = lightingIntensityMultiplier.Evaluate(time);
         RenderSettings.reflectionIntensity = reflectionIntensityMultiplier.Evaluate(time);
 
+        // 환경 온도 계산
+        float envTemp;
+        if (time > 0.7f || time < 0.3f) // 밤
+            envTemp = -20f;
+        else // 낮
+            envTemp = 15f;
+
+        // PlayerCondition에 전달
+        if (playerCondition != null)
+            playerCondition.environmentTemperature = envTemp;
     }
 
     void UpdateLighting(Light lightSource, Gradient colorGradiant, AnimationCurve intensityCurve)
