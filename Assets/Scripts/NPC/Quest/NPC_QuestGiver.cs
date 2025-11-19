@@ -7,12 +7,14 @@ public class NPC_QuestGiver : MonoBehaviour
     [Header("NPC 고유 정보")]
     public int npcID = 1;
     [Header("이 NPC가 부여할 퀘스트")]
-    [SerializeField] private int questIDToGive;
+    //[SerializeField] private int questIDToGive;
     [SerializeField] private DialogueData dialogue_startQuest; // 퀘스트 시작 대화
     [SerializeField] private DialogueData dialogue_ongoing; // 퀘스트 진행중 대화
     [SerializeField] private DialogueData dialogue_readyToComplete; // 퀘스트 완료 대화
 
-    public void Interact()
+    public int questIDToGive;
+
+    public void StartQuestInteract()
     {
         if (QuestManager.Instance == null)
         {
@@ -22,7 +24,7 @@ public class NPC_QuestGiver : MonoBehaviour
         QuestInfo quest = QuestManager.Instance.GetQuest(questIDToGive);
         if (quest == null)
         {
-            Debug.LogError($"NPC {npcID}: 부여할 퀘스트 (ID: {questIDToGive}) 정보를 찾을 수 없습니다.");
+            Debug.LogError("퀘스트 정보를 찾을 수 없습니다.");
             return;
         }
         switch (quest.state)
@@ -34,8 +36,18 @@ public class NPC_QuestGiver : MonoBehaviour
                 break;
 
             case QuestState.ONGOING:
-                DialogueManager.Instance.StartDialogue(dialogue_ongoing);
-                Debug.Log($"NPC {npcID}: 퀘스트 '{quest.QuestName}'는 진행중입니다.");
+                bool isCompleted = QuestManager.Instance.CheckQuestCompletion(questIDToGive);
+
+                if (isCompleted)
+                {
+                    DialogueManager.Instance.StartDialogue(dialogue_readyToComplete);
+                    Debug.Log($"NPC {npcID}: 퀘스트 '{quest.QuestName}' 완료");
+                }
+                else
+                {
+                    DialogueManager.Instance.StartDialogue(dialogue_ongoing);
+                    Debug.Log($"NPC {npcID}: 퀘스트 '{quest.QuestName}' 진행중");
+                }
                 break;
 
             case QuestState.CLEAR:

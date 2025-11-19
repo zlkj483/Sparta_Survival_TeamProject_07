@@ -6,35 +6,91 @@ using System;
 
 public class QuestManager : MonoBehaviour
 {
-    public static QuestManager Instance { get; private set; }
+    private static QuestManager _instance; // 실제 금고
+    public static QuestManager Instance // 금고 열쇠(외부접근용)
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject singletonObject = new GameObject("QuestManager"); // 순서를 지키자. 오브젝트 생성 후 컴퍼넌트 달아주기.
+                _instance = singletonObject.AddComponent<QuestManager>();
+                DontDestroyOnLoad(singletonObject);
+                _instance.InitializeSingleton();
+            }
+            return _instance;
+        }
+    }
+    private void InitializeSingleton() // 초기화 시 단 한 번만 로드되도록 방어 로직 추가
+    {
+        if (questDictionary.Count == 0)
+        {
+            LoadQuestData();
+        }
+    }
     [Header("모든 퀘스트 정보를 인스펙터에서 로드")]
-    [SerializeField] private List<QuestInfo> allQuestData;
+    [SerializeField] private List<QuestData> allQuestData;
     private Dictionary<int, QuestInfo> questDictionary = new Dictionary<int, QuestInfo>();
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        _instance = this;
         LoadQuestData();
+    }
+    public bool CheckQuestCompletion(int questID) // 완료체크
+    {
+        QuestInfo quest = GetQuest(questID);
+        if (quest == null || quest.state != QuestState.ONGOING) return false;
+
+        bool allGoalsComplete = true;
+        foreach (var goal in quest.goals)
+        {
+            if (!goal.IsComplete)
+            {
+                allGoalsComplete = false;
+                break;
+            }
+        }
+
+        if (allGoalsComplete)
+        {
+            quest.state = QuestState.CLEAR;
+           
+        }
+
+        return allGoalsComplete;
     }
 
     private void LoadQuestData() // 퀘스트 데이터를 Dictionary로 변환하여 로드
     {
-        questDictionary.Clear();
-        foreach (var quest in allQuestData)
+        if (allQuestData == null)
         {
-            if(!questDictionary.ContainsKey(quest.QuestID))
+            Debug.LogWarning("QuestManager: allQuestData가 null입니다.");
+            return;
+        }
+        questDictionary.Clear();
+        if (allQuestData.Count == 0)
+        {
+            Debug.Log("QuestManager: 로드할 퀘스트 데이터가 없습니다.");
+            return;
+        }
+        foreach (var questData in allQuestData)
+        {
+            QuestInfo newQuestInstance = new QuestInfo(questData);
+
+            if (!questDictionary.ContainsKey(newQuestInstance.QuestID))
             {
-                quest.state = QuestState.NEVER_RECEIVED;
-                questDictionary.Add(quest.QuestID, quest);
+                newQuestInstance.state = QuestState.NEVER_RECEIVED;
+                questDictionary.Add(newQuestInstance.QuestID, newQuestInstance);
             }
             else
             {
-                Debug.LogError($"[QuestManager] 중복된 QuestID가 발견되었습니다: {quest.QuestID}");
+                Debug.LogError($"[QuestManager] 중복된 QuestID가 발견되었습니다: {newQuestInstance.QuestID}");
             }
             
         }

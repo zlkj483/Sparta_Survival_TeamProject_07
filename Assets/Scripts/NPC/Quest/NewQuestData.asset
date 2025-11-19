@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0611eb44e5f96744c95ed896374c86f0, type: 3}
+  m_Name: NewQuestData
+  m_EditorClassIdentifier: 
+  QuestID: 1
+  QuestName: "\uD14C\uC2A4\uD2B8\uC6A9\uD018\uC2A4\uD2B8"
+  QuestDescription: "\uB098\uBB34\uCE90\uC640"
+  goals:
+  - goalType: 0
+    targetID: 
+    requiredAmount: 0
+    currentAmount: 0
+  rewardItem: 1
+  questNPCID: 00000000

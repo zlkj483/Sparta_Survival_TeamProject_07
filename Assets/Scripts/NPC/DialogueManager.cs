@@ -5,7 +5,21 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-public static DialogueManager Instance { get; private set; }
+    public static DialogueManager _instance;
+    public static DialogueManager Instance // 금고 열쇠(외부접근용)
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject singletonObject = new GameObject("DialogueManager"); // 순서를 지키자. 오브젝트 생성 후 컴퍼넌트 달아주기.
+                _instance = singletonObject.AddComponent<DialogueManager>();
+                DontDestroyOnLoad(singletonObject);
+            }
+            return _instance;
+        }
+    }
+
     [Header("Dialogue Components")]
     [SerializeField] private GameObject dialoguePanel; // 대화 UI 패널
     [SerializeField] private TextMeshProUGUI speakerNameText;
@@ -21,13 +35,13 @@ public static DialogueManager Instance { get; private set; }
 
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if(_instance != null && _instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            Instance = this;
+            _instance = this;
             dialogueQueue = new Queue<DialogueLine>();
             dialoguePanel.SetActive(false);
         }
@@ -78,6 +92,8 @@ public static DialogueManager Instance { get; private set; }
     private void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+        speakerNameText.text = "";
+        dialogueContentText.text = "";
         Debug.Log("End Dialogue");
     }
 
@@ -92,6 +108,14 @@ public static DialogueManager Instance { get; private set; }
             isTyping =false;
         }
         else
+        {
+            DisplayNextLine();
+        }
+    }
+
+    void Update()
+    {
+        if (dialoguePanel.activeSelf && Input.GetKeyDown(KeyCode.Z)) // 또는 KeyCode.Return
         {
             DisplayNextLine();
         }
