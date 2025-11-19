@@ -4,7 +4,7 @@ public class PlayerGather : MonoBehaviour
 {
     [SerializeField] private Camera cam; // 플레이어 카메라
     [SerializeField] private float gatherRange = 3f; // 때릴 수 있는 거리
-    [SerializeField] private int damage = 5; // 데미지 값 (원하면 도끼마다 다르게 변경)
+    [SerializeField] private int damage = 5; // 데미지 값 
 
     void Update()
     {

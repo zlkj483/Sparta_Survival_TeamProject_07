@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IInteractable
 {
     public string GetInteractPrompt();
-    //public void OnInteract();
+    void Interact();
 }
 public class ItemObject : MonoBehaviour, IInteractable
 {
@@ -14,12 +14,20 @@ public class ItemObject : MonoBehaviour, IInteractable
     public string GetInteractPrompt()
     {
         string info = $"{data.displayName}\n {data.description}";
-        return info ;
+        return info;
     }
 
-    /*public void OnInteract()
+    public void Interact()
     {
-        CharacterManager.Instance.Player.itemData = data;
-        CharacterManager.Instance.Player.addItem?.Invoke();
-    }*/
+        //Inventory inventory = CharacterManager.Instance.inventory;
+        //if (inventory != null)
+        //{
+        //    inventory.AddItem(data);
+        //}
+        //else
+        //{
+        //  Debug.LogWarning("Inventory가 없습니다!");
+        //}
+        Destroy(gameObject);
+    }
 }

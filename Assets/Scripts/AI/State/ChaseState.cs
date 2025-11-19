@@ -53,10 +53,14 @@ public class ChaseState : IAIState
         // 공격 거리면 AttackState로 전환
         if (dist <= _ctx.AttackRange)
         {
-            Debug.Log("[Chase] AttackRange 진입 → AttackState");
-            _fsm.ChangeState(new AttackState(_ctx, _fsm));
+            if (_ctx.Data != null && _ctx.Data.isBoss)
+                _fsm.ChangeState(new BossAttackState(_ctx, _fsm));
+            else
+                _fsm.ChangeState(new AttackState(_ctx, _fsm));
+
             return;
         }
+
 
         // 계속 추적
         if (_ctx.Agent != null)
