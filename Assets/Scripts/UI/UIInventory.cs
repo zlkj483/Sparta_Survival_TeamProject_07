@@ -81,7 +81,7 @@ public class UIInventory : MonoBehaviour
         return inventoryWindow.activeInHierarchy;
     }
 
-    // PlayerController 먼저 수정
+    
 
     public void AddItem()
     {
@@ -110,7 +110,7 @@ public class UIInventory : MonoBehaviour
             return;
         }
 
-        ThrowItem(data);
+        //ThrowItem(data);
         CharacterManager.Instance.Player.itemData = null;
     }
 
@@ -153,14 +153,14 @@ public class UIInventory : MonoBehaviour
         return null;
     }
 
-    // Player 스크립트 먼저 수정
-    public void ThrowItem(ItemData data)
-    {
-        Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
-    }
+    
+    //public void ThrowItem(ItemData data)
+    //{
+    //    Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+    //}
 
 
-    // ItemSlot 스크립트 먼저 수정
+    
     public void SelectItem(int index)
     {
         if (slots[index].item == null) return;
@@ -201,33 +201,33 @@ public class UIInventory : MonoBehaviour
                         condition.Eat(selectedItem.item.consumables[i].value); break;
                 }
             }
-            RemoveSelctedItem();
+            //RemoveSelctedItem();
         }
     }
 
     public void OnDropButton()
     {
-        ThrowItem(selectedItem.item);
-        RemoveSelctedItem();
+        //ThrowItem(selectedItem.item);
+        //RemoveSelctedItem();
     }
 
-    void RemoveSelctedItem()
-    {
-        selectedItem.quantity--;
+    //void RemoveSelctedItem()
+    //{
+    //    selectedItem.quantity--;
 
-        if (selectedItem.quantity <= 0)
-        {
-            if (slots[selectedItemIndex].equipped)
-            {
-                UnEquip(selectedItemIndex);
-            }
+    //    if (selectedItem.quantity <= 0)
+    //    {
+    //        if (slots[selectedItemIndex].equipped)
+    //        {
+    //            UnEquip(selectedItemIndex);
+    //        }
 
-            selectedItem.item = null;
-            ClearSelectedItemWindow();
-        }
+    //        selectedItem.item = null;
+    //        ClearSelectedItemWindow();
+    //    }
 
-        UpdateUI();
-    }
+    //    UpdateUI();
+    //}
 
     public bool HasItem(ItemData item, int quantity)
     {
