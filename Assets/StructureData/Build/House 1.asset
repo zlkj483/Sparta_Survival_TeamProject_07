@@ -16,7 +16,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a5868139825998b46b467e51ded1e14b, type: 3}
   description: "\uAE30\uBCF8\uC9D1\uC785\uB2C8\uB2E4."
   levels:
-  - requiredWood: 5
+  - woodItem: {fileID: 11400000, guid: 855f43496c6d1714e9773af49a58371f, type: 2}
+    stoneItem: {fileID: 11400000, guid: 8ae528cd0f570fa4a84912c277b3a387, type: 2}
+    requiredWood: 5
     requiredStone: 0
     buildTime: 10
-    prefab: {fileID: 5865086927145450633, guid: f8246e8d69f2d1647a2c960ca8bfd807, type: 3}
+    prefab: {fileID: 5489215129550388239, guid: 923f79343235e60459b251a22dc514db, type: 3}

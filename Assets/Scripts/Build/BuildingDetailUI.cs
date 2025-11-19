@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -26,7 +26,7 @@ public class BuildingDetailUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        gameObject.SetActive(false); // ±‚∫ª¿∫ æ» ∫∏¿Ã∞‘
+        gameObject.SetActive(false); // Í∏∞Î≥∏ÏùÄ Ïïà Î≥¥Ïù¥Í≤å
     }
 
     public void Show(BuildingData data)
@@ -34,22 +34,33 @@ public class BuildingDetailUI : MonoBehaviour
         currentData = data;
         gameObject.SetActive(true);
 
-        // ±‚∫ª ¡§∫∏ «•Ω√
         previewImage.sprite = data.icon;
         nameText.text = data.buildingName;
         descriptionText.text = data.description;
 
-        // 0∑π∫ß ∞«√‡ ±‚¡ÿ
         var levelInfo = data.levels[0];
 
         woodText.text = $"x {levelInfo.requiredWood}";
         stoneText.text = $"x {levelInfo.requiredStone}";
-        buildTimeText.text = $"∞«º≥ Ω√∞£: {levelInfo.buildTime}√ ";
+        buildTimeText.text = $"Í±¥ÏÑ§ ÏãúÍ∞Ñ: {levelInfo.buildTime}Ï¥à";
 
-        // πˆ∆∞ ∏ÆΩ∫≥  √ ±‚»≠ »ƒ √ﬂ∞°
+        bool canBuild = HasRequiredResources(data);
+
+        buildButton.interactable = canBuild;
+
+        if (!canBuild)
+        {
+            buildTimeText.text = "Ïû¨Î£å Î∂ÄÏ°±";
+        }
+
         buildButton.onClick.RemoveAllListeners();
         buildButton.onClick.AddListener(() =>
         {
+            if (!HasRequiredResources(data)) return;
+
+            // Ïû¨Î£å ÏÜåÎπÑ
+            SpendMaterials(levelInfo);
+
             BuildManager.Instance.StartPlacing(data);
             gameObject.SetActive(false);
         });
@@ -59,5 +70,25 @@ public class BuildingDetailUI : MonoBehaviour
         {
             gameObject.SetActive(false);
         });
+    }
+
+    private bool HasRequiredResources(BuildingData data)
+    {
+        var levelInfo = data.levels[0];
+
+        int woodCount = UIInventory.Instance.GetItemCount(levelInfo.woodItem);
+        int stoneCount = UIInventory.Instance.GetItemCount(levelInfo.stoneItem);
+
+        return woodCount >= levelInfo.requiredWood &&
+               stoneCount >= levelInfo.requiredStone;
+    }
+
+    private void SpendMaterials(BuildingData.LevelInfo levelInfo)
+    {
+        // ÎÇòÎ¨¥ Ï†úÍ±∞
+        UIInventory.Instance.RemoveItem(levelInfo.woodItem, levelInfo.requiredWood);
+
+        // Îèå Ï†úÍ±∞
+        UIInventory.Instance.RemoveItem(levelInfo.stoneItem, levelInfo.requiredStone);
     }
 }

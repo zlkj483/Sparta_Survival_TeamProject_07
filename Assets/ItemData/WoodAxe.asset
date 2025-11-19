@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fa3213b584f924980c26106342ee3d, type: 3}
   m_Name: WoodAxe
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: "\uB3C4\uB07C"
   description: 
-  type: 0
+  type: 1
   icon: {fileID: 0}
   dropPrefab: {fileID: 0}
   canStack: 0
