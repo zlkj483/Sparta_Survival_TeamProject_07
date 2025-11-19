@@ -216,4 +216,27 @@ public class UIInventory : MonoBehaviour
         }
         return totalCount;
     }
+
+    public void RemoveItem(ItemData item, int amount)
+    {
+        int remaining = amount;
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == item)
+            {
+                int removeCount = Mathf.Min(slots[i].quantity, remaining);
+                slots[i].quantity -= removeCount;
+                remaining -= removeCount;
+
+                if (slots[i].quantity == 0)
+                    slots[i].Clear();
+
+                if (remaining <= 0)
+                    break;
+            }
+        }
+
+        UpdateUI();
+    }
 }
