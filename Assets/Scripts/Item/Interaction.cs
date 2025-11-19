@@ -72,9 +72,6 @@ public class Interaction : MonoBehaviour
             curInteractable = null;
             promptText.gameObject.SetActive(false);
         }
-
-        // BoxCast 방향 시각화
-        Debug.DrawRay(origin, direction * interDistance, Color.yellow);
     }
     private void SetPromptText()
     {

@@ -3,8 +3,7 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager Instance;
-
-    //public Player Player; // PlayerMovement 말고 Player.cs가 있어야 함
+    // public Inventory inventory;
 
     private void Awake()
     {
