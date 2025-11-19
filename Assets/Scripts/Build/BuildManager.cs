@@ -33,6 +33,8 @@ public class BuildManager : MonoBehaviour
     // 미리보기 생성
     private void CreatePreview(GameObject prefab)
     {
+        previewObject.transform.rotation = Quaternion.Euler(-90, 0, 0);
+
         previewObject = Instantiate(prefab);
         previewObject.name = "PreviewObject";
 
