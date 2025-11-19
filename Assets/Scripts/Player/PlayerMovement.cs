@@ -7,14 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private Animator animator;
-    //ìºë¦­í„°ê°€ ì›€ì§ì´ê¸° ìœ„í•œ ë¬¼ë¦¬ ì»´í¬ë„ŒíŠ¸ = ë¦¬ì§€ë“œë°”ë””
+    //ìºë¦­?„°ê°? ???ì§ì´ê¸? ?œ„?•œ ë¬¼ë¦¬ ì»´í¬?„Œ?Š¸ = ë¦¬ì???“œë°”ë””
     [SerializeField]
     private Rigidbody rb;
-    //ì´ë™ê°’ì„ ì €ì¥í•˜ê¸° ìœ„í•œ 2ì°¨ì› ë²¡í„°
+    //?´?™ê°’ì„ ????¥?•˜ê¸? ?œ„?•œ 2ì°¨ì› ë²¡í„°
     private Vector2 moveInput;
-    //ì´ë™í•  ì†ë„
+    //?´?™?•  ?†?„
     public float moveSpeed = 5.0f;
-    //ì í”„í•  íŒŒì›Œ
+    //? ?”„?•  ?ŒŒ?›Œ
     public float jumpForce = 5.0f;
     private PlayerAttack attack;
     void Awake()
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(this.transform.position + move * moveSpeed * Time.fixedDeltaTime);
     }
 
-    //input systemì—ì„œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
+    //input system?—?„œ ?˜¸ì¶œí•˜?Š” ?•¨?ˆ˜
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("MoveSpeed", move.magnitude);
 
-        // ë¬¼ë¦¬ ì´ë™ì€ MovePositionìœ¼ë¡œ ë³€ê²½
+        // ë¬¼ë¦¬ ?´?™??? MovePosition?œ¼ë¡? ë³?ê²?
         Vector3 targetPos = rb.position + move * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(targetPos);
     }
@@ -115,11 +115,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            animator.SetTrigger("Attack");
             if (attack != null)
-                attack.TryAttack(); // PlayerAttack ìŠ¤í¬ë¦½íŠ¸ì˜ í•¨ìˆ˜ í˜¸ì¶œ
-            else
-                Debug.LogWarning("PlayerAttack ì»´í¬ë„ŒíŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤!");
+                attack.TryAttack();
         }
     }
 }

@@ -15,8 +15,6 @@ public class Condition : MonoBehaviour
         {
             // Condition 오브젝트 밑에 Image 자동 연결
             uiBar = transform.Find("Image")?.GetComponent<Image>();
-            if (uiBar == null)
-                Debug.LogWarning("uiBar Image를 찾을 수 없습니다!", this);
         }
 
         curValue = startValue;
