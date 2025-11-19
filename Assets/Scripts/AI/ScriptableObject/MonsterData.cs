@@ -33,4 +33,7 @@ public class MonsterData : ScriptableObject
     [Header("드랍/죽음")]
     public DropTable dropTable;
     public float destroyAfterDeath = 3f;
+
+    [Header("보스 전용")]
+    public bool isBoss;
 }

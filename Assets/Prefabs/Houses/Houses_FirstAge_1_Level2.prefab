@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 5529499565843330747}
   - component: {fileID: 6516758295079766241}
   - component: {fileID: 5192340911834919000}
+  - component: {fileID: 8979209074766914831}
+  - component: {fileID: 5348044610487195816}
   m_Layer: 0
   m_Name: Houses_FirstAge_1_Level2
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +86,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8979209074766914831
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195009196628341361}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.00869309, y: 0.011724187, z: 0.007645459}
+  m_Center: {x: 0, y: -0.0000119451415, z: 0.0038380395}
+--- !u!114 &5348044610487195816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195009196628341361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91a54ee5cb4a204e8f5a136ac1f628a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7650a0b55dedbe48b2e6de1b19a68fc, type: 3}
   m_Name: House 17
   m_EditorClassIdentifier: 
-  buildingName: 
-  icon: {fileID: 0}
-  description: 
-  levels: []
+  buildingName: "\uAE54\uB054\uD55C \uB3CC \uC5C5\uADF8\uB808\uC774\uB4DC \uC9D1"
+  icon: {fileID: 21300000, guid: d97a179dd332fcb47aefd20b40267787, type: 3}
+  description: "\uB3CC\uC9D1"
+  levels:
+  - requiredWood: 85
+    requiredStone: 45
+    buildTime: 170
+    prefab: {fileID: 3951637656079905913, guid: eafb5286a667eee4eb0de3a986aba26a, type: 3}

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class Structure : MonoBehaviour
+public class Structure : MonoBehaviour, IGatherable
 {
     public StructureData data;
     private float accumulatedDamage = 0;
@@ -26,8 +26,8 @@ public class Structure : MonoBehaviour
         accumulatedDamage += damageAmount; //데미지 누적
         while (accumulatedDamage >= data.damagePer)
         {
-            for (int i = 0; i < data.dropAmount; i++) //드랍 아이템 수량만큼 반복
-            { //아이템 생성
+            for (int i = 0; i < data.dropAmount; i++) //��� ������ ������ŭ �ݺ�
+            { //������ ����
                 Instantiate(data.dropItem, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
             }
             accumulatedDamage -= data.damagePer; //누적 데미지에서 드랍당 데미지 차감
