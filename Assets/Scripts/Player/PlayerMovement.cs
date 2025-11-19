@@ -5,29 +5,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private Animator animator;
-    //Ï∫êÎ¶≠?Ñ∞Í∞? ???ÏßÅÏù¥Í∏? ?úÑ?ïú Î¨ºÎ¶¨ Ïª¥Ìè¨?Ñå?ä∏ = Î¶¨Ï???ìúÎ∞îÎîî
-    [SerializeField]
-    private Rigidbody rb;
-    //?ù¥?èôÍ∞íÏùÑ ????û•?ïòÍ∏? ?úÑ?ïú 2Ï∞®Ïõê Î≤°ÌÑ∞
-    private Vector2 moveInput;
-    //?ù¥?èô?ï† ?Üç?èÑ
-    public float moveSpeed = 5.0f;
-    //?†ê?îÑ?ï† ?åå?õå
-    public float jumpForce = 5.0f;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Transform cameraBox; // «√∑π¿ÃæÓ ∏”∏Æ ≥Ù¿Ã
+    [SerializeField] private Transform camTr;     // ∏ﬁ¿Œ ƒ´∏ﬁ∂Û
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float mouseSensitivity = 1.5f; // ∞®µµ ≥∑√„
+    [SerializeField] private float cameraFollowSpeed = 10f;
+
     private PlayerAttack attack;
-    void Awake()
+    private Vector2 moveInput;
+    private Vector2 lookInput;
+    private float lookUpDownNum = 0f;
+
+    private void Awake()
     {
         attack = GetComponent<PlayerAttack>();
     }
-    void Start()
-    {
 
-    }
-
-
-    void Update()
+    private void Update()
     {
         HandleLook();
     }
@@ -37,20 +34,16 @@ public class PlayerMovement : MonoBehaviour
         HandleMove();
     }
 
-    public void Move()
+    private void LateUpdate()
     {
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-
-        rb.MovePosition(this.transform.position + move * moveSpeed * Time.fixedDeltaTime);
+        HandleCameraFollow();
     }
 
-    //input system?óê?Ñú ?ò∏Ï∂úÌïò?äî ?ï®?àò
+    #region Movement
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
     }
-
-
 
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -59,38 +52,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Jump");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-        else
-        {
-
-        }
     }
-
-    private Vector2 lookInput;
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        lookInput = context.ReadValue<Vector2>();
-    }
-
-    public Transform cameraBox;
-    private float lookUpDownNum = 0;
-    [SerializeField]
-    private float mouseSensitivity = 2f;
-
-    private void HandleLook()
-    {
-        Vector2 mouseDelta = lookInput * mouseSensitivity;
-
-        lookUpDownNum -= mouseDelta.y;
-        lookUpDownNum = Mathf.Clamp(lookUpDownNum, -90, 90);
-
-        cameraBox.localRotation = Quaternion.Euler(lookUpDownNum, 0f, 0f);
-
-        transform.Rotate(Vector3.up * mouseDelta.x);
-    }
-
-    [SerializeField]
-    private Transform camTr;
 
     private void HandleMove()
     {
@@ -107,16 +69,47 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("MoveSpeed", move.magnitude);
 
-        // Î¨ºÎ¶¨ ?ù¥?èô??? MovePosition?úºÎ°? Î≥?Í≤?
         Vector3 targetPos = rb.position + move * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(targetPos);
     }
+    #endregion
+
+    #region Look
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookInput = context.ReadValue<Vector2>();
+    }
+
+    private void HandleLook()
+    {
+        Vector2 mouseDelta = lookInput * mouseSensitivity;
+
+        // «√∑π¿ÃæÓ ¿ß/æ∆∑° »∏¿¸
+        lookUpDownNum -= mouseDelta.y;
+        lookUpDownNum = Mathf.Clamp(lookUpDownNum, -60f, 60f);
+        cameraBox.localRotation = Quaternion.Euler(lookUpDownNum, 0f, 0f);
+
+        // «√∑π¿ÃæÓ ¡¬/øÏ »∏¿¸
+        transform.Rotate(Vector3.up * mouseDelta.x);
+    }
+    #endregion
+
+    #region Camera
+    private void HandleCameraFollow()
+    {
+        // ƒ´∏ﬁ∂Û ¿ßƒ°∏¶ CameraBox ±‚¡ÿ¿∏∑Œ Lerp∑Œ ∫ŒµÂ∑¥∞‘ ¿Ãµø
+        camTr.position = Vector3.Lerp(camTr.position, cameraBox.position, cameraFollowSpeed * Time.deltaTime);
+
+        // ƒ´∏ﬁ∂Û »∏¿¸¿∫ CameraBox ∑Œƒ√ »∏¿¸ ±◊¥Î∑Œ
+        camTr.rotation = cameraBox.rotation;
+    }
+    #endregion
+
+    #region Attack
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            if (attack != null)
-                attack.TryAttack();
-        }
+        if (context.performed && attack != null)
+            attack.TryAttack();
     }
+    #endregion
 }
