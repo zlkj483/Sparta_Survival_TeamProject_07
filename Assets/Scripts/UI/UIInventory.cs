@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
+    public static UIInventory Instance {  get; private set; } // 퀘스트에서 불러올 수 있게 싱글턴으로 바꿔줌
+
     public ItemSlot[] slots;
 
     public GameObject inventoryWindow;
@@ -20,6 +22,17 @@ public class UIInventory : MonoBehaviour
     private int curEquipIndex;
 
     private PlayerCondition condition;
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
@@ -175,5 +188,37 @@ public class UIInventory : MonoBehaviour
             if (slot.item == item) total += slot.quantity;
         }
         return total >= quantity;
+    }
+
+    public int GetItemCount(ItemData targetItemData)
+    {
+        if (targetItemData == null) return 0;
+
+        int totalCount = 0;
+
+        // slots 배열에서 ItemData가 일치하는 슬롯의 quantity를 합산
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == targetItemData)
+            {
+                totalCount += slots[i].quantity;
+            }
+        }
+        return totalCount;
+    }
+
+    public int QuestItemCount(string targetItemName) // 퀘스트 전용 아이템 체크
+    {
+        if(string.IsNullOrEmpty(targetItemName)) return 0;
+        int totalCount = 0;
+        for (int i = 0; i < slots.Length; i++)
+        {
+            // ItemData가 있고, ItemData의 displayName이 퀘스트 목표 이름과 일치하는지 확인
+            if(slots[i].item != null && slots[i].item.displayName == targetItemName)
+            {
+                totalCount += slots[i].quantity;
+            }
+        }
+        return totalCount;
     }
 }

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581ec66146a63ef40bd4f0aa931a3c02, type: 3}
+  m_Name: MonsterData_Dino
+  m_EditorClassIdentifier: 
+  monsterId: 5
+  displayName: "\uAF2C\uB9C8\uACF5\uB8E1"
+  skinPrefab: {fileID: 2782497303823349503, guid: 306795369d619f24288d093edb347693, type: 3}
+  maxHp: 100
+  moveSpeed: 3.5
+  baseDamage: 15
+  aggroRange: 10
+  attackRange: 2
+  giveUpRange: 20
+  sightRange: 12
+  sightAngle: 120
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
+  patrolWaitTime: 2
+  attackCooldown: 2
+  dropTable: {fileID: 11400000, guid: 723ce8f95d7ca4e4e8e85b3e500fa5bd, type: 2}
+  destroyAfterDeath: 3
+  isBoss: 0

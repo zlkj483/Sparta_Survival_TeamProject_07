@@ -21,5 +21,16 @@ MonoBehaviour:
   aggroRange: 10
   attackRange: 2
   giveUpRange: 20
+  sightRange: 12
+  sightAngle: 120
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
   patrolWaitTime: 2
   attackCooldown: 2
+  dropTable: {fileID: 11400000, guid: 723ce8f95d7ca4e4e8e85b3e500fa5bd, type: 2}
+  destroyAfterDeath: 3
+  isBoss: 0
