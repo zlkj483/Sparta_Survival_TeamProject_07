@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Structure : MonoBehaviour
+public class Structure : MonoBehaviour, IGatherable
 {
     public StructureData data;
     private int accumulatedDamage = 0;
