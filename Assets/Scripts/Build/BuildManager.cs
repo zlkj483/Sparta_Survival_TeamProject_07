@@ -36,31 +36,36 @@ public class BuildManager : MonoBehaviour
         previewObject = Instantiate(prefab);
         previewObject.name = "PreviewObject";
 
+        // Building 기능 비활성화 (프리뷰일 때 동작 방지)
         var building = previewObject.GetComponent<Building>();
         if (building != null) building.enabled = false;
 
-        Collider col = previewObject.GetComponent<Collider>();
-        if (col != null)
+        // 모든 Rigidbody 제거 (자식 객체 포함)
+        foreach (var rb in previewObject.GetComponentsInChildren<Rigidbody>())
+            Destroy(rb);
+
+        // 모든 Collider를 Trigger로 변경 (자식 포함)
+        foreach (var col in previewObject.GetComponentsInChildren<Collider>())
         {
             col.isTrigger = true;
+
+            // MeshCollider라면 Convex 강제
+            if (col is MeshCollider mesh)
+            {
+                mesh.convex = true;
+            }
         }
 
+        // 반투명 프리뷰 재질 적용
         foreach (var r in previewObject.GetComponentsInChildren<Renderer>())
         {
             r.material = previewGreen;
-            r.material.SetFloat("_Mode", 3);
-            r.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-            r.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            r.material.SetInt("_ZWrite", 0);
-            r.material.DisableKeyword("_ALPHATEST_ON");
-            r.material.EnableKeyword("_ALPHABLEND_ON");
-            r.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-            r.material.renderQueue = 3000;
             Color c = r.material.color;
-            c.a = 0.6f;
+            c.a = 0.5f;
             r.material.color = c;
         }
 
+        // 충돌 체크용 스크립트 추가
         previewObject.AddComponent<PreviewCollisionChecker>();
     }
 
@@ -87,11 +92,18 @@ public class BuildManager : MonoBehaviour
     // 미리보기 위치 갱신
     private void UpdatePreviewPosition()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Transform cam = Camera.main.transform;
 
-        if (Physics.Raycast(ray, out var hit, 200f))
+        // 플레이어 앞 방향으로 Raycast 쏘기
+        if (Physics.Raycast(cam.position, cam.forward, out var hit, 5f))
         {
+            // 건축 위치 표시 (거리제한)
             previewObject.transform.position = hit.point;
+        }
+        else
+        {
+            // 땅이 없으면 플레이어 앞 5m 지점에 강제 배치 (옵션)
+            previewObject.transform.position = cam.position + cam.forward * 5f;
         }
     }
 
