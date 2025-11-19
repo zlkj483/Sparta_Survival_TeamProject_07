@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: NewQuestData
   m_EditorClassIdentifier: 
   QuestID: 1
-  QuestName: "\uD14C\uC2A4\uD2B8\uC6A9\uD018\uC2A4\uD2B8"
-  QuestDescription: "\uB098\uBB34\uCE90\uC640"
+  QuestName: "\uB3CC\uB9F9\uC774 \uBAA8\uC544\uC624\uAE30"
+  QuestDescription: 
   goals:
   - goalType: 0
-    targetID: 
-    requiredAmount: 0
+    targetID: 101
+    requiredAmount: 3
     currentAmount: 0
-  rewardItem: 1
-  questNPCID: 00000000
+  rewardItem: 0
+  questNPCID: 01000000
