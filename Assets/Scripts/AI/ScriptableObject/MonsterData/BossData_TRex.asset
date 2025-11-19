@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581ec66146a63ef40bd4f0aa931a3c02, type: 3}
+  m_Name: BossData_TRex
+  m_EditorClassIdentifier: 
+  monsterId: 99
+  displayName: T-Rex
+  skinPrefab: {fileID: 8521935934501609796, guid: 869fca3bba297e84e9c969e7b3f1f107, type: 3}
+  maxHp: 500
+  moveSpeed: 10
+  baseDamage: 50
+  aggroRange: 50
+  attackRange: 15
+  giveUpRange: 60
+  sightRange: 50
+  sightAngle: 120
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
+  patrolWaitTime: 2
+  attackCooldown: 2
+  dropTable: {fileID: 0}
+  destroyAfterDeath: 3
+  isBoss: 1
