@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -42,8 +42,8 @@ public class ItemSlot : MonoBehaviour
     public void Clear()
     {
         item = null;
-        icon.gameObject.SetActive(false);
-        quatityText.text = string.Empty;
+        //icon.gameObject.SetActive(false);
+        //quatityText.text = string.Empty;
     }
 
     public void OnClickButton()

@@ -9,19 +9,14 @@ public class UIInventory : MonoBehaviour
 
     public GameObject inventoryWindow;
     public Transform slotPanel;
-    public Transform dropPosition;
 
     [Header("Selected Item")]
     private ItemSlot selectedItem;
     private int selectedItemIndex;
-    public TextMeshProUGUI selectedItemName;
-    public TextMeshProUGUI selectedItemDescription;
-    public TextMeshProUGUI selectedItemStatName;
-    public TextMeshProUGUI selectedItemStatValue;
-    public GameObject useButton;
-    public GameObject equipButton;
-    public GameObject unEquipButton;
-    public GameObject dropButton;
+    //public TextMeshProUGUI selectedItemName;
+    //public TextMeshProUGUI selectedItemDescription;
+    //public TextMeshProUGUI selectedItemStatName;
+    //public TextMeshProUGUI selectedItemStatValue;
 
     private int curEquipIndex;
 
@@ -51,14 +46,11 @@ public class UIInventory : MonoBehaviour
     {
         selectedItem = null;
 
-        selectedItemName.text = string.Empty;
-        selectedItemDescription.text = string.Empty;
-        selectedItemStatName.text = string.Empty;
-        selectedItemStatValue.text = string.Empty;
+        //selectedItemName.text = string.Empty;
+        //selectedItemDescription.text = string.Empty;
+        //selectedItemStatName.text = string.Empty;
+        //selectedItemStatValue.text = string.Empty;
 
-        useButton.SetActive(false);
-        equipButton.SetActive(false);
-        unEquipButton.SetActive(false);
     }
 
     public void Toggle()
@@ -106,8 +98,6 @@ public class UIInventory : MonoBehaviour
             ItemObject.instance.data = null;
             return;
         }
-
-        ThrowItem(data);
         ItemObject.instance.data = null;
     }
 
@@ -149,15 +139,6 @@ public class UIInventory : MonoBehaviour
         }
         return null;
     }
-
-
-    public void ThrowItem(ItemData data)
-    {
-        Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
-    }
-
-
-
     public void SelectItem(int index)
     {
         if (slots[index].item == null) return;
@@ -165,11 +146,11 @@ public class UIInventory : MonoBehaviour
         selectedItem = slots[index];
         selectedItemIndex = index;
 
-        selectedItemName.text = selectedItem.item.displayName;
-        selectedItemDescription.text = selectedItem.item.description;
+        //selectedItemName.text = selectedItem.item.displayName;
+        //selectedItemDescription.text = selectedItem.item.description;
 
-        selectedItemStatName.text = string.Empty;
-        selectedItemStatValue.text = string.Empty;
+        //selectedItemStatName.text = string.Empty;
+        //selectedItemStatValue.text = string.Empty;
 
         //for (int i = 0; i < selectedItem.item.consumables.Length; i++)
         //{
@@ -201,30 +182,6 @@ public class UIInventory : MonoBehaviour
         //    //RemoveSelctedItem();
         //}
     }
-
-    //public void OnDropButton()
-    //{
-    //    ThrowItem(selectedItem.item);
-    //    RemoveSelctedItem();
-    //}
-
-    //void RemoveSelctedItem()
-    //{
-    //    selectedItem.quantity--;
-
-    //    if (selectedItem.quantity <= 0)
-    //    {
-    //        if (slots[selectedItemIndex].equipped)
-    //        {
-    //            UnEquip(selectedItemIndex);
-    //        }
-
-    //        selectedItem.item = null;
-    //        ClearSelectedItemWindow();
-    //    }
-
-    //    UpdateUI();
-    //}
 
     public bool HasItem(ItemData item, int quantity)
     {
