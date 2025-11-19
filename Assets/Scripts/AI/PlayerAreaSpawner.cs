@@ -120,7 +120,7 @@ public class PlayerAreaSpawner : MonoBehaviour
             // MonsterData가 프리팹에 이미 들어있으면 생략 가능
             if (controller.monsterData == null)
             {
-                controller.monsterData = PickRandomMonsterData();
+                controller.Initialize(PickRandomMonsterData());
             }
             _alive.Add(controller);
         }

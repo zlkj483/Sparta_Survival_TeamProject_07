@@ -59156,7 +59156,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -60957,7 +60957,7 @@ Transform:
   m_GameObject: {fileID: 999051701}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 310.57526, y: 19.07, z: 450}
+  m_LocalPosition: {x: 310.57526, y: 19.07, z: 372.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61003,11 +61003,14 @@ MonoBehaviour:
   outerRadius: 40
   despawnRadiusMultiplier: 1.3
   maxAlive: 15
-  spawnInterval: 3
+  spawnInterval: 10
   enemyPrefab: {fileID: 556570997573752380, guid: 0261187597c386d4ab6c21bbd947adb4, type: 3}
   monsterCandidates:
   - {fileID: 11400000, guid: 56b0c7a40cec6ef4688be71f21a010af, type: 2}
   - {fileID: 11400000, guid: 62d5d72fe37a94641b8933ee44d91670, type: 2}
+  - {fileID: 11400000, guid: 4b426ca094c510c42a986a26390d4991, type: 2}
+  - {fileID: 11400000, guid: 5ef2c28aa4c7ab543b87d9fd17201cd9, type: 2}
+  - {fileID: 11400000, guid: 132ee05f09ad24748bd7ff41eccaaf31, type: 2}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
