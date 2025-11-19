@@ -1,47 +1,46 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Structure : MonoBehaviour
 {
     public StructureData data;
-    private int accumulatedDamage = 0;
-    public GameObject prefab;       // Àç»ý¼ºÇÒ ÇÁ¸®ÆÕ
-    private Vector3 pos;    // ¿ø·¡ À§Ä¡
-    private Quaternion rot; // ¿ø·¡ È¸Àü
+    private float accumulatedDamage = 0;
+    private float hp;
+    private int dropItem;
+    protected Vector3 pos;    // ì›ëž˜ ìœ„ì¹˜
+    protected Quaternion rot; // ì›ëž˜ íšŒì „
+    public GameObject prefab;       // ìž¬ìƒì„±í•  í”„ë¦¬íŒ¹
 
     private void Start()
     {
-        pos = transform.position;
-        rot = transform.rotation;
+        hp = data.maxHp;
+        dropItem = data.dropCount;
     }
-
-                                //¸ÂÀºÀ§Ä¡ , ¸ÂÀº¹ý¼± , µ¥¹ÌÁö·®
-    public void Gather(Vector3 hitPoint, Vector3 hitNormal, int damageAmount)
+    //ë§žì€ìœ„ì¹˜ , ë§žì€ë²•ì„  , ë°ë¯¸ì§€ëŸ‰
+    public void Gather(Vector3 hitPoint, Vector3 hitNormal, float damageAmount)
     {
-        data.hp -= damageAmount; //hp¿¡¼­ µ¥¹ÌÁö Â÷°¨
-        accumulatedDamage += damageAmount; //µ¥¹ÌÁö ´©Àû
+        hp -= damageAmount; //hpì—ì„œ ë°ë¯¸ì§€ ì°¨ê°
+        accumulatedDamage += damageAmount; //ë°ë¯¸ì§€ ëˆ„ì 
         while (accumulatedDamage >= data.damagePer)
         {
-            for (int i = 0; i < data.dropAmount; i++) //µå¶ø ¾ÆÀÌÅÛ ¼ö·®¸¸Å­ ¹Ýº¹
-            { //¾ÆÀÌÅÛ »ý¼º
+            for (int i = 0; i < data.dropAmount; i++) //ë“œëž ì•„ì´í…œ ìˆ˜ëŸ‰ë§Œí¼ ë°˜ë³µ
+            { //ì•„ì´í…œ ìƒì„±
                 Instantiate(data.dropItem, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
             }
-            accumulatedDamage -= data.damagePer; //´©Àû µ¥¹ÌÁö¿¡¼­ µå¶ø´ç µ¥¹ÌÁö Â÷°¨
-            data.dropCount--; //µå¶ø °¡´É È½¼ö Â÷°¨
-            if (data.dropCount <= 0) //µå¶ø °¡´É È½¼ö°¡ 0ÀÌÇÏÀÌ¸é
+            accumulatedDamage -= data.damagePer; //ëˆ„ì  ë°ë¯¸ì§€ì—ì„œ ë“œëžë‹¹ ë°ë¯¸ì§€ ì°¨ê°
+            dropItem--; //ë“œëž ê°€ëŠ¥ íšŸìˆ˜ ì°¨ê°
+            if (dropItem <= 0) //ë“œëž ê°€ëŠ¥ íšŸìˆ˜ê°€ 0ì´í•˜ì´ë©´
             {
-                Destroy(gameObject); //±¸Á¶¹° ÆÄ±«
-                StartCoroutine(Regen()); //Àç»ý¼º ÄÚ·çÆ¾ ½ÃÀÛ
+                Instantiate(prefab, pos, rot); //ì›ëž˜ ìœ„ì¹˜ì™€ íšŒì „ìœ¼ë¡œ í”„ë¦¬íŒ¹ ìž¬ìƒì„±
+                Destroy(gameObject); //êµ¬ì¡°ë¬¼ íŒŒê´´
             }
         }
     }
+   
 
-    private IEnumerator Regen()
-    {
-        yield return new WaitForSeconds(30f); //30ÃÊ ´ë±â
-        Instantiate(prefab,pos,rot); //¿ø·¡ À§Ä¡¿Í È¸ÀüÀ¸·Î ÇÁ¸®ÆÕ Àç»ý¼º
-    }
+
 }
 

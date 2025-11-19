@@ -23,15 +23,15 @@ public class PlayerGather : MonoBehaviour
         {
             Structure structure = hit.collider.GetComponent<Structure>();
 
-            if (structure != null)
-            {
-                // 여기에서 3개를 넘김
-                structure.Gather(
-                    hit.point,      // 때린 위치
-                    hit.normal,     // 표면 방향
-                    damage          // 데미지
-                );
-            }
+            //if (structure != null)
+            //{
+            //    // 여기에서 3개를 넘김
+            //    //structure.Gather(
+            //        //hit.point,      // 때린 위치
+            //        //hit.normal,     // 표면 방향
+            //        //damage          // 데미지
+            //    );
+            //}
         }
     }
 }
