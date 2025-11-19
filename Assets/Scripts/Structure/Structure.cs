@@ -7,9 +7,9 @@ public class Structure : MonoBehaviour
 {
     public StructureData data;
     private int accumulatedDamage = 0;
-    public GameObject prefab;       // Àç»ý¼ºÇÒ ÇÁ¸®ÆÕ
-    private Vector3 pos;    // ¿ø·¡ À§Ä¡
-    private Quaternion rot; // ¿ø·¡ È¸Àü
+    public GameObject prefab;       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Vector3 pos;    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+    private Quaternion rot; // ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
 
     private void Start()
     {
@@ -17,31 +17,31 @@ public class Structure : MonoBehaviour
         rot = transform.rotation;
     }
 
-                                //¸ÂÀºÀ§Ä¡ , ¸ÂÀº¹ý¼± , µ¥¹ÌÁö·®
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void Gather(Vector3 hitPoint, Vector3 hitNormal, int damageAmount)
     {
-        data.hp -= damageAmount; //hp¿¡¼­ µ¥¹ÌÁö Â÷°¨
-        accumulatedDamage += damageAmount; //µ¥¹ÌÁö ´©Àû
+        data.hp -= damageAmount; //hpï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        accumulatedDamage += damageAmount; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         while (accumulatedDamage >= data.damagePer)
         {
-            for (int i = 0; i < data.dropAmount; i++) //µå¶ø ¾ÆÀÌÅÛ ¼ö·®¸¸Å­ ¹Ýº¹
-            { //¾ÆÀÌÅÛ »ý¼º
+            for (int i = 0; i < data.dropAmount; i++) //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ ï¿½Ýºï¿½
+            { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Instantiate(data.dropItem, hitPoint + Vector3.up, Quaternion.LookRotation(hitNormal, Vector3.up));
             }
-            accumulatedDamage -= data.damagePer; //´©Àû µ¥¹ÌÁö¿¡¼­ µå¶ø´ç µ¥¹ÌÁö Â÷°¨
-            data.dropCount--; //µå¶ø °¡´É È½¼ö Â÷°¨
-            if (data.dropCount <= 0) //µå¶ø °¡´É È½¼ö°¡ 0ÀÌÇÏÀÌ¸é
+            accumulatedDamage -= data.damagePer; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            data.dropCount--; //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            if (data.dropCount <= 0) //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
             {
-                Destroy(gameObject); //±¸Á¶¹° ÆÄ±«
-                StartCoroutine(Regen()); //Àç»ý¼º ÄÚ·çÆ¾ ½ÃÀÛ
+                Destroy(gameObject); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½
+                StartCoroutine(Regen()); //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
             }
         }
     }
 
     private IEnumerator Regen()
     {
-        yield return new WaitForSeconds(30f); //30ÃÊ ´ë±â
-        Instantiate(prefab,pos,rot); //¿ø·¡ À§Ä¡¿Í È¸ÀüÀ¸·Î ÇÁ¸®ÆÕ Àç»ý¼º
+        yield return new WaitForSeconds(30f); //30ï¿½ï¿½ ï¿½ï¿½ï¿½
+        Instantiate(prefab, pos, rot); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 }
 

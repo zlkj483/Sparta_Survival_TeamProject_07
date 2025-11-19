@@ -129257,6 +129257,10 @@ PrefabInstance:
       propertyPath: uiCondition
       value: 
       objectReference: {fileID: 1999315228}
+    - target: {fileID: 2616222442013822543, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3339665923041109344, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_Name
       value: Player

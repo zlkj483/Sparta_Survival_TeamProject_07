@@ -21,16 +21,11 @@ public class PlayerGather : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, gatherRange))
         {
-            Structure structure = hit.collider.GetComponent<Structure>();
+            IGatherable gatherTarget = hit.collider.GetComponent<IGatherable>();
 
-            if (structure != null)
+            if (gatherTarget != null)
             {
-                // 여기에서 3개를 넘김
-                structure.Gather(
-                    hit.point,      // 때린 위치
-                    hit.normal,     // 표면 방향
-                    damage          // 데미지
-                );
+                gatherTarget.Gather(hit.point, hit.normal, damage);
             }
         }
     }
