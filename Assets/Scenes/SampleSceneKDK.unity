@@ -129265,10 +129265,6 @@ PrefabInstance:
       propertyPath: uiCondition
       value: 
       objectReference: {fileID: 1999315228}
-    - target: {fileID: 2616222442013822543, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3339665923041109344, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_Name
       value: Player
@@ -129317,18 +129313,6 @@ PrefabInstance:
       propertyPath: promptText
       value: 
       objectReference: {fileID: 1003720309}
-    - target: {fileID: 7590216877379827291, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7590216877379827291, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7590216877379827291, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
