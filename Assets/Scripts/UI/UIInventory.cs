@@ -169,6 +169,11 @@ public class UIInventory : MonoBehaviour
 
     public bool HasItem(ItemData item, int quantity)
     {
-        return false;
+        int total = 0;
+        foreach (ItemSlot slot in slots)
+        {
+            if (slot.item == item) total += slot.quantity;
+        }
+        return total >= quantity;
     }
 }
