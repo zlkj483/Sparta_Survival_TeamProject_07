@@ -2,20 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class RecipeIngredient
+{
+    public ItemData item;
+    public int quantity;
+}
+
+[System.Serializable]
+public class CraftingRecipe
+{
+    public ItemData resultItem;
+    public int resultQuantity = 1;
+    public List<RecipeIngredient> ingredients;
+}
+
 public class Crafting : MonoBehaviour
 {
-    [Header("만들 아이템")]
-    public ItemData itemToCraft;       // 작업대에서 만들 수 있는 아이템
-    public UIInventory playerInventory; // 플레이어 인벤토리 참조
+    [Header("작업대 레시피")]
+    public List<CraftingRecipe> recipes;
+
+    [Header("플레이어 인벤토리")]
+    public UIInventory playerInventory;
 
     [Header("UI")]
-    public GameObject craftUI;         // 작업대 UI
+    public GameObject craftUI;
 
     private bool playerInRange = false;
+    private CraftingRecipe selectedRecipe;
 
     private void Update()
     {
-        // 플레이어가 작업대 범위 안에 있을 때만 U 표시
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             ToggleCraftUI();
@@ -28,21 +45,50 @@ public class Crafting : MonoBehaviour
             craftUI.SetActive(!craftUI.activeSelf);
     }
 
-    public void OnCraftButtonClicked()
+    // UI에서 선택한 레시피 설정
+    public void SelectRecipe(int recipeIndex)
     {
-        if (playerInventory != null && itemToCraft != null)
-        {
-            playerInventory.AddItem(itemToCraft);
-        }
+        if (recipeIndex < 0 || recipeIndex >= recipes.Count) return;
+        selectedRecipe = recipes[recipeIndex];
+        // 필요하면 UI에서 재료 표시 업데이트
     }
 
-    // 플레이어가 작업대 범위에 들어왔을 때
+    // 제작 버튼 클릭
+    public void OnCraftButtonClicked()
+    {
+        if (selectedRecipe == null || playerInventory == null) return;
+
+        // 재료 체크
+        foreach (RecipeIngredient ingredient in selectedRecipe.ingredients)
+        {
+            if (!playerInventory.HasItem(ingredient.item, ingredient.quantity))
+            {
+                Debug.Log("재료가 부족합니다: " + ingredient.item.displayName);
+                return;
+            }
+        }
+
+        // 재료 차감
+        foreach (RecipeIngredient ingredient in selectedRecipe.ingredients)
+        {
+            playerInventory.RemoveItem(ingredient.item, ingredient.quantity);
+        }
+
+        // 아이템 제작
+        for (int i = 0; i < selectedRecipe.resultQuantity; i++)
+        {
+            playerInventory.AddItem(selectedRecipe.resultItem);
+        }
+
+        Debug.Log(selectedRecipe.resultItem.displayName + " 제작 완료!");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("작업대에 접근했습니다. [E] 키를 눌러 제작 가능");
+            Debug.Log("작업대 접근: [E] 키로 제작 가능");
         }
     }
 
