@@ -9,7 +9,6 @@ public interface IInteractable
 }
 public class ItemObject : MonoBehaviour, IInteractable
 {
-    public static ItemObject instance;
     public ItemData data;
 
     public string GetInteractPrompt()
@@ -23,7 +22,7 @@ public class ItemObject : MonoBehaviour, IInteractable
         UIInventory inventory = CharacterManager.Instance.inventory;
         if (inventory != null)
         {
-            inventory.AddItem();
+            inventory.AddItem(data);
         }
         else
         {

@@ -6,7 +6,6 @@ public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager Instance { get; private set; }
     public UIInventory inventory;
-    public Action addItem;
 
     private void Awake()
     {

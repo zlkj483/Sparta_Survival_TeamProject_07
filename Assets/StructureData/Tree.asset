@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHp: 100
   hp: 100
   df: 0
-  dropItem: {fileID: -705808723137817622, guid: b002cfbe0ab9bd349bd0aff9c0b0d210, type: 3}
+  dropItem: {fileID: 3254647811618843855, guid: b002cfbe0ab9bd349bd0aff9c0b0d210, type: 3}
   dropAmount: 2
   dropCount: 4
   damagePer: 25
