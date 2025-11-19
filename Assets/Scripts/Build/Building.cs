@@ -37,7 +37,10 @@ public class Building : MonoBehaviour
 
         // 기존 모델 제거
         foreach (Transform t in transform)
-            Destroy(t.gameObject);
+        {
+            if (t.gameObject.name != "Internal")
+                Destroy(t.gameObject);
+        }
 
         // 새 Prefab 적용
         Instantiate(data.levels[level].prefab, transform);

@@ -27,7 +27,14 @@ public class BuildingUI : MonoBehaviour
         panel.SetActive(true);
         titleText.text = data.buildingName;
         levelText.text = $"Level {level}";
-        needText.text = $"Next: Wood {data.levels[level + 1].requiredWood} Stone {data.levels[level + 1].requiredStone}";
+        if (level + 1 < data.levels.Length)
+        {
+            needText.text = $"Next: Wood {data.levels[level + 1].requiredWood} Stone {data.levels[level + 1].requiredStone}";
+        }
+        else
+        {
+            needText.text = "Max Level";
+        }
     }
 
     public void OnUpgradeButton()

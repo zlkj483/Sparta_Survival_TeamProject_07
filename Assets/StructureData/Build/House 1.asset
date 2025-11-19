@@ -15,4 +15,8 @@ MonoBehaviour:
   buildingName: 
   icon: {fileID: 0}
   description: 
-  levels: []
+  levels:
+  - requiredWood: 0
+    requiredStone: 0
+    buildTime: 0
+    prefab: {fileID: 5865086927145450633, guid: f8246e8d69f2d1647a2c960ca8bfd807, type: 3}
