@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7650a0b55dedbe48b2e6de1b19a68fc, type: 3}
   m_Name: House 8
   m_EditorClassIdentifier: 
-  buildingName: "\uAE54\uB054\uD55C \uC5C5\uADF8\uB808\uC774\uB4DC \uC9D1"
+  buildingName: "\uAE54\uB054 \uC5C5\uAE00 \uC9D1"
   icon: {fileID: 21300000, guid: fb14b1276ce3aa54ebd3450fe4f0154c, type: 3}
   description: "\uAE54\uB054\uD55C \uC9D1\uC758 \uC5C5\uADF8\uB808\uC774\uB4DC \uBC84\uC804"
   levels:
