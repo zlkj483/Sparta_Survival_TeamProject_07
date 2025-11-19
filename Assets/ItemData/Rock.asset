@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   displayName: "\uB3CC"
-  description: 
+  description: "\uB2E8\uB2E8\uD569\uB2C8\uB2E4"
   dropPrefab: {fileID: 1086591927569610116, guid: e259359469264334fb0596195497e6ae, type: 3}
   canStack: 1
   maxStackAmount: 64
