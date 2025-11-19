@@ -17,6 +17,7 @@ public static DialogueManager Instance { get; private set; }
     private Queue<DialogueLine> dialogueQueue;
     private Coroutine dialogueRoutine;
     private bool isTyping = false;
+    private DialogueLine currentLine; // 한번에 문장표기 전용
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public static DialogueManager Instance { get; private set; }
         if (dialoguePanel.activeSelf) return; // 이미 대화중이면 무시
 
         dialogueQueue.Clear();
-        foreach(DialogueLine line in data.Line) // 큐 초기화 및 데이터 로드
+        foreach(DialogueLine line in data.Lines) // 큐 초기화 및 데이터 로드
         {
             dialogueQueue.Enqueue(line);
         }
@@ -53,10 +54,12 @@ public static DialogueManager Instance { get; private set; }
             return;
         }
         DialogueLine line = dialogueQueue.Dequeue();
+        currentLine = dialogueQueue.Dequeue();
         speakerNameText.text = line.SpeakerName;
 
         if(dialogueRoutine != null) StopCoroutine(dialogueRoutine);
-        dialogueRoutine = StartCoroutine(TypeSentence(line.Text));
+        dialogueRoutine = StartCoroutine(TypeSentence(currentLine.Text));
+        //dialogueRoutine = StartCoroutine(TypeSentence(line.Text));
 
     }
 
@@ -83,8 +86,9 @@ public static DialogueManager Instance { get; private set; }
         if (isTyping)
         {
             StopCoroutine(dialogueRoutine);
-            DialogueLine currentLine = dialogueQueue.Dequeue();
-            dialogueContentText.text = dialogueQueue.Peek().Text;
+            //DialogueLine currentLine = dialogueQueue.Dequeue();
+            //dialogueContentText.text = dialogueQueue.Peek().Text;
+            dialogueContentText.text = currentLine.Text;
             isTyping =false;
         }
         else
