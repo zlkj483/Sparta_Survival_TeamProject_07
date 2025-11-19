@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 581ec66146a63ef40bd4f0aa931a3c02, type: 3}
-  m_Name: MonsterData_Monky
+  m_Name: MonsterData_Demon
   m_EditorClassIdentifier: 
-  monsterId: 2
-  displayName: "\uAE34\uCF54\uC6D0\uC22D\uC774"
-  skinPrefab: {fileID: 73827145412065725, guid: 019b90d486c0d664fbdae0916c481a2f, type: 3}
+  monsterId: 4
+  displayName: "\uC545\uB9C8"
+  skinPrefab: {fileID: 853932149875559802, guid: 1dffdecad9f1a4848b3fc23147094b8f, type: 3}
   maxHp: 100
   moveSpeed: 3.5
   baseDamage: 10
-  aggroRange: 10
+  aggroRange: 20
   attackRange: 2
-  giveUpRange: 20
+  giveUpRange: 25
   sightRange: 12
   sightAngle: 120
   targetLayer:
