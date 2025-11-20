@@ -22,21 +22,24 @@ public class CraftingUI : MonoBehaviour
     public Transform craftListContent;
     public GameObject craftItemButtonPrefab;
 
-    [Header("상세 정보 (오른쪽 하단)")]
+    [Header("상세 정보 (하단)")]
     public Image itemImage;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDesc;
     public Button craftButton;
 
-    [Header("등록된 전체 레시피")]
+    [Header("전체 레시피")]
     public CraftRecipe[] allRecipes;
 
     private CraftRecipe selectedRecipe;
 
+    private List<CraftItemButton> craftButtons = new List<CraftItemButton>();
+    private bool isInitialized = false;
+
     private void Awake()
     {
         Instance = this;
-        gameObject.SetActive(false); // 처음엔 닫아둠
+        gameObject.SetActive(false); // 처음엔 닫힘
     }
 
     private void OnEnable()
@@ -47,7 +50,14 @@ public class CraftingUI : MonoBehaviour
     public void RefreshUI()
     {
         RefreshMyMaterialCount();
-        RefreshCraftableList();
+
+        if (!isInitialized)
+        {
+            InitializeCraftButtons();
+            isInitialized = true;
+        }
+
+        RefreshButtonStates();
         ClearDetail();
     }
 
@@ -67,18 +77,25 @@ public class CraftingUI : MonoBehaviour
         stoneText.text = "Stone : " + stone;
     }
 
-    private void RefreshCraftableList()
+    private void InitializeCraftButtons()
     {
-        foreach (Transform child in craftListContent)
-            Destroy(child.gameObject);
-
         foreach (var recipe in allRecipes)
         {
-            if (CanCraft(recipe))
-            {
-                var btn = Instantiate(craftItemButtonPrefab, craftListContent);
-                btn.GetComponent<CraftItemButton>().Setup(recipe);
-            }
+            var btnObj = Instantiate(craftItemButtonPrefab, craftListContent);
+            var btn = btnObj.GetComponent<CraftItemButton>();
+
+            btn.Setup(recipe);  // Setup 호출
+            craftButtons.Add(btn);
+        }
+    }
+
+    private void RefreshButtonStates()
+    {
+        foreach (var btn in craftButtons)
+        {
+            bool craftable = CanCraft(btn.recipe);
+
+            btn.GetComponent<Button>().interactable = craftable;
         }
     }
 
@@ -106,15 +123,14 @@ public class CraftingUI : MonoBehaviour
 
     private void CraftSelectedItem()
     {
-        if (!CanCraft(selectedRecipe))
-            return;
+        if (!CanCraft(selectedRecipe)) return;
 
         foreach (var m in selectedRecipe.materials)
             UIInventory.Instance.RemoveItem(m.item, m.amount);
 
         UIInventory.Instance.AddItem(selectedRecipe.resultItem);
 
-        RefreshUI();
+        RefreshUI(); // 재료 갱신 + 버튼 갱신
     }
 
     private void ClearDetail()

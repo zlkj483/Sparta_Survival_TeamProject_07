@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public GameObject craftingUI;
 
     private bool isBuildMenuOpen = false;
+    private bool isInventoryOpen = false;
+    private bool isCraftingOpen = false;
 
     private PlayerMovement movement;
     private PlayerAttack attack;

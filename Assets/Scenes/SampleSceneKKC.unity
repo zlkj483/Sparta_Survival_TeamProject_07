@@ -291,6 +291,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1381215367}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 244954309}
@@ -4590,6 +4598,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1355558227}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -17890,6 +17906,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 884586013}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1469966648}
@@ -19237,6 +19261,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 736832460}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1267972806}
@@ -19504,9 +19536,9 @@ RectTransform:
   m_Father: {fileID: 1111143117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 20}
+  m_SizeDelta: {x: -17, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &294273963
 MonoBehaviour:
@@ -20617,6 +20649,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 376969758}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -23793,6 +23833,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1326610199}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 2114288419}
@@ -24103,6 +24151,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 976967174}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -24452,7 +24508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365009913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25762,6 +25818,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1172428663}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -28731,6 +28795,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 932906324}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1982055701}
@@ -29597,6 +29669,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1439092255}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -33226,6 +33306,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1312368763}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 483789601}
@@ -34223,6 +34311,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 468049611}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -38269,6 +38365,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1712756067}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -42992,6 +43096,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 819307260}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -48474,6 +48586,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 608332199}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 568646432}
@@ -49138,6 +49258,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 120229279}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -50598,6 +50726,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 368165515}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -52280,6 +52416,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1654257045}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -57558,6 +57702,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 267889744}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1044395111}
@@ -58367,6 +58519,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2039448980}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1660024529}
@@ -58611,6 +58771,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 636660246}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -65959,6 +66127,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615083428}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 59877357}
@@ -66604,6 +66780,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1073835464}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 754587921}
@@ -66953,9 +67137,9 @@ RectTransform:
   m_Father: {fileID: 1111143117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 20, y: -17}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &956616056
 MonoBehaviour:
@@ -70267,6 +70451,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100459384}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 40130d4d-3bb7-4606-8f9d-f798e754e7aa
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: Player/Craft[/Keyboard/c]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -70275,11 +70471,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
@@ -70299,6 +70503,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ViewOnInteract
       objectReference: {fileID: 0}
@@ -70308,7 +70516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnOpenBuildMenu
+      value: OnCrafting
       objectReference: {fileID: 0}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -70328,6 +70536,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211917361732038504, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3339665923041109344, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
@@ -70375,9 +70587,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4439618577813063182, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: craftingUI
+      value: 
+      objectReference: {fileID: 365009912}
+    - target: {fileID: 4439618577813063182, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: buildMenuUI
       value: 
       objectReference: {fileID: 537393051}
+    - target: {fileID: 4439618577813063182, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: inventoryUIRoot
+      value: 
+      objectReference: {fileID: 2046478770}
     - target: {fileID: 7286588217309772367, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: promptText
       value: 
@@ -70938,6 +71158,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 191780801}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -71504,6 +71732,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1004086733}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -72098,6 +72334,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 348315663}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -74994,6 +75238,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1307199708}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -89513,6 +89765,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2141349554}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1620135650}
@@ -91129,8 +91389,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 623145981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.39}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -94255,7 +94515,7 @@ RectTransform:
   m_Father: {fileID: 397900081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -95709,6 +95969,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 2119826343}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -100360,6 +100628,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 892055038}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 678697084}
@@ -103246,6 +103522,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1636836831}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 716444178}
@@ -103572,6 +103856,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 993286215}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -106267,6 +106559,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2143930876}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1944701900}
@@ -107665,6 +107965,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 778985244}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -118622,6 +118930,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1306943310}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1067554315}
@@ -119641,6 +119957,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 121089301}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -122254,6 +122578,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1221943902}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 337843476}
@@ -123281,6 +123613,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 317054434}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -124425,6 +124765,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1067180158}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -126528,9 +126876,9 @@ RectTransform:
   m_Father: {fileID: 1111143117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: -17}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1852319946
 MonoBehaviour:
@@ -126805,6 +127153,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 136437451}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -139100,6 +139456,7 @@ MonoBehaviour:
   selectedItemName: {fileID: 1818880647}
   selectedItemStatName: {fileID: 1704725898}
   selectedItemStatValue: {fileID: 1329359843}
+  inventoryArea: {fileID: 0}
 --- !u!114 &2046478775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139118,6 +139475,7 @@ MonoBehaviour:
   selectedItemName: {fileID: 1943962985}
   selectedItemStatName: {fileID: 1329359843}
   selectedItemStatValue: {fileID: 1704725898}
+  inventoryArea: {fileID: 0}
 --- !u!1001 &2049452781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139130,6 +139488,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1733831418}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
@@ -142972,6 +143338,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1049100173}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1829949907}
@@ -143974,6 +144348,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1480923625}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
       objectReference: {fileID: 1693696582}
@@ -144661,6 +145043,14 @@ PrefabInstance:
       propertyPath: icon
       value: 
       objectReference: {fileID: 1697861906}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1413046824}
+    - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2046478774}
     - target: {fileID: 2217485524778535705, guid: ae397559b0abd984fa31eb47b74d93c7, type: 3}
       propertyPath: quatityText
       value: 
