@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject buildMenuUI;
     public GameObject inventoryUIRoot;
+    public GameObject craftingUI;
 
     private bool isBuildMenuOpen = false;
 
@@ -50,5 +51,22 @@ public class PlayerController : MonoBehaviour
         bool isInventoryOpen = UIInventory.Instance.IsOpen();
 
         SetPlayerControl(!isInventoryOpen);
+    }
+
+    public void OnCrafting(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        bool open = !craftingUI.activeSelf;
+        craftingUI.SetActive(open);
+
+        // UI 켜지면 플레이어 움직임/공격 비활성
+        movement.enabled = !open;
+        attack.enabled = !open;
+        Cursor.visible = open;
+        Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
+
+        if (open)
+            CraftingUI.Instance.RefreshUI();
     }
 }
