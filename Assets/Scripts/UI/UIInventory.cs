@@ -113,6 +113,10 @@ public class UIInventory : MonoBehaviour
             {
                 slot.quantity++;
                 UpdateUI();
+                if (QuestManager.Instance != null) // 퀘스트 아이템 업데이트
+                {
+                    QuestManager.Instance.UpdateQuestGoal(QuestGoalType.Gather, data.displayName, 1);
+                }
                 return;
             }
         }
@@ -125,6 +129,10 @@ public class UIInventory : MonoBehaviour
             empty.item = data;
             empty.quantity = 1;
             UpdateUI();
+            if (QuestManager.Instance != null)
+            {
+                QuestManager.Instance.UpdateQuestGoal(QuestGoalType.Gather, data.displayName, 1);
+            }
             return;
         }
 

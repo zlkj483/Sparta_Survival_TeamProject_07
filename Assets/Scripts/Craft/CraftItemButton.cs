@@ -10,7 +10,7 @@ public class CraftItemButton : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI nameText;
 
-    private CraftRecipe recipe;
+    public CraftRecipe recipe;
 
     public void Setup(CraftRecipe r)
     {
