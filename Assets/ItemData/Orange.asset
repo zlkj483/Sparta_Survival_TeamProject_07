@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fa3213b584f924980c26106342ee3d, type: 3}
   m_Name: Orange
   m_EditorClassIdentifier: 
-  displayName: "\uC0AC\uACFC"
+  displayName: "\uC624\uB80C\uC9C0"
   description: "\uC218\uBD84\uC774 \uC18C\uB7C9 \uD568\uC720\uB418\uC5B4\uC788\uC2B5\uB2C8\uB2E4."
   type: 2
-  dropPrefab: {fileID: 0}
-  itemImage: {fileID: 0}
+  icon: {fileID: 21300000, guid: 30a845b74472025478577cbecfc0e6d7, type: 3}
+  dropPrefab: {fileID: 510418465914110132, guid: 36215d620adacf747bb2d88832f0c8bd, type: 3}
   canStack: 1
   maxStackAmount: 64
   equipPrefab: {fileID: 510418465914110132, guid: 36215d620adacf747bb2d88832f0c8bd, type: 3}

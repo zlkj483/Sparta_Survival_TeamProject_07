@@ -15,8 +15,8 @@ MonoBehaviour:
   displayName: "\uC218\uBC15"
   description: "\uC218\uBD84\uC774 \uB2E4\uB7C9 \uD568\uC720\uB418\uC5B4\uC788\uC2B5\uB2C8\uB2E4."
   type: 2
-  dropPrefab: {fileID: 0}
-  itemImage: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0ef7368fbd80026468c697b1fea5f9c5, type: 3}
+  dropPrefab: {fileID: 7208696411995256325, guid: 37ed22d667e226f4f857a77771cc6dd2, type: 3}
   canStack: 1
   maxStackAmount: 64
   equipPrefab: {fileID: 7208696411995256325, guid: 37ed22d667e226f4f857a77771cc6dd2, type: 3}

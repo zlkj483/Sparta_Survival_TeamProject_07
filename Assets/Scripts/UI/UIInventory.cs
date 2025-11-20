@@ -217,6 +217,9 @@ public class UIInventory : MonoBehaviour
         if (slot.item == null)
             return;
 
+        // 더블클릭한 슬롯을 선택 상태로
+        SelectItem(slot.index);
+
         switch (slot.item.type)
         {
             case ItemType.Equipable:
@@ -240,12 +243,20 @@ public class UIInventory : MonoBehaviour
             return;
 
         Debug.Log($"아이템 버리기: {slot.item.name}");
-        // TODO: 실제 게임 로직에 맞게 구현
-        //  - 월드에 드랍 오브젝트 생성
-        //  - 그냥 소멸처리
-        //  - 로그/이펙트 등
+        DropItem();
 
         slot.Clear(); // 슬롯 비우기
+    }
+
+    private void DropItem()
+    {
+        ThrowItem(selectedItem.item);
+        RemoveItem(selectedItem.item, selectedItem.quantity);
+    }
+
+    void ThrowItem(ItemData data)
+    {
+        Instantiate(data.dropPrefab, CharacterManager.Instance.Player.dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
     }
 
     private void EquipItem(ItemSlot slot)
@@ -281,25 +292,42 @@ public class UIInventory : MonoBehaviour
 
     private void UseItem(ItemSlot slot)
     {
+        if (slot == null || slot.item == null)
+            return;
+
         Debug.Log($"사용: {slot.item.name}");
 
-        if (selectedItem.item.type == ItemType.Consumable)
+        ItemData data = slot.item;
+
+        if (data.type == ItemType.Consumable)
         {
-            for (int i = 0; i < selectedItem.item.consumables.Length; i++)
+            for (int i = 0; i < data.consumables.Length; i++)
             {
-                switch (selectedItem.item.consumables[i].type)
+                var c = data.consumables[i];
+                switch (c.type)
                 {
                     case ConsumableType.Health:
-                        condition.Heal(selectedItem.item.consumables[i].value);
+                        condition.Heal(c.value);
                         break;
 
                     case ConsumableType.Hunger:
-                        condition.Eat(selectedItem.item.consumables[i].value);
+                        condition.Eat(c.value);
                         break;
                 }
             }
         }
-            slot.DecreaseQuantity(1);
+
+        // 수량 감소
+        slot.DecreaseQuantity(1);
+
+        // 선택된 아이템 UI 갱신
+        if (selectedItem == slot)
+        {
+            if (slot.item == null || slot.quantity <= 0)
+                ClearSelectedItemWindow();
+            else
+                SelectItem(slot.index);
+        }
     }
 
     public int GetItemCount(ItemData targetItemData)
@@ -363,4 +391,31 @@ public class UIInventory : MonoBehaviour
 
         UpdateUI();
     }
+
+    //public void RemoveItem(ItemData data, int quantity)
+    //{
+    //    for (int i = 0; i < slots.Length; i++)
+    //    {
+    //        if (slots[i].item == data)
+    //        {
+    //            if (slots[i].quantity > quantity)
+    //            {
+    //                slots[i].quantity -= quantity;
+    //                UpdateUI();
+    //                return;
+    //            }
+    //            else
+    //            {
+    //                quantity -= slots[i].quantity;
+    //                slots[i].Clear();
+    //                if (quantity <= 0)
+    //                {
+    //                    UpdateUI();
+    //                    return;
+    //                }
+    //            }
+    //        }
+    //    }
+    //    UpdateUI();
+    //}
 }

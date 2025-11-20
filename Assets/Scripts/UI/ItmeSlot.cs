@@ -115,7 +115,7 @@ public class ItemSlot : MonoBehaviour,
         if (icon != null && item != null)
         {
             icon.gameObject.SetActive(true);
-            icon.sprite = item.itemImage;
+            //icon.sprite = item.itemImage;
         }
     }
 
@@ -160,25 +160,25 @@ public class ItemSlot : MonoBehaviour,
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (item == null)
+        if (inventory == null)
             return;
 
         float now = Time.unscaledTime;
 
+        // 더블클릭
         if (now - lastClickTime <= doubleClickThreshold)
         {
-            // 더블클릭 인식
-            if (inventory != null)
+            if (item != null)
                 inventory.OnSlotDoubleClick(this);
-            else if (UIInventory.Instance != null)
-                UIInventory.Instance.OnSlotDoubleClick(this);
 
-            lastClickTime = -1f; // 리셋
+            lastClickTime = -1f;
+            return;
         }
-        else
-        {
-            lastClickTime = now;
-        }
+
+        // 🔹 싱글클릭 → SelectItem
+        inventory.SelectItem(index);
+
+        lastClickTime = now;
     }
 
     #endregion
