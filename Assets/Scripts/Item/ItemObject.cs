@@ -19,15 +19,15 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        UIInventory inventory = CharacterManager.Instance.inventory;
-        if (inventory != null)
+        if (UIInventory.Instance != null)
         {
-            inventory.AddItem(data);
+            UIInventory.Instance.AddItem(data);
         }
         else
         {
-            Debug.LogWarning("Inventory가 없습니다!");
+            Debug.LogWarning("UIInventory.Instance가 없습니다!");
         }
+
         Destroy(gameObject);
     }
 }
