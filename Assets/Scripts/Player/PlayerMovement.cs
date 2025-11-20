@@ -112,4 +112,13 @@ public class PlayerMovement : MonoBehaviour
             attack.TryAttack();
     }
     #endregion
+    public void OnToggleInventory(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (UIInventory.Instance != null)
+            UIInventory.Instance.Toggle();
+        else
+            Debug.LogError("UIInventory.Instance가 존재하지 않습니다!");
+    }
 }

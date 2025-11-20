@@ -43,7 +43,12 @@ public class ItemSlot : MonoBehaviour
     {
         item = null;
         //icon.gameObject.SetActive(false);
-        quatityText.text = string.Empty;
+
+        if (quatityText != null)
+            quatityText.text = string.Empty;
+
+        if (icon != null)
+            icon.gameObject.SetActive(false);
     }
 
     public void OnClickButton()
