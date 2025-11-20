@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NPC_QuestGiver : MonoBehaviour
 {
+    [Header("상호작용 UI")]
+    [SerializeField] private GameObject interactionPromptUI; // 텍스트 연결할곳
+    private bool isPlayerInRange = false; // 플레이어 감지용
     [Header("NPC 고유 정보")]
     public int npcID = 1;
     [Header("이 NPC가 부여할 퀘스트")]
@@ -12,6 +15,29 @@ public class NPC_QuestGiver : MonoBehaviour
     [SerializeField] private DialogueData dialogue_ongoing; // 퀘스트 진행중 대화
     [SerializeField] private DialogueData dialogue_readyToComplete; // 퀘스트 완료 대화
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInRange = true;
+            if(interactionPromptUI != null)
+            {
+                interactionPromptUI.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInRange= false;
+            if(interactionPromptUI != null)
+            {
+                interactionPromptUI.SetActive(false);
+            }
+        }
+    }
 
     public void StartQuestInteract()
     {
