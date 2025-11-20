@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterId: 1
   displayName: "\uC678\uACC4\uC778"
   skinPrefab: {fileID: 252491756081646394, guid: eaa5958e040542a45adb3a19f18b4aee, type: 3}
-  maxHp: 100
+  maxHp: 30
   moveSpeed: 3.5
   baseDamage: 10
   aggroRange: 10
@@ -33,3 +33,4 @@ MonoBehaviour:
   attackCooldown: 2
   dropTable: {fileID: 11400000, guid: 723ce8f95d7ca4e4e8e85b3e500fa5bd, type: 2}
   destroyAfterDeath: 3
+  isBoss: 0

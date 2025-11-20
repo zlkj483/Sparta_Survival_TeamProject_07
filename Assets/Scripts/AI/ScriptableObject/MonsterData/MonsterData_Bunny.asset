@@ -15,7 +15,7 @@ MonoBehaviour:
   monsterId: 3
   displayName: "\uD1A0"
   skinPrefab: {fileID: 236847678598176670, guid: aa7bc87fd55423d40ac28f54353ae20d, type: 3}
-  maxHp: 100
+  maxHp: 30
   moveSpeed: 5
   baseDamage: 10
   aggroRange: 10
