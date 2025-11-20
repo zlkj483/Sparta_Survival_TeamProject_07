@@ -23,7 +23,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void TryAttack()
     {
-        Debug.Log("[TryAttack] 공격 시도!");
         if (isAttacking) return; // 공격 중이면 무시!
 
         if (!playerCondition.UseStamina(staminaCost))
@@ -48,7 +47,6 @@ public class PlayerAttack : MonoBehaviour
     }
     public void DealDamage()
     {
-        Debug.Log("[DealDamage] 호출됨 ? 실제 데미지 판정 시작");
 
         RaycastHit hit;
 
@@ -62,13 +60,8 @@ public class PlayerAttack : MonoBehaviour
             if (monster != null)
             {
                 monster.TakePhysicalDamage(attackDamage);
-                Debug.Log($"몬스터 타격! {hit.collider.name}");
             }
         }
-
-        // 디버그용 시각화
-        Debug.DrawRay(rayOrigin, transform.forward * attackRange, Color.red, 1f);
-        Debug.Log($"SphereCast origin: {rayOrigin}, radius: {sphereRadius}");
     }
 
 }

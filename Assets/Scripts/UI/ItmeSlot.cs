@@ -21,6 +21,8 @@ public class ItemSlot : MonoBehaviour,
     public int index;
     public bool equipped;
     public int quantity;
+    public Transform equipPoint; // public으로 받아 Inspector에서 지정 가능
+    public PlayerEquip playerEquip;
 
     [Header("더블클릭 설정")]
     [SerializeField] private float doubleClickThreshold = 0.25f;
