@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float mouseSensitivity = 1.5f; // ∞®µµ ≥∑√„
     [SerializeField] private float cameraFollowSpeed = 10f;
+    [SerializeField] private float groundCheckDistance = 0.2f; //πŸ¥⁄ ∞À√‚
+    [SerializeField] private LayerMask groundLayer;
 
 
     private Vector2 moveInput;
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject buildMenuUI;
 
 
+    private bool IsGround;
     private bool isBuildMenuOpen = false;
     private bool isCraftingOpen = false;
 
@@ -36,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         HandleLook();
+        CheckGround();
     }
 
     private void FixedUpdate()
@@ -45,11 +49,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(canLook)
+        if (canLook)
         {
             HandleCameraFollow();
         }
     }
+    void CheckGround()
+    {
+        Vector3 origin = transform.position + Vector3.up * 0.5f;
+        float dist = 1.5f;
+        IsGround = Physics.Raycast(origin, Vector3.down, dist, groundLayer);
+    }
+
 
     #region Movement
     public void OnMove(InputAction.CallbackContext context)
@@ -59,12 +70,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         if (IsInventoryOpen()) return;
-        if (context.performed)
-        {
-            animator.SetTrigger("Jump");
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+        if (!IsGround) return;
+
+        animator.SetTrigger("Jump");
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     private void HandleMove()
