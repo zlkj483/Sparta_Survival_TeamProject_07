@@ -7,6 +7,9 @@ public class ChaseState : IAIState
     private readonly AIContext _ctx;
     private readonly AIStateMachine _fsm;
 
+    private const float EnemyBodyRadius = 0.8f; // 적 몸통 반경 (감)
+    private const float PlayerBodyRadius = 0.8f; // 플레이어 반경 (감)
+
     public ChaseState(AIContext ctx, AIStateMachine fsm)
     {
         _ctx = ctx;
@@ -76,6 +79,31 @@ public class ChaseState : IAIState
                 Quaternion.LookRotation(dir),
                 Time.deltaTime * 10f
             );
+        }
+
+        KeepDistanceFromPlayer();
+    }
+
+
+    private void KeepDistanceFromPlayer()
+    {
+        if (_ctx.CurrentTarget == null)
+            return;
+
+        Vector3 toPlayer = _ctx.CurrentTarget.position - _ctx.SelfTransform.position;
+        float dist = toPlayer.magnitude;
+
+        float minDist = EnemyBodyRadius + PlayerBodyRadius; // 이만큼은 떨어져 있어야 한다
+
+        if (dist < 0.0001f)
+            return;
+
+        if (dist < minDist)
+        {
+            // 너무 가까우면 적을 살짝 뒤로 빼서 겹치지 않게
+            float pushBack = minDist - dist;
+            Vector3 dir = toPlayer.normalized;
+            _ctx.SelfTransform.position -= dir * pushBack;
         }
     }
 
