@@ -29,9 +29,10 @@ public class UIInventory : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            this.enabled = false;
             return;
         }
+
         Instance = this;
     }
 

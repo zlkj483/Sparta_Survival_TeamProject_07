@@ -49,8 +49,9 @@ GameObject:
   - component: {fileID: 347774278493213150}
   - component: {fileID: 7941797677678422812}
   - component: {fileID: 618838828655868815}
-  - component: {fileID: 1321953450879111028}
   - component: {fileID: 7286588217309772367}
+  - component: {fileID: 8343827471853200714}
+  - component: {fileID: 4439618577813063182}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -260,13 +261,13 @@ MonoBehaviour:
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3339665923041109344}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 618838828655868815}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -274,6 +275,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 27edd154-b0f7-49c2-b9da-5e0856b1b4ac
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 56855ff5-8ee3-4b5a-a16f-0ab71b042073
+    m_ActionName: Player/Inventory[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4439618577813063182}
+        m_TargetAssemblyTypeName: PlayerBuildController, Assembly-CSharp
+        m_MethodName: OnOpenBuildMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3d20f234-d0a8-4bd2-a647-6a41acf27b42
+    m_ActionName: Player/BuildUI[/Keyboard/b]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -293,11 +314,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 618838828655868815}
   rb: {fileID: 3590304364060839220}
+  cameraBox: {fileID: 7590216877379827291}
+  camTr: {fileID: 2616222442013822543}
   moveSpeed: 5
   jumpForce: 5
-  cameraBox: {fileID: 7590216877379827291}
   mouseSensitivity: 1
-  camTr: {fileID: 2616222442013822543}
+  cameraFollowSpeed: 10
 --- !u!114 &612389357367073640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiCondition: {fileID: 0}
+  tempText: {fileID: 0}
+  environmentTemperature: 0
   noHungerHealthDecay: 1
 --- !u!114 &347774278493213150
 MonoBehaviour:
@@ -346,6 +370,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
+  attackCooldown: 0.7
 --- !u!95 &618838828655868815
 Animator:
   serializedVersion: 5
@@ -367,18 +392,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1321953450879111028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339665923041109344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c08cac6d0dc9434e9f7a1c7b09a48dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7286588217309772367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +410,37 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   promptText: {fileID: 0}
+--- !u!114 &8343827471853200714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339665923041109344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290215527b515e8408e8f2c9e5a0677b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots: []
+  slotPanel: {fileID: 0}
+  inventoryWindow: {fileID: 0}
+  selectedItemName: {fileID: 0}
+  selectedItemStatName: {fileID: 0}
+  selectedItemStatValue: {fileID: 0}
+--- !u!114 &4439618577813063182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339665923041109344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28108609f448d9e43a5dc81dcb5575ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildMenuUI: {fileID: 0}
 --- !u!1 &6204798733602561929
 GameObject:
   m_ObjectHideFlags: 0
