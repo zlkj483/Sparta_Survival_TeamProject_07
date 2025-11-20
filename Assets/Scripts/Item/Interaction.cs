@@ -13,34 +13,7 @@ public class Interaction : MonoBehaviour
     public LayerMask itemLayer;
     public TextMeshProUGUI promptText;
 
-    public InputReader playerActions; // Inspector에서 연결!
 
-    void OnEnable()
-    {
-        if (playerActions == null)
-        {
-            Debug.LogError("삐빅! InputReader가 Inspector에서 연결되지 않았습니다.");
-            return;
-        }
-
-        playerActions.Player.Enable();
-        playerActions.Player.Interact.performed += OnInteract;
-    }
-
-    void OnDisable()
-    {
-        if (playerActions == null) return;
-
-        playerActions.Player.Interact.performed -= OnInteract;
-        playerActions.Player.Disable();
-    }
-    private void OnInteract(InputAction.CallbackContext context)
-    {
-        if (curInteractable != null)
-        {
-            curInteractable.Interact();
-        }
-    }
     void Update()
     {
         CheckForItem();
@@ -76,6 +49,7 @@ public class Interaction : MonoBehaviour
             promptText.gameObject.SetActive(false);
         }
     }
+
     private void SetPromptText()
     {
         if (curInteractable != null && promptText != null)
