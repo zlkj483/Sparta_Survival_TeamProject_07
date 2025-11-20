@@ -22,6 +22,10 @@ public class UIInventory : MonoBehaviour
     public TextMeshProUGUI selectedItemStatName;
     public TextMeshProUGUI selectedItemStatValue;
 
+    [Header("인벤토리 UI 영역 RectTransform (패널)")]
+    public RectTransform inventoryArea;
+
+
     private int curEquipIndex;
     private PlayerCondition condition;
 
@@ -198,23 +202,93 @@ public class UIInventory : MonoBehaviour
         selectedItemStatValue.text = "";
     }
 
-    public void OnUseButton()
+    // 슬롯 더블클릭 → 타입에 따라 장착/사용
+    public void OnSlotDoubleClick(ItemSlot slot)
     {
-        if (selectedItem == null || selectedItem.item == null)
+        if (slot.item == null)
             return;
 
-        if (selectedItem.item.type != ItemType.Consumable)
-            return;
-
-        foreach (var c in selectedItem.item.consumables)
+        switch (slot.item.type)
         {
-            switch (c.type)
+            case ItemType.Equipable:
+                EquipItem(slot);
+                break;
+
+            case ItemType.Consumable:
+                UseItem(slot);
+                break;
+
+            default:
+                Debug.Log($"아이템 사용 불가: {slot.item.name}");
+                break;
+        }
+    }
+
+    // 슬롯이 인벤토리 영역 밖으로 드랍됐을 때
+    public void OnSlotDropOutside(ItemSlot slot)
+    {
+        if (slot.item == null)
+            return;
+
+        Debug.Log($"아이템 버리기: {slot.item.name}");
+        // TODO: 실제 게임 로직에 맞게 구현
+        //  - 월드에 드랍 오브젝트 생성
+        //  - 그냥 소멸처리
+        //  - 로그/이펙트 등
+
+        slot.Clear(); // 슬롯 비우기
+    }
+
+    private void EquipItem(ItemSlot slot)
+    {
+        Debug.Log($"장착: {slot.item.name}");
+
+        if (slots[curEquipIndex].equipped)
+        {
+            UnEquip(curEquipIndex);
+        }
+
+        slots[selectedItemIndex].equipped = true;
+        curEquipIndex = selectedItemIndex;
+        CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
+        UpdateUI();
+
+        SelectItem(selectedItemIndex);
+    }
+
+    void UnEquip(int index)
+    {
+        slots[index].equipped = false;
+
+        UpdateUI();
+
+        if (selectedItemIndex == index)
+        {
+            SelectItem(selectedItemIndex);
+        }
+    }
+
+    private void UseItem(ItemSlot slot)
+    {
+        Debug.Log($"사용: {slot.item.name}");
+
+        if (selectedItem.item.type == ItemType.Consumable)
+        {
+            for (int i = 0; i < selectedItem.item.consumables.Length; i++)
             {
-                case ConsumableType.Health: condition.Heal(c.value); break;
-                case ConsumableType.Hunger: condition.Eat(c.value); break;
-                case ConsumableType.Thirst: condition.Eat(c.value); break;
+                switch (selectedItem.item.consumables[i].type)
+                {
+                    case ConsumableType.Health:
+                        condition.Heal(selectedItem.item.consumables[i].value);
+                        break;
+
+                    case ConsumableType.Hunger:
+                        condition.Eat(selectedItem.item.consumables[i].value);
+                        break;
+                }
             }
         }
+            slot.DecreaseQuantity(1);
     }
 
     public int GetItemCount(ItemData targetItemData)
