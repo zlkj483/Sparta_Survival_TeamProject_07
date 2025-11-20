@@ -99,6 +99,7 @@ public class QuestManager : MonoBehaviour
         CheckInitialInventory(quest); // 퀘스트 시작 시 보유 아이템 확인
     }
 
+
     public void CompleteQuest(int questID) // 퀘스트 클리어 달성하면
     {
         QuestInfo quest = GetQuest(questID);
