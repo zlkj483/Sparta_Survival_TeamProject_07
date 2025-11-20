@@ -115,7 +115,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (dialoguePanel.activeSelf && Input.GetKeyDown(KeyCode.Z)) // 또는 KeyCode.Return
+        if (dialoguePanel.activeSelf && (Input.GetKeyDown(KeyCode.Z))) // 또는 KeyCode.Return
         {
             DisplayNextLine();
         }

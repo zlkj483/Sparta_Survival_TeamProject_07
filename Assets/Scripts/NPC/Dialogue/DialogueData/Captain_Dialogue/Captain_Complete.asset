@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3891a7779740334d936a10a4d150291, type: 3}
+  m_Name: Captain_Complete
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: "\uD574\uC801 \uCF54\uC2A4\uD504\uB808 \uD55C \uC911\uB144"
+    text: "\uC88B\uC544 \uC774\uC81C \uC778\uBCA4\uD1A0\uB9AC\uC5D0 \uB300\uD574\uC11C
+      \uC798 \uC54C\uACA0\uC9C0?"
+  - speakerName: "\uD574\uC801 \uCF54\uC2A4\uD504\uB808 \uD55C \uC911\uB144"
+    text: "\uC774\uC81C \uB9C8\uC74C\uAECF \uC774 \uC138\uACC4\uB97C \uD0D0\uD5D8\uD574\uBCF4\uAC8C\uB098"

@@ -9,9 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3891a7779740334d936a10a4d150291, type: 3}
-  m_Name: NPC_A 2
+  m_Script: {fileID: 11500000, guid: 0611eb44e5f96744c95ed896374c86f0, type: 3}
+  m_Name: Henry_Quest
   m_EditorClassIdentifier: 
-  lines:
-  - speakerName: NPC1
-    text: "\uD018\uC2A4\uD2B8 \uC644\uB8CC"
+  QuestID: 2
+  QuestName: 
+  QuestDescription: 
+  goals:
+  - goalType: 0
+    targetID: "\uB098\uBB34"
+    requiredAmount: 3
+    currentAmount: 0
+  rewardItem: 0
+  questNPCID: 02000000

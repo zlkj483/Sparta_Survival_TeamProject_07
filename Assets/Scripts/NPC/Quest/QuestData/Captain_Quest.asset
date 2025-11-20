@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0611eb44e5f96744c95ed896374c86f0, type: 3}
-  m_Name: NewQuestData
+  m_Name: Captain_Quest
   m_EditorClassIdentifier: 
   QuestID: 1
   QuestName: "\uB3CC\uB9F9\uC774 \uBAA8\uC544\uC624\uAE30"
   QuestDescription: 
   goals:
   - goalType: 0
-    targetID: 101
+    targetID: "\uB3CC"
     requiredAmount: 3
     currentAmount: 0
   rewardItem: 0
