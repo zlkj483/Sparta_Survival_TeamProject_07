@@ -1,45 +1,41 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 using UnityEngine.UI;
 
 public class CraftingUI : MonoBehaviour
 {
     public static CraftingUI Instance;
 
-    [Header("ì¬ë£Œ ì•„ì´í…œ ì—°ê²°")]
+    [Header("Àç·á ¾ÆÀÌÅÛ ¿¬°á")]
     public ItemData woodItem;
     public ItemData stoneItem;
 
-    [Header("ì¬ë£Œ í‘œì‹œ (ì™¼ìª½)")]
+    [Header("Àç·á Ç¥½Ã (¿ŞÂÊ)")]
     public TextMeshProUGUI woodText;
     public TextMeshProUGUI stoneText;
 
-    [Header("ì œì‘ ê°€ëŠ¥ ë¦¬ìŠ¤íŠ¸ (ì˜¤ë¥¸ìª½)")]
+    [Header("Á¦ÀÛ °¡´É ¸®½ºÆ® (¿À¸¥ÂÊ)")]
     public Transform craftListContent;
     public GameObject craftItemButtonPrefab;
 
-    [Header("ìƒì„¸ ì •ë³´ (í•˜ë‹¨)")]
+    [Header("»ó¼¼ Á¤º¸ (¿À¸¥ÂÊ ÇÏ´Ü)")]
     public Image itemImage;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDesc;
+    public TextMeshProUGUI itemTypeText;
     public Button craftButton;
 
-    [Header("ì „ì²´ ë ˆì‹œí”¼")]
+    [Header("ÀüÃ¼ ·¹½ÃÇÇ")]
     public CraftRecipe[] allRecipes;
 
     private CraftRecipe selectedRecipe;
 
-    private List<CraftItemButton> craftButtons = new List<CraftItemButton>();
-    private bool isInitialized = false;
-
     private void Awake()
     {
         Instance = this;
-        gameObject.SetActive(false); // ì²˜ìŒì—” ë‹«í˜
+        gameObject.SetActive(false); // Ã³À½¿¡´Â ´İÇô ÀÖÀ½
     }
 
     private void OnEnable()
@@ -50,14 +46,7 @@ public class CraftingUI : MonoBehaviour
     public void RefreshUI()
     {
         RefreshMyMaterialCount();
-
-        if (!isInitialized)
-        {
-            InitializeCraftButtons();
-            isInitialized = true;
-        }
-
-        RefreshButtonStates();
+        RefreshCraftableList();
         ClearDetail();
     }
 
@@ -77,34 +66,29 @@ public class CraftingUI : MonoBehaviour
         stoneText.text = "Stone : " + stone;
     }
 
-    private void InitializeCraftButtons()
+    private void RefreshCraftableList()
     {
+        // ±âÁ¸ ¹öÆ° ¸ğµÎ »èÁ¦
+        foreach (Transform child in craftListContent)
+            Destroy(child.gameObject);
+
+        // »õ·Î »ı¼º
         foreach (var recipe in allRecipes)
         {
-            var btnObj = Instantiate(craftItemButtonPrefab, craftListContent);
-            var btn = btnObj.GetComponent<CraftItemButton>();
-
-            btn.Setup(recipe);  // Setup í˜¸ì¶œ
-            craftButtons.Add(btn);
-        }
-    }
-
-    private void RefreshButtonStates()
-    {
-        foreach (var btn in craftButtons)
-        {
-            bool craftable = CanCraft(btn.recipe);
-
-            btn.GetComponent<Button>().interactable = craftable;
+            if (CanCraft(recipe))
+            {
+                GameObject btn = Instantiate(craftItemButtonPrefab, craftListContent);
+                btn.GetComponent<CraftingListButton>().Setup(recipe);
+            }
         }
     }
 
     private bool CanCraft(CraftRecipe recipe)
     {
-        foreach (var m in recipe.materials)
+        foreach (var mat in recipe.materials)
         {
-            int have = UIInventory.Instance.GetItemCount(m.item);
-            if (have < m.amount)
+            int have = UIInventory.Instance.GetItemCount(mat.item);
+            if (have < mat.amount)
                 return false;
         }
         return true;
@@ -114,28 +98,34 @@ public class CraftingUI : MonoBehaviour
     {
         selectedRecipe = recipe;
 
+        itemImage.sprite = recipe.resultItem.dropPrefab.GetComponentInChildren<SpriteRenderer>()?.sprite;
         itemName.text = recipe.resultItem.displayName;
         itemDesc.text = recipe.description;
+        itemTypeText.text = recipe.resultItem.type.ToString();
 
         craftButton.onClick.RemoveAllListeners();
         craftButton.onClick.AddListener(CraftSelectedItem);
-    }
-
-    private void CraftSelectedItem()
-    {
-        if (!CanCraft(selectedRecipe)) return;
-
-        foreach (var m in selectedRecipe.materials)
-            UIInventory.Instance.RemoveItem(m.item, m.amount);
-
-        UIInventory.Instance.AddItem(selectedRecipe.resultItem);
-
-        RefreshUI();
     }
 
     private void ClearDetail()
     {
         itemName.text = "";
         itemDesc.text = "";
+        itemTypeText.text = "";
+    }
+
+    private void CraftSelectedItem()
+    {
+        if (!CanCraft(selectedRecipe))
+            return;
+
+        // Àç·á ¼Ò¸ğ
+        foreach (var m in selectedRecipe.materials)
+            UIInventory.Instance.RemoveItem(m.item, m.amount);
+
+        // Á¦ÀÛ ¾ÆÀÌÅÛ Áö±Ş
+        UIInventory.Instance.AddItem(selectedRecipe.resultItem);
+
+        RefreshUI();
     }
 }

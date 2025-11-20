@@ -88,16 +88,26 @@ public class BuildManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hit, 200f))
+        if (Physics.Raycast(ray, out var hit, 200f, LayerMask.GetMask("Ground")))
         {
             Vector3 pos = hit.point;
 
-            Collider col = previewObject.GetComponent<Collider>();
-            if (col != null)
+            // 프리뷰 전체 바운드 계산
+            Renderer[] renders = previewObject.GetComponentsInChildren<Renderer>();
+
+            if (renders.Length > 0)
             {
-                // 콜라이더의 높이 절반만큼 올려서 지면에 닿았으면 좋겠다
-                float offsetY = col.bounds.extents.y;
-                pos.y += offsetY;
+                Bounds bounds = renders[0].bounds;
+                for (int i = 1; i < renders.Length; i++)
+                    bounds.Encapsulate(renders[i].bounds);
+
+                float bottomY = bounds.min.y;        // 프리뷰의 가장 아래 부분
+                float currentY = previewObject.transform.position.y;
+
+                float diff = currentY - bottomY;     // 실제 오브젝트 바닥과 중심 차이
+
+                // hit.point.y + diff 만큼 맞추기
+                pos.y += diff;
             }
 
             previewObject.transform.position = pos;
