@@ -15,8 +15,8 @@ MonoBehaviour:
   displayName: "\uB3CC \uCC3D"
   description: "\uB354 \uAC15\uD574\uC9C4 \uCC3D"
   type: 1
+  icon: {fileID: 21300000, guid: 91eabbd88bb82854c907897e7f91a671, type: 3}
   dropPrefab: {fileID: 4030005886715947698, guid: 5acc9eeb0e0d96c40927a6872925729d, type: 3}
-  itemImage: {fileID: 21300000, guid: 91eabbd88bb82854c907897e7f91a671, type: 3}
   canStack: 0
   maxStackAmount: 0
   equipPrefab: {fileID: 4030005886715947698, guid: f96783d0e471dc84fa7782cb58bb20ef, type: 3}
