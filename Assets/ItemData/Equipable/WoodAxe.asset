@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3fa3213b584f924980c26106342ee3d, type: 3}
-  m_Name: Axe
+  m_Name: WoodAxe
   m_EditorClassIdentifier: 
-  displayName: "\uB3C4\uB07C"
+  displayName: "\uB098\uBB34\uB3C4\uB07C"
   description: "\uB098\uBB34\uC640 \uB3CC\uC744 \uCE98\uC218\uC788\uB2E4."
   type: 1
-  dropPrefab: {fileID: 3592931962863250606, guid: bc5c9564cdfd2d74a89b5d42a7fd20fd, type: 3}
+  dropPrefab: {fileID: 9091501181937048148, guid: 8c275e3264818784698f07b89a095419, type: 3}
   itemImage: {fileID: 0}
   canStack: 0
   maxStackAmount: 0
-  equipPrefab: {fileID: 0}
+  equipPrefab: {fileID: 9091501181937048148, guid: 9970277ca7a77f14a887a79ac8141d45, type: 3}
   consumables: []

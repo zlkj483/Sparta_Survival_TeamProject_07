@@ -32,6 +32,37 @@ Transform:
   - {fileID: 2616222442013822543}
   m_Father: {fileID: 3608684102579999473}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!1 &3120521915655503550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1043311227292028087}
+  m_Layer: 7
+  m_Name: EquipParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1043311227292028087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120521915655503550}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00259, y: 0.0017, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 179727058013568796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3339665923041109344
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,12 +77,11 @@ GameObject:
   - component: {fileID: 1211917361732038504}
   - component: {fileID: 5840446960673322181}
   - component: {fileID: 612389357367073640}
-  - component: {fileID: 347774278493213150}
-  - component: {fileID: 7941797677678422812}
   - component: {fileID: 618838828655868815}
   - component: {fileID: 7286588217309772367}
   - component: {fileID: 4439618577813063182}
   - component: {fileID: 6636547384339445187}
+  - component: {fileID: 5881409463567290592}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -151,10 +181,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b7e76553-4685-40a1-a588-b29eee141292
-    m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5840446960673322181}
@@ -261,10 +287,10 @@ MonoBehaviour:
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618838828655868815}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 7286588217309772367}
+        m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
+        m_MethodName: ViewOnInteract
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -276,7 +302,19 @@ MonoBehaviour:
     m_ActionId: 27edd154-b0f7-49c2-b9da-5e0856b1b4ac
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4439618577813063182}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 56855ff5-8ee3-4b5a-a16f-0ab71b042073
     m_ActionName: Player/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
@@ -320,6 +358,7 @@ MonoBehaviour:
   jumpForce: 5
   mouseSensitivity: 1
   cameraFollowSpeed: 10
+  canLook: 0
 --- !u!114 &612389357367073640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,41 +375,6 @@ MonoBehaviour:
   tempText: {fileID: 0}
   environmentTemperature: 0
   noHungerHealthDecay: 1
---- !u!114 &347774278493213150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339665923041109344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f728b0f700f4460b8b7bd8097b4cda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 1570671215496605889}
-  gatherRange: 3
-  damage: 5
---- !u!114 &7941797677678422812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339665923041109344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 298a40f2104214eceba405dddfd2fd99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCondition: {fileID: 0}
-  staminaCost: 10
-  attackDamage: 600
-  attackRange: 3
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  attackCooldown: 0.7
 --- !u!95 &618838828655868815
 Animator:
   serializedVersion: 5
@@ -424,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildMenuUI: {fileID: 0}
   inventoryUIRoot: {fileID: 0}
+  craftingUI: {fileID: 0}
 --- !u!114 &6636547384339445187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +453,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   raycastHeight: 50
+--- !u!114 &5881409463567290592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339665923041109344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e9965a0ef68f54ca9609433a598fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curEquip: {fileID: 0}
+  equipParent: {fileID: 1043311227292028087}
+  attackDamage: 10
+  attackRange: 3
+  attackCooldown: 0.7
 --- !u!1 &6204798733602561929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,9 +1032,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3798932211034262596, guid: c5f216afe98399f48bbaa8f5c7517130, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1043311227292028087}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5f216afe98399f48bbaa8f5c7517130, type: 3}
+--- !u!4 &179727058013568796 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3798932211034262596, guid: c5f216afe98399f48bbaa8f5c7517130, type: 3}
+  m_PrefabInstance: {fileID: 3946842645226074968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3552417632981177523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c5f216afe98399f48bbaa8f5c7517130, type: 3}

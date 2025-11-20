@@ -30,6 +30,7 @@ public class UIInventory : MonoBehaviour
     private PlayerCondition condition;
 
 
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -248,9 +249,11 @@ public class UIInventory : MonoBehaviour
             UnEquip(curEquipIndex);
         }
 
+
+
         slots[selectedItemIndex].equipped = true;
         curEquipIndex = selectedItemIndex;
-        CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
+        CharacterManager.Instance.Player.equip.EquipNew(selectedItem.item);
         UpdateUI();
 
         SelectItem(selectedItemIndex);

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fa3213b584f924980c26106342ee3d, type: 3}
+  m_Name: StoneAxe
+  m_EditorClassIdentifier: 
+  displayName: "\uB3CC\uB3C4\uB07C"
+  description: "\uB354 \uAC15\uD574\uC9C4 \uB3C4\uB07C"
+  type: 1
+  dropPrefab: {fileID: 3283397991921470545, guid: 7a141ae39eb55ae439ee190d4622eb7f, type: 3}
+  itemImage: {fileID: 0}
+  canStack: 0
+  maxStackAmount: 0
+  equipPrefab: {fileID: 3283397991921470545, guid: 659424b6922cbed438a05fa0b8fa27bd, type: 3}
+  consumables: []

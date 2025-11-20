@@ -8,7 +8,7 @@ public class Structure : MonoBehaviour, IGatherable
 {
     public StructureData data;
     private float accumulatedDamage;
-    private float hp;
+    [SerializeField] private float hp;
     private int dropItem;
     private MeshCollider meshCollider;
     private MeshRenderer meshRenderer;
