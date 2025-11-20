@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[CreateAssetMenu(fileName = "NewRecipe", menuName = "Crafting/Recipe")]
+[CreateAssetMenu(fileName = "NewCraftRecipe", menuName = "Crafting/Recipe")]
 public class CraftRecipe : ScriptableObject
 {
     [Header("결과 아이템")]
