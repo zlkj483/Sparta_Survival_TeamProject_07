@@ -11,6 +11,7 @@ public class EquipTool : Equip
     [Header("Combat")]
     public bool doesDealDamage;
     public int damage = 10;
+    public int staminaCost;
 
     private Camera cam;
 
@@ -26,6 +27,36 @@ public class EquipTool : Equip
     {
         if (owner == null)
             owner = transform.root;
+
+        if (CharacterManager.Instance == null)
+        {
+            Debug.LogError("[EquipTool] CharacterManager.Instance == null");
+            return;
+        }
+
+        if (CharacterManager.Instance.Player == null)
+        {
+            Debug.LogError("[EquipTool] CharacterManager.Instance.Player == null");
+            return;
+        }
+
+        if (CharacterManager.Instance.Player.condition == null)
+        {
+            Debug.LogError("[EquipTool] Player.condition == null");
+            return;
+        }
+
+        if (!CharacterManager.Instance.Player.condition.UseStamina(staminaCost))
+        {
+            Debug.Log("Stamina x!");
+            return;
+        }
+
+        //if (!CharacterManager.Instance.Player.condition.UseStamina(staminaCost))
+        //{
+        //    Debug.Log("Stamina x!");
+        //    return;
+        //}
 
         Vector3 origin = owner.position + Vector3.up * 1f; // 허리~가슴 높이
         float radius = 0.5f;

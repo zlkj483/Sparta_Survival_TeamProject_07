@@ -97,9 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70aebe033e87de14cb3e472ac2f81155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 0.8
   attackDistance: 2
-  useStamina: 15
   doesGatherResources: 0
   doesDealDamage: 1
   damage: 15
+  staminaCost: 20
