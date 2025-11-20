@@ -102,9 +102,7 @@ public class ItemSlot : MonoBehaviour,
 
     public void Set()
     {
-        // 아이콘 세팅은 기존 로직 따라가는 줄 알기에 주석 유지
-        // icon.gameObject.SetActive(true);
-        // icon.sprite = item.icon;
+         icon.sprite = item.icon;
 
         if (quatityText != null)
             quatityText.text = quantity > 1 ? quantity.ToString() : string.Empty;

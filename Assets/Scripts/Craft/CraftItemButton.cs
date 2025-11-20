@@ -17,9 +17,7 @@ public class CraftItemButton : MonoBehaviour
         recipe = r;
 
         nameText.text = r.resultItem.displayName;
-        icon.sprite = r.resultItem.dropPrefab != null
-            ? r.resultItem.dropPrefab.GetComponentInChildren<SpriteRenderer>().sprite
-            : null;
+        icon.sprite = r.resultItem.icon;
 
         GetComponent<Button>().onClick.AddListener(() =>
         {
