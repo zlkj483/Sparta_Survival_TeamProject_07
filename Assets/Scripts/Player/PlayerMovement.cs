@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGround;
     private bool isBuildMenuOpen = false;
     private bool isCraftingOpen = false;
+    private bool openCraft = false;
 
     public bool canLook;
 
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        HandleLook();
+        
         CheckGround();
     }
 
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canLook)
         {
+            HandleLook();
             HandleCameraFollow();
         }
     }
@@ -171,15 +173,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnCrafting(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
 
         ToggleCursor();
-        canLook = !canLook;
+        openCraft = !openCraft;
 
-        bool open = !craftingUI.activeSelf;
-        craftingUI.SetActive(open);
+        if (openCraft)
+        {
+            canLook = false;
+        }
+        else
+        {
+            canLook = true;
 
-        if (open)
-            CraftingUI.Instance.RefreshUI();
+        }
+
+        craftingUI.SetActive(openCraft);
     }
 }
