@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fa3213b584f924980c26106342ee3d, type: 3}
+  m_Name: StoneHammer
+  m_EditorClassIdentifier: 
+  displayName: "\uB3CC \uB9DD\uCE58"
+  description: "\uB354 \uAC15\uD574\uC9C4 \uB9DD\uCE58"
+  type: 1
+  dropPrefab: {fileID: 4224616354160568089, guid: f9b9136f342095a469280c5951b40f9a, type: 3}
+  itemImage: {fileID: 0}
+  canStack: 0
+  maxStackAmount: 0
+  equipPrefab: {fileID: 4224616354160568089, guid: 9bb106c1e0e512441812681a39042dd9, type: 3}
+  consumables: []
