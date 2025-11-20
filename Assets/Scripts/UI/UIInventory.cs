@@ -353,30 +353,30 @@ public class UIInventory : MonoBehaviour
         UpdateUI();
     }
 
-    public void RemoveItem(ItemData data, int quantity)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item == data)
-            {
-                if (slots[i].quantity > quantity)
-                {
-                    slots[i].quantity -= quantity;
-                    UpdateUI();
-                    return;
-                }
-                else
-                {
-                    quantity -= slots[i].quantity;
-                    slots[i].Clear();
-                    if (quantity <= 0)
-                    {
-                        UpdateUI();
-                        return;
-                    }
-                }
-            }
-        }
-        UpdateUI();
-    }
+    //public void RemoveItem(ItemData data, int quantity)
+    //{
+    //    for (int i = 0; i < slots.Length; i++)
+    //    {
+    //        if (slots[i].item == data)
+    //        {
+    //            if (slots[i].quantity > quantity)
+    //            {
+    //                slots[i].quantity -= quantity;
+    //                UpdateUI();
+    //                return;
+    //            }
+    //            else
+    //            {
+    //                quantity -= slots[i].quantity;
+    //                slots[i].Clear();
+    //                if (quantity <= 0)
+    //                {
+    //                    UpdateUI();
+    //                    return;
+    //                }
+    //            }
+    //        }
+    //    }
+    //    UpdateUI();
+    //}
 }

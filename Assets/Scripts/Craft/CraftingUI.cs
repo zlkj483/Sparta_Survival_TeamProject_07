@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -10,25 +10,25 @@ public class CraftingUI : MonoBehaviour
 {
     public static CraftingUI Instance;
 
-    [Header("Àç·á ¾ÆÀÌÅÛ ¿¬°á")]
+    [Header("ì¬ë£Œ ì•„ì´í…œ ì—°ê²°")]
     public ItemData woodItem;
     public ItemData stoneItem;
 
-    [Header("Àç·á Ç¥½Ã (¿ŞÂÊ)")]
+    [Header("ì¬ë£Œ í‘œì‹œ (ì™¼ìª½)")]
     public TextMeshProUGUI woodText;
     public TextMeshProUGUI stoneText;
 
-    [Header("Á¦ÀÛ °¡´É ¸®½ºÆ® (¿À¸¥ÂÊ)")]
+    [Header("ì œì‘ ê°€ëŠ¥ ë¦¬ìŠ¤íŠ¸ (ì˜¤ë¥¸ìª½)")]
     public Transform craftListContent;
     public GameObject craftItemButtonPrefab;
 
-    [Header("»ó¼¼ Á¤º¸ (¿À¸¥ÂÊ ÇÏ´Ü)")]
+    [Header("ìƒì„¸ ì •ë³´ (ì˜¤ë¥¸ìª½ í•˜ë‹¨)")]
     public Image itemImage;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDesc;
     public Button craftButton;
 
-    [Header("µî·ÏµÈ ÀüÃ¼ ·¹½ÃÇÇ")]
+    [Header("ë“±ë¡ëœ ì „ì²´ ë ˆì‹œí”¼")]
     public CraftRecipe[] allRecipes;
 
     private CraftRecipe selectedRecipe;
@@ -36,7 +36,7 @@ public class CraftingUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        gameObject.SetActive(false); // Ã³À½¿£ ´İ¾ÆµÒ
+        gameObject.SetActive(false); // ì²˜ìŒì—” ë‹«ì•„ë‘ 
     }
 
     private void OnEnable()

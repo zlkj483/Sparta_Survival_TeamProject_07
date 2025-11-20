@@ -1,18 +1,19 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CraftingSlot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("데이터")]
+    public ItemData item;
+    public CraftingUI crafting;          // 가능하면 인스펙터에서 안 건드려도 되게 자동 셋업
+    public Image icon;
+    public TextMeshProUGUI quatityText;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int index;
+    public bool equipped;
+    public int quantity;
 }
