@@ -9,18 +9,19 @@ public class Interaction : MonoBehaviour
     private IInteractable curInteractable;
     public GameObject curInteractGameObject;
 
-    //public Transform rayStartPoint;
     public float interDistance = 3f;
     public LayerMask itemLayer;
-    //public GameObject potionInfoUI;
     public TextMeshProUGUI promptText;
-    public InputReader playerActions;
 
+    public InputReader playerActions; // Inspector에서 연결!
 
     void OnEnable()
     {
         if (playerActions == null)
-            playerActions = new InputReader();
+        {
+            Debug.LogError("삐빅! InputReader가 Inspector에서 연결되지 않았습니다.");
+            return;
+        }
 
         playerActions.Player.Enable();
         playerActions.Player.Interact.performed += OnInteract;
@@ -28,6 +29,8 @@ public class Interaction : MonoBehaviour
 
     void OnDisable()
     {
+        if (playerActions == null) return;
+
         playerActions.Player.Interact.performed -= OnInteract;
         playerActions.Player.Disable();
     }
@@ -84,6 +87,16 @@ public class Interaction : MonoBehaviour
         {
             // BoxCast�� ���������� IInteractable�� ���� ���
             promptText.gameObject.SetActive(false);
+        }
+    }
+
+    public void ViewOnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (curInteractable != null)
+        {
+            curInteractable.Interact();
         }
     }
 }
