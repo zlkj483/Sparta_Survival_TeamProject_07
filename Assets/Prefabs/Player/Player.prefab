@@ -32,6 +32,37 @@ Transform:
   - {fileID: 2616222442013822543}
   m_Father: {fileID: 3608684102579999473}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!1 &2218075679148899269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3805703846539112780}
+  m_Layer: 7
+  m_Name: DropPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3805703846539112780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218075679148899269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3608684102579999473}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3120521915655503550
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,6 +94,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 179727058013568796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3288904503048081948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3165693367243962127}
+  - component: {fileID: 5153906548216393132}
+  m_Layer: 7
+  m_Name: MonsterSpawnTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3165693367243962127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288904503048081948}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3608684102579999473}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5153906548216393132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288904503048081948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3ff4d452c7f8a499eff0939a453340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3165693367243962127}
+  innerRadius: 15
+  outerRadius: 40
+  despawnRadiusMultiplier: 1.3
+  maxAlive: 15
+  spawnInterval: 30
+  enemyPrefab: {fileID: 556570997573752380, guid: 0261187597c386d4ab6c21bbd947adb4, type: 3}
+  monsterCandidates:
+  - {fileID: 11400000, guid: 56b0c7a40cec6ef4688be71f21a010af, type: 2}
+  - {fileID: 11400000, guid: 62d5d72fe37a94641b8933ee44d91670, type: 2}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  raycastHeight: 50
 --- !u!1 &3339665923041109344
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,9 +168,8 @@ GameObject:
   - component: {fileID: 612389357367073640}
   - component: {fileID: 618838828655868815}
   - component: {fileID: 7286588217309772367}
-  - component: {fileID: 4439618577813063182}
-  - component: {fileID: 6636547384339445187}
   - component: {fileID: 5881409463567290592}
+  - component: {fileID: 7236039068995037202}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -104,6 +192,8 @@ Transform:
   m_Children:
   - {fileID: 3552417632981177523}
   - {fileID: 7590216877379827291}
+  - {fileID: 3165693367243962127}
+  - {fileID: 3805703846539112780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3590304364060839220
@@ -271,9 +361,9 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5840446960673322181}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnAttack
+      - m_Target: {fileID: 5881409463567290592}
+        m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
+        m_MethodName: OnAttackInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -303,9 +393,9 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4439618577813063182}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnInventory
+      - m_Target: {fileID: 5840446960673322181}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnToggleInventory
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -319,8 +409,8 @@ MonoBehaviour:
     m_ActionName: Player/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4439618577813063182}
-        m_TargetAssemblyTypeName: PlayerBuildController, Assembly-CSharp
+      - m_Target: {fileID: 5840446960673322181}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnOpenBuildMenu
         m_Mode: 0
         m_Arguments:
@@ -333,6 +423,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3d20f234-d0a8-4bd2-a647-6a41acf27b42
     m_ActionName: Player/BuildUI[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5840446960673322181}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnCrafting
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b8eec0e7-b151-44b1-89d7-d76f070800c7
+    m_ActionName: Player/Craft[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -358,6 +464,8 @@ MonoBehaviour:
   jumpForce: 5
   mouseSensitivity: 1
   cameraFollowSpeed: 10
+  craftingUI: {fileID: 0}
+  buildMenuUI: {fileID: 0}
   canLook: 0
 --- !u!114 &612389357367073640
 MonoBehaviour:
@@ -414,45 +522,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   promptText: {fileID: 0}
---- !u!114 &4439618577813063182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339665923041109344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28108609f448d9e43a5dc81dcb5575ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildMenuUI: {fileID: 0}
-  inventoryUIRoot: {fileID: 0}
-  craftingUI: {fileID: 0}
---- !u!114 &6636547384339445187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339665923041109344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3ff4d452c7f8a499eff0939a453340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3608684102579999473}
-  innerRadius: 15
-  outerRadius: 40
-  despawnRadiusMultiplier: 1.3
-  maxAlive: 15
-  spawnInterval: 3
-  enemyPrefab: {fileID: 0}
-  monsterCandidates: []
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  raycastHeight: 50
 --- !u!114 &5881409463567290592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +539,24 @@ MonoBehaviour:
   attackDamage: 10
   attackRange: 3
   attackCooldown: 0.7
+  defaultHandPrefab: {fileID: 4247530641276572949, guid: a60251d7b0861a34286c50a2d5c626ec, type: 3}
+--- !u!114 &7236039068995037202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339665923041109344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c5e9eec24038b4caca67107ce2afbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 0}
+  condition: {fileID: 0}
+  equip: {fileID: 0}
+  itemData: {fileID: 0}
+  dropPosition: {fileID: 3805703846539112780}
 --- !u!1 &6204798733602561929
 GameObject:
   m_ObjectHideFlags: 0

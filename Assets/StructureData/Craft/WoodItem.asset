@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c6676e41051044790820209cc1aec9, type: 3}
   m_Name: WoodItem
   m_EditorClassIdentifier: 
-  resultItem: {fileID: 0}
+  resultItem: {fileID: 11400000, guid: 8a959347ce8f28b408bb0ac6a14cd414, type: 2}
   resultAmount: 1
   materials:
   - item: {fileID: 11400000, guid: 855f43496c6d1714e9773af49a58371f, type: 2}
-    amount: 0
+    amount: 1
   - item: {fileID: 11400000, guid: 8ae528cd0f570fa4a84912c277b3a387, type: 2}
-    amount: 0
+    amount: 1
   description: 

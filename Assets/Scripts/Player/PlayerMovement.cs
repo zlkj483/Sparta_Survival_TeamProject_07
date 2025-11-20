@@ -18,6 +18,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
     private float lookUpDownNum = 0f;
+    public GameObject craftingUI;
+    public GameObject buildMenuUI;
+
+
+    private bool isBuildMenuOpen = false;
+    private bool isCraftingOpen = false;
 
     public bool canLook;
 
@@ -135,5 +141,34 @@ public class PlayerMovement : MonoBehaviour
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
+
+
+    public void OnOpenBuildMenu(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        ToggleCursor();
+        canLook = !canLook;
+
+        isBuildMenuOpen = !isBuildMenuOpen;
+
+        buildMenuUI.SetActive(isBuildMenuOpen);
+    }
+
+
+    public void OnCrafting(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        ToggleCursor();
+        canLook = !canLook;
+
+        bool open = !craftingUI.activeSelf;
+        craftingUI.SetActive(open);
+
+        if (open)
+            CraftingUI.Instance.RefreshUI();
     }
 }
