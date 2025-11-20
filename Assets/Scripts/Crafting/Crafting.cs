@@ -61,11 +61,11 @@ public class Crafting : MonoBehaviour
         // 재료 체크
         foreach (RecipeIngredient ingredient in selectedRecipe.ingredients)
         {
-            if (!playerInventory.HasItem(ingredient.item, ingredient.quantity))
-            {
-                Debug.Log("재료가 부족합니다: " + ingredient.item.displayName);
-                return;
-            }
+            //if (!playerInventory.HasItem(ingredient.item, ingredient.quantity))
+            //{
+            //    Debug.Log("재료가 부족합니다: " + ingredient.item.displayName);
+            //    return;
+            //}
         }
 
         // 재료 차감

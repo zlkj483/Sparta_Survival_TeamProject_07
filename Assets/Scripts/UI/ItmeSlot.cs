@@ -115,7 +115,7 @@ public class ItemSlot : MonoBehaviour,
         if (icon != null && item != null)
         {
             icon.gameObject.SetActive(true);
-            icon.sprite = item.itemImage;
+            //icon.sprite = item.itemImage;
         }
     }
 
