@@ -17,7 +17,7 @@ MonoBehaviour:
   skinPrefab: {fileID: 2782497303823349503, guid: 306795369d619f24288d093edb347693, type: 3}
   maxHp: 30
   moveSpeed: 3.5
-  baseDamage: 15
+  baseDamage: 3
   aggroRange: 10
   attackRange: 2
   giveUpRange: 20
