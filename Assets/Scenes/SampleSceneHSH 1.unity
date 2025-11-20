@@ -1128,7 +1128,7 @@ GameObject:
   - component: {fileID: 182133890}
   - component: {fileID: 182133889}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CraftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4238,6 +4238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11490ef7e38ed6245ac8d8e7c5463cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  content: {fileID: 0}
+  buttonPrefab: {fileID: 0}
+  buildingList: []
 --- !u!114 &726228321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8352,6 +8355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1531442223}
   - component: {fileID: 1531442225}
+  - component: {fileID: 1531442226}
   - component: {fileID: 1531442224}
   m_Layer: 5
   m_Name: Crafting
@@ -8419,6 +8423,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531442222}
   m_CullTransparentMesh: 1
+--- !u!114 &1531442226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531442222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9bd5ee4d6c65c40bee85520cd878f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodItem: {fileID: 11400000, guid: 855f43496c6d1714e9773af49a58371f, type: 2}
+  stoneItem: {fileID: 11400000, guid: 8ae528cd0f570fa4a84912c277b3a387, type: 2}
+  woodText: {fileID: 72971594}
+  stoneText: {fileID: 630938779}
+  craftListContent: {fileID: 726228319}
+  craftItemButtonPrefab: {fileID: 182133887}
+  itemImage: {fileID: 1589776183}
+  itemName: {fileID: 171731578}
+  itemDesc: {fileID: 562163059}
+  craftButton: {fileID: 0}
+  allRecipes:
+  - {fileID: 11400000, guid: 85a8200f199e83b478f4290378e52e38, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1552012517
 GameObject:
   m_ObjectHideFlags: 0
@@ -9593,6 +9628,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
+  playerCondition: {fileID: 0}
 --- !u!1 &1887870513
 GameObject:
   m_ObjectHideFlags: 0
