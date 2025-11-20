@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (IsInventoryOpen()) return;
         if (context.performed)
         {
             animator.SetTrigger("Jump");
@@ -108,8 +109,22 @@ public class PlayerMovement : MonoBehaviour
     #region Attack
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (IsInventoryOpen()) return;
         if (context.performed && attack != null)
             attack.TryAttack();
     }
     #endregion
+    public void OnToggleInventory(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (UIInventory.Instance != null)
+            UIInventory.Instance.Toggle();
+        else
+            Debug.LogError("UIInventory.Instance가 존재하지 않습니다!");
+    }
+    private bool IsInventoryOpen()
+    {
+        return UIInventory.Instance != null && UIInventory.Instance.IsOpen();
+    }
 }

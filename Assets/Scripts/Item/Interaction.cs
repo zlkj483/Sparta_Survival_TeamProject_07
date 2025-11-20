@@ -9,35 +9,11 @@ public class Interaction : MonoBehaviour
     private IInteractable curInteractable;
     public GameObject curInteractGameObject;
 
-    //public Transform rayStartPoint;
     public float interDistance = 3f;
     public LayerMask itemLayer;
-    //public GameObject potionInfoUI;
     public TextMeshProUGUI promptText;
-    public InputReader playerActions;
 
 
-    void OnEnable()
-    {
-        if (playerActions == null)
-            playerActions = new InputReader();
-
-        playerActions.Player.Enable();
-        playerActions.Player.Interact.performed += OnInteract;
-    }
-
-    void OnDisable()
-    {
-        playerActions.Player.Interact.performed -= OnInteract;
-        playerActions.Player.Disable();
-    }
-    private void OnInteract(InputAction.CallbackContext context)
-    {
-        if (curInteractable != null)
-        {
-            curInteractable.Interact();
-        }
-    }
     void Update()
     {
         CheckForItem();
@@ -73,6 +49,7 @@ public class Interaction : MonoBehaviour
             promptText.gameObject.SetActive(false);
         }
     }
+
     private void SetPromptText()
     {
         if (curInteractable != null && promptText != null)
@@ -84,6 +61,16 @@ public class Interaction : MonoBehaviour
         {
             // BoxCast�� ���������� IInteractable�� ���� ���
             promptText.gameObject.SetActive(false);
+        }
+    }
+
+    public void ViewOnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (curInteractable != null)
+        {
+            curInteractable.Interact();
         }
     }
 }

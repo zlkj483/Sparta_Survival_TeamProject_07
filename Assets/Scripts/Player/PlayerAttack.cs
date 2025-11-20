@@ -23,6 +23,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void TryAttack()
     {
+        Debug.Log("[TryAttack] 공격 시도!");
         if (isAttacking) return; // 공격 중이면 무시!
 
         if (!playerCondition.UseStamina(staminaCost))
@@ -35,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
 
         animator.SetTrigger("Attack");
+        DealDamage();
 
         // 쿨타임 시작
         Invoke(nameof(ResetAttack), attackCooldown);
@@ -46,18 +48,27 @@ public class PlayerAttack : MonoBehaviour
     }
     public void DealDamage()
     {
-        Ray ray = new Ray(transform.position + Vector3.up, transform.forward);
+        Debug.Log("[DealDamage] 호출됨 ? 실제 데미지 판정 시작");
+
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, attackRange, targetLayer))
+        // SphereCast: origin, radius, direction, out hit, range, layer
+        float sphereRadius = 0.5f; // 공격 판정 반지름
+        Vector3 rayOrigin = transform.position + Vector3.up * 1f; // 플레이어 허리~가슴 높이
+
+        if (Physics.SphereCast(rayOrigin, sphereRadius, transform.forward, out hit, attackRange, targetLayer))
         {
-            IDamagable monster = hit.collider.GetComponent<IDamagable>();
+            IDamagable monster = hit.collider.GetComponentInParent<IDamagable>();
             if (monster != null)
             {
                 monster.TakePhysicalDamage(attackDamage);
-                Debug.Log("몬스터 타격!");
+                Debug.Log($"몬스터 타격! {hit.collider.name}");
             }
         }
+
+        // 디버그용 시각화
+        Debug.DrawRay(rayOrigin, transform.forward * attackRange, Color.red, 1f);
+        Debug.Log($"SphereCast origin: {rayOrigin}, radius: {sphereRadius}");
     }
 
 }

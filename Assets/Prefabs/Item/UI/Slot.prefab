@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 370712126269570328}
   - component: {fileID: 2217485524778535705}
   - component: {fileID: 3112853519351687499}
+  - component: {fileID: 3906353288165328718}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -169,11 +170,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   inventory: {fileID: 0}
-  icon: {fileID: 0}
-  quatityText: {fileID: 0}
+  icon: {fileID: 4738252868386755978}
+  quatityText: {fileID: 2100232699082825672}
   index: 0
   equipped: 0
   quantity: 0
+  doubleClickThreshold: 0.25
+  canvas: {fileID: 0}
 --- !u!114 &3112853519351687499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +192,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0.86666673, g: 0.5921569, b: 0.7058824, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!225 &3906353288165328718
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380809159769480446}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6235324646802326481
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,12 +296,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 40.07
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 40.07
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
