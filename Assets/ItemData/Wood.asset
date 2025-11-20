@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   displayName: "\uB098\uBB34"
-  description: 
+  description: "\uADF8\uB0E5 \uB098\uBB34\uC785\uB2C8\uB2E4."
   type: 0
   dropPrefab: {fileID: 2081172684963671106, guid: b002cfbe0ab9bd349bd0aff9c0b0d210, type: 3}
+  itemImage: {fileID: 21300000, guid: a2e1d6a3ea2186e4891cf90722c8095a, type: 3}
   canStack: 1
   maxStackAmount: 64
   equipPrefab: {fileID: 0}

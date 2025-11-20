@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "\uB354 \uAC15\uD574\uC9C4 \uB9DD\uCE58"
   type: 1
   dropPrefab: {fileID: 4224616354160568089, guid: f9b9136f342095a469280c5951b40f9a, type: 3}
-  itemImage: {fileID: 0}
+  itemImage: {fileID: 21300000, guid: 1fc1a348ae2d2864da793a4ebf40a695, type: 3}
   canStack: 0
   maxStackAmount: 0
   equipPrefab: {fileID: 4224616354160568089, guid: 9bb106c1e0e512441812681a39042dd9, type: 3}
