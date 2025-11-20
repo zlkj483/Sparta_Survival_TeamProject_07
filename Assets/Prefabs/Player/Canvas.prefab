@@ -302,7 +302,7 @@ MonoBehaviour:
   maxValue: 100
   startValue: 100
   passiveValue: 4
-  uiBar: {fileID: 0}
+  uiBar: {fileID: 2671114995777724674}
 --- !u!1 &1698435229698565257
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +547,7 @@ MonoBehaviour:
   maxValue: 100
   startValue: 100
   passiveValue: 1
-  uiBar: {fileID: 0}
+  uiBar: {fileID: 7329500025335679726}
 --- !u!1 &3799358952759020148
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +717,7 @@ MonoBehaviour:
   maxValue: 500
   startValue: 400
   passiveValue: 4
-  uiBar: {fileID: 0}
+  uiBar: {fileID: 8280772380326855440}
 --- !u!1 &5089225213585297674
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +943,7 @@ MonoBehaviour:
   maxValue: 500
   startValue: 400
   passiveValue: 3
-  uiBar: {fileID: 0}
+  uiBar: {fileID: 61016528858422260}
 --- !u!1 &6367798757270411941
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,14 +14,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 1.5f; // 감도 낮춤
     [SerializeField] private float cameraFollowSpeed = 10f;
 
-    private PlayerAttack attack;
+
     private Vector2 moveInput;
     private Vector2 lookInput;
     private float lookUpDownNum = 0f;
 
-    private void Awake()
+    public bool canLook;
+
+    private void Start()
     {
-        attack = GetComponent<PlayerAttack>();
+        canLook = true;
+        ToggleCursor();
     }
 
     private void Update()
@@ -36,7 +39,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        HandleCameraFollow();
+        if(canLook)
+        {
+            HandleCameraFollow();
+        }
     }
 
     #region Movement
@@ -106,25 +112,28 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    #region Attack
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (IsInventoryOpen()) return;
-        if (context.performed && attack != null)
-            attack.TryAttack();
-    }
-    #endregion
     public void OnToggleInventory(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
         if (UIInventory.Instance != null)
+        {
+            ToggleCursor();
+            canLook = !canLook;
             UIInventory.Instance.Toggle();
+        }
+
         else
             Debug.LogError("UIInventory.Instance가 존재하지 않습니다!");
     }
     private bool IsInventoryOpen()
     {
         return UIInventory.Instance != null && UIInventory.Instance.IsOpen();
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }
