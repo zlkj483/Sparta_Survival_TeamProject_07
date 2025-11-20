@@ -3,7 +3,22 @@ guid: 3f9925adc2fd46b4595bf5456722561c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: fruitA_color
+    second: {fileID: 2800000, guid: 739ebb07fb5a65c499e9f7853f819ff0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: fruitA_normal
+    second: {fileID: 2800000, guid: 12d2dfcadc8cb284f8057bd59be73d46, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: fruitA_roughness
+    second: {fileID: 2800000, guid: 4a5d53ded6c618c488a50b76134be26f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
