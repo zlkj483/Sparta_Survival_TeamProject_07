@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,37 +78,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2828212334155398470}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1694450109919044246}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7101353111095915352}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3837472300392979048}
   m_SourcePrefab: {fileID: 100100000, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
 --- !u!1 &3283397991921470545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eab198db2c1e5b249bac6780385d79ee, type: 3}
   m_PrefabInstance: {fileID: 2400859240080666880}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2828212334155398470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3283397991921470545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70aebe033e87de14cb3e472ac2f81155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRate: 0.8
-  attackDistance: 1
-  useStamina: 20
-  doesGatherResources: 1
-  doesDealDamage: 0
-  damage: 20
 --- !u!54 &1694450109919044246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,3 +139,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0054661613, y: 0.0017414711, z: 0.013356237}
   m_Center: {x: 0.0007005461, y: 0.0000012743403, z: 0.0009128114}
+--- !u!114 &-3837472300392979048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283397991921470545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900f9bc0ed28edc4cb703a0bbca397c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 8a959347ce8f28b408bb0ac6a14cd414, type: 2}
