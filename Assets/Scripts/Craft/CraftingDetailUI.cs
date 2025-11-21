@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -14,7 +14,7 @@ public class CraftingDetailUI : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;
 
-    [Header("Àç·á")]
+    [Header("ì¬ë£Œ")]
     public TextMeshProUGUI woodText;
     public TextMeshProUGUI stoneText;
 
@@ -35,7 +35,7 @@ public class CraftingDetailUI : MonoBehaviour
         currentRecipe = recipe;
         gameObject.SetActive(true);
 
-        // ±âº» Á¤º¸ Ç¥½Ã
+        // ê¸°ë³¸ ì •ë³´ í‘œì‹œ
         previewImage.sprite = recipe.resultItem.icon;
         nameText.text = recipe.resultItem.displayName;
         descriptionText.text = recipe.description;
@@ -54,19 +54,19 @@ public class CraftingDetailUI : MonoBehaviour
 
     private void RefreshMaterialUI()
     {
-        // ±âº»°ª (¾øÀ» ¼öµµ ÀÖÀ¸´Ï±î ÃÊ±â°ª 0À¸·Î)
+        // ê¸°ë³¸ê°’ (ì—†ì„ ìˆ˜ë„ ìˆìœ¼ë‹ˆê¹Œ ì´ˆê¸°ê°’ 0ìœ¼ë¡œ)
         int needWood = 0, needStone = 0;
         int haveWood = 0, haveStone = 0;
 
         foreach (var mat in currentRecipe.materials)
         {
-            if (mat.item.displayName.Contains("Wood") || mat.item.displayName.Contains("³ª¹«"))
+            if (mat.item.displayName.Contains("Wood") || mat.item.displayName.Contains("ë‚˜ë¬´"))
             {
                 needWood = mat.amount;
                 haveWood = UIInventory.Instance.GetItemCount(mat.item);
             }
 
-            if (mat.item.displayName.Contains("Stone") || mat.item.displayName.Contains("µ¹"))
+            if (mat.item.displayName.Contains("Stone") || mat.item.displayName.Contains("ëŒ"))
             {
                 needStone = mat.amount;
                 haveStone = UIInventory.Instance.GetItemCount(mat.item);
@@ -95,16 +95,16 @@ public class CraftingDetailUI : MonoBehaviour
         if (!CanCraft())
             return;
 
-        // Àç·á Á¦°Å
+        // ì¬ë£Œ ì œê±°
         foreach (var mat in currentRecipe.materials)
         {
             UIInventory.Instance.RemoveItem(mat.item, mat.amount);
         }
 
-        // ¾ÆÀÌÅÛ Áö±Ş
+        // ì•„ì´í…œ ì§€ê¸‰
         UIInventory.Instance.AddItem(currentRecipe.resultItem);
 
-        // °»½Å
+        // ê°±ì‹ 
         RefreshMaterialUI();
     }
 }
