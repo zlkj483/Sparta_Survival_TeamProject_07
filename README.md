@@ -1,100 +1,95 @@
-Sparta Survival Team Project 07
+# 🏕 Sparta Survival – Team Project 07
 
-유니티 기반 생존형 팀 프로젝트, 2022 버전
+> 스파르타 코딩클럽 유니티 심화 과정에서 진행한 3D 생존 게임 팀 프로젝트입니다.  
+> 자원을 수집하고, 제작・건설을 통해 생존 기반을 다지며, 몬스터를 상대하며 최대한 오래 살아남는 것을 목표로 합니다.
 
-##🎯 개요
+---
 
-이 프로젝트는 유니티(Unity) 엔진을 활용한 생존(Survival)형 팀 프로젝트입니다.
-플레이어가 재료를 수집하고, 아이템을 제작(crafting)하며, 다양한 도전 요소를 극복해 나가는 게임플레이 구조를 목표로 합니다.
+## 📌 프로젝트 개요
 
-##🚀 주요 기능
+- **프로젝트명**: Sparta_Survival_TeamProject_07  
+- **장르**: 3D 생존(Survival) / 탐험 / 빌딩  
+- **엔진**: Unity (2022 LTS 기준 / 비슷한 버전 이상 권장)  
+- **플랫폼**: PC (Windows)  
+- **개발 인원**: 3인 팀 프로젝트 :contentReference[oaicite:0]{index=0}  
 
-재료 수집 및 인벤토리 관리
+---
 
-아이템 제작(Crafting) 시스템
+## 🎮 핵심 게임 플레이
 
-레시피(ScriptableObject 기반) 적용
+### 1. 자원 수집 & 채집 시스템
+- 지도 곳곳에 배치된 자원을 채집하여 인벤토리에 획득
+- 예: 나무, 돌, 음식 재료 등
+- 도구/맨손 채집을 통해 생존과 건설에 필요한 자원을 확보
 
-플레이어 입력으로 제작 메뉴 열고 닫기
+### 2. 생존 요소 (허기 / 목마름 등)
+- 플레이어의 상태 수치(예: HP, 허기, 목마름 등)가 지속적으로 감소
+- 일정 수치 이하로 내려가면 패널티 발생 또는 사망
+- 음식/물 섭취를 통해 수치 회복
 
-UI 구성: 재료 보유 패널, 제작 가능 아이템 리스트, 상세 정보 패널
+### 3. 제작(Crafting) & 건설(Building)
+- 수집한 자원을 조합해 **도구, 무기, 소비 아이템** 제작
+- 바닥/월드 상에 건설 모드를 통해 구조물(예: 벽, 캠프, 불 등) 배치
+- 점진적으로 거점을 강화하며 더 오래 생존할 수 있도록 설계
 
-확장 가능하고 모듈화된 설계로 다른 기능 추가 용이
+### 4. 전투 & 몬스터 AI
+- 근접/원거리 공격을 통해 맵에 등장하는 적 몬스터와 전투
+- 몬스터는 일정 범위 내에서 플레이어를 감지하고 추적
+- 적 유형에 따라 이동 패턴, 공격 패턴이 상이하도록 설계
 
-##🧩 아키텍처 개요
+### 5. UI & 인벤토리 시스템
+- 인벤토리 UI를 통해 **아이템 사용 / 장착 / 버리기** 가능
+- 상태바(HP, 허기, 목마름 등)를 통해 현재 생존 상태를 직관적으로 확인
+- 퀵슬롯, 장비 슬롯 등을 활용해 플레이 흐름을 끊지 않고 운영 가능하도록 구성
 
-CraftRecipe : 제작 레시피 데이터를 담는 ScriptableObject
+---
 
-CraftingUI.cs : 제작 메뉴 전체 관리 (재료 표시, 리스트 생성, 상세 정보 컨트롤)
+## 🕹 조작 방법 (예시)
 
-CraftingListButton.cs : 제작가능 리스트에서 각 버튼 기능 담당
+> 실제 프로젝트 키맵과 다르면 이 부분만 수정해서 사용하세요.
 
-ShowCraftMenu.cs : 입력에 따라 제작 메뉴 창의 열림/닫힘 제어
+- `WASD` : 이동
+- `Space` : 점프
+- `Shift` : 달리기
+- `E` : 상호작용 (자원 채집, 상자 열기 등)
+- `Mouse Left` : 기본 공격
+- `Mouse Right` : 조준 / 특수 행동
+- `Tab` or `I` : 인벤토리 열기/닫기
+- `Esc` : 일시정지 메뉴
 
-UIInventory (추정) : 인벤토리 및 재료 수량 조회 / 제거 / 추가 기능 담당
+---
 
-##🎨 UI 구성
+## 🧱 프로젝트 구조 (요약)
 
-좌측: 재료 보유 현황 (Wood, Stone 등)
+> 실제 폴더 구조에 맞춰서 세부 항목은 필요하면 조금씩 수정하세요.
 
-우측 상단: 제작 가능 아이템 리스트 (아이콘 + 이름)
+- `Assets/`
+  - `Scenes/`  
+    - 게임 플레이, 메인 메뉴 등 주요 씬
+  - `Scripts/`  
+    - `Player/` : 플레이어 이동, 입력, 상태 관리
+    - `Enemy/` : 적 AI, 패턴, 탐지/추적 로직
+    - `Item/` : 아이템 데이터, 인벤토리, 드랍/줍기 로직
+    - `UI/` : 인벤토리 UI, 상태바, 팝업, HUD
+    - `System/` : GameManager, SpawnManager 등 공용 시스템
+  - `Prefabs/`  
+    - 플레이어, 몬스터, 아이템, 구조물 프리팹
+  - `Art/`, `Models/`, `Animations/`   
+    - 3D 모델, 애니메이션, 머티리얼 등 리소스
 
-우측 하단: 선택된 아이템 상세 정보 (아이콘, 이름, 설명, 타입, 제작버튼)
+---
 
-버튼 및 리스트는 ScrollView, LayoutGroup 등을 활용해 유동적 구현
+## ⚙️ 개발 환경
 
-##🔧 설치 및 실행 방법
+- **Engine**: Unity (2022.x LTS 기준으로 개발)  
+- **Language**: C# :contentReference[oaicite:1]{index=1}  
+- **IDE**: Visual Studio / Rider / VS Code 등  
+- **형상 관리**: GitHub
 
-저장소를 클론 또는 다운로드
+---
 
-git clone https://github.com/zlkj483/Sparta_Survival_TeamProject_07.git
+## 🚀 실행 방법
 
-
-Unity 2022.3.62f2 (또는 유사 버전)로 프로젝트 오픈
-
-필요한 패키지 / 플러그인 설치 (예: TextMeshPro 등)
-
-씬(Scene) 설정 확인: CraftingPanel UI, 인벤토리 시스템 등이 정상 연결돼 있는지 확인
-
-플레이 모드에서 제작 메뉴 열고 재료/아이템 수량 및 제작 동작 테스트
-
-##🧠 개발 팁 / 확장 제안
-
-레시피 데이터(CraftRecipe)를 추가해 다양한 제작 아이템 확장 가능
-
-인벤토리 슬롯, 드래그 & 드롭 UI 구현하면 UX 향상
-
-제작 시 애니메이션 또는 효과음 추가해 몰입감 강화
-
-재료가 많은 경우 좌측 패널 대신 팝업 리스트 형태로 전환 고려
-
-제작 실패 확률, 품질 등 더 복잡한 시스템도 추가 가능
-
-##📁 디렉토리 구조
-Assets/
- ├── Scripts/
- │    ├── CraftingUI.cs  
- │    ├── CraftingListButton.cs  
- │    ├── ShowCraftMenu.cs  
- │    └── CraftRecipe.cs  
- ├── ScriptableObjects/
- │    └── Recipes/  
- ├── UI/
- │    ├── Panels/  
- │    └── Prefabs/  
- └── …  
-Packages/  
-ProjectSettings/  
-.gitignore  
-
-##👥 팀 정보
-
-작성자: zlkj483
-
-참여 개발자: kdk7992-sketch, kimdonggwan, whoman4233 (기여자 목록)
-
-📄 라이선스
-
-별도 라이선스 파일이 없는 경우 기본적으로 “모든 권리 보유(All rights reserved)” 또는 원하는 오픈소스 라이선스 (MIT, Apache2 등)로 변경 가능
-
-프로젝트에 맞게 라이선스 추가하는 것을 권장합니다.
+1. 이 레포지토리 클론
+   ```bash
+   git clone https://github.com/zlkj483/Sparta_Survival_TeamProject_07.git
