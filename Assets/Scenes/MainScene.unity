@@ -121474,7 +121474,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  playerCondition: {fileID: 0}
+  playerCondition: {fileID: 2002835871}
 --- !u!1001 &1855776407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131146,6 +131146,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4634707523320338835, guid: e59d3ca5512880649a744ffc997a6041, type: 3}
   m_PrefabInstance: {fileID: 2002734641}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2002835871 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 612389357367073640, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+  m_PrefabInstance: {fileID: 6571673447556513013}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a78e413398c46ce9fb0dc291fe8802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2003102905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132764,6 +132775,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8292502841886167845, guid: 51e77bd28c97ff241b980451244b9af4, type: 3}
   m_PrefabInstance: {fileID: 2029325668}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2029751291 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8561658721212111455, guid: e3c91cbe9000343c5b00745219027a04, type: 3}
+  m_PrefabInstance: {fileID: 59702025348085214}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2029979324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142328,6 +142350,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 612389357367073640, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
+      propertyPath: tempText
+      value: 
+      objectReference: {fileID: 2029751291}
     - target: {fileID: 612389357367073640, guid: 533dff2cba9424a4bbf758ac15acc579, type: 3}
       propertyPath: uiCondition
       value: 
