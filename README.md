@@ -11,7 +11,7 @@
 - **장르**: 3D 생존(Survival) / 탐험 / 빌딩  
 - **엔진**: Unity (2022 LTS 기준 / 비슷한 버전 이상 권장)  
 - **플랫폼**: PC (Windows)  
-- **개발 인원**: 3인 팀 프로젝트 :contentReference[oaicite:0]{index=0}  
+- **개발 인원**: 5인 팀 프로젝트 :contentReference[oaicite:0]{index=0}  
 
 ---
 
