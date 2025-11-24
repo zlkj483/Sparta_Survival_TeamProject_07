@@ -92,7 +92,6 @@ public class BuildManager : MonoBehaviour
         {
             Vector3 pos = hit.point;
 
-            // 프리뷰 전체 바운드 계산
             Renderer[] renders = previewObject.GetComponentsInChildren<Renderer>();
 
             if (renders.Length > 0)
@@ -101,12 +100,11 @@ public class BuildManager : MonoBehaviour
                 for (int i = 1; i < renders.Length; i++)
                     bounds.Encapsulate(renders[i].bounds);
 
-                float bottomY = bounds.min.y;        // 프리뷰의 가장 아래 부분
+                float bottomY = bounds.min.y;
                 float currentY = previewObject.transform.position.y;
 
-                float diff = currentY - bottomY;     // 실제 오브젝트 바닥과 중심 차이
+                float diff = currentY - bottomY;
 
-                // hit.point.y + diff 만큼 맞추기
                 pos.y += diff;
             }
 
